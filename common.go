@@ -190,3 +190,12 @@ func twoSum(nums []int, target int) []int {
 
 	return result
 }
+
+/*
+搜索插入位置
+https://leetcode-cn.com/problems/search-insert-position/
+
+思路
+1、二分查找有序数据
+2、对比左右两边数据，
+ */
