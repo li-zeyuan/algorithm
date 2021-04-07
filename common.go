@@ -156,7 +156,7 @@ func isPalindrome(x int) bool {
 输出："9534330"
 
 链接：https://leetcode-cn.com/problems/largest-number
- */
+*/
 func largestNumber(nums []int) string {
 	ss := make([]string, len(nums))
 	for i, num := range nums {
@@ -175,15 +175,15 @@ func largestNumber(nums []int) string {
 /*
 求两数只和
 https://leetcode-cn.com/problems/two-sum/
- */
+*/
 func twoSum(nums []int, target int) []int {
 	result := make([]int, 0)
-	for i := 0; i < len(nums); i ++ {
-		for j := i + 1; j < len(nums); j ++ {
-			if nums[i] + nums[j] == target {
- 				result = append(result, i)
- 				result = append(result, j)
- 				return result
+	for i := 0; i < len(nums); i++ {
+		for j := i + 1; j < len(nums); j++ {
+			if nums[i]+nums[j] == target {
+				result = append(result, i)
+				result = append(result, j)
+				return result
 			}
 		}
 	}
@@ -196,6 +196,21 @@ func twoSum(nums []int, target int) []int {
 https://leetcode-cn.com/problems/search-insert-position/
 
 思路
-1、二分查找有序数据
-2、对比左右两边数据，
- */
+1、二分查找有序s数组
+2、找出第一个>= target的数
+*/
+func searchInsert(nums []int, target int) int {
+	n := len(nums)
+	left, right := 0, n-1
+	ans := n
+	for left <= right {
+		mid := (right-left)>>1 + left
+		if target <= nums[mid] {
+			ans = mid // target小于中间指针值，则将min赋值给result
+			right = mid - 1
+		} else {
+			left = mid + 1
+		}
+	}
+	return ans
+}

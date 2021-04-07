@@ -45,16 +45,16 @@ func TestChanel(t *testing.T) {
 	fmt.Println("iii")
 }
 
-func TestIsPalindrome(t *testing.T)  {
+func TestIsPalindrome(t *testing.T) {
 	fmt.Println(isPalindrome(123121))
 }
 
-func TestLargestNumber(t *testing.T)  {
-	str := largestNumber([]int{3,30,34,5,9})
+func TestLargestNumber(t *testing.T) {
+	str := largestNumber([]int{3, 30, 34, 5, 9})
 	fmt.Println(str)
 }
 
-func TestRW(t *testing.T)  {
+func TestRW(t *testing.T) {
 	rw := sync.RWMutex{}
 	wg := sync.WaitGroup{}
 
@@ -76,8 +76,13 @@ func TestRW(t *testing.T)  {
 	fmt.Println()
 }
 
-func TestTwoSum(t *testing.T)  {
-	nums := []int{2,7,11,15}
+func TestTwoSum(t *testing.T) {
+	nums := []int{2, 7, 11, 15}
 	result := twoSum(nums, 9)
 	fmt.Println(result)
+}
+
+func TestSearchInsert(t *testing.T) {
+	l := []int{1, 2, 3, 4, 5, 6}
+	fmt.Println(searchInsert(l, 5))
 }
