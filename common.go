@@ -214,3 +214,37 @@ func searchInsert(nums []int, target int) int {
 	}
 	return ans
 }
+
+/*
+外观数列
+https://leetcode-cn.com/problems/count-and-say/
+
+思路
+1、对countAndSay(n-1)返回的结果进行描述 则得到countAndSay(n)
+2、递归终止条件：countAndSay(n-1) = "1"
+*/
+func countAndSay(n int) string {
+	if n == 1 {
+		return "1"
+	}
+
+	latest := countAndSay(n - 1)
+
+	pre := latest[0]
+	var count byte = '1'
+	result := make([]byte, 0)
+	for i := 1; i < len(latest); i++ {
+		if latest[i] == pre {
+			count += 1
+			pre = latest[i]
+		} else {
+			result = append(result, count, pre)
+			pre = latest[i]
+			count = '1'
+		}
+	}
+
+	result = append(result, count, pre)
+
+	return string(result)
+}

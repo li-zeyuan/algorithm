@@ -86,3 +86,7 @@ func TestSearchInsert(t *testing.T) {
 	l := []int{1, 2, 3, 4, 5, 6}
 	fmt.Println(searchInsert(l, 5))
 }
+
+func TestCountAndSay(t *testing.T)  {
+	fmt.Println(countAndSay(4))
+}
