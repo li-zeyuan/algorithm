@@ -248,3 +248,27 @@ func countAndSay(n int) string {
 
 	return string(result)
 }
+
+/*
+求最大子序列和
+https://leetcode-cn.com/problems/maximum-subarray/
+*/
+// 方式一：贪心
+func maxSubArray(nums []int) int {
+	result := 0
+	tempMaxSum := 0
+	for i :=0; i < len(nums); i ++ {
+		tempMaxSum += nums[i]
+		if tempMaxSum >= result {
+			result = tempMaxSum
+		}
+
+		if tempMaxSum< 0 {
+			tempMaxSum = 0
+		}
+	}
+
+	return result
+}
+
+// 方式二：动态规划

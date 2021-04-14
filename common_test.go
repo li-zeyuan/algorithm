@@ -90,3 +90,12 @@ func TestSearchInsert(t *testing.T) {
 func TestCountAndSay(t *testing.T)  {
 	fmt.Println(countAndSay(4))
 }
+
+func TestMaxSubArray(t *testing.T)  {
+	l := []int{
+		-1,
+		-1,
+		-1,
+	}
+	fmt.Println(maxSubArray(l))
+}
