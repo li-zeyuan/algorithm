@@ -93,9 +93,12 @@ func TestCountAndSay(t *testing.T)  {
 
 func TestMaxSubArray(t *testing.T)  {
 	l := []int{
-		-1,
-		-1,
-		-1,
+		1,
+		1,
+		-3,
+		1,
+		1,
+		1,
 	}
 	fmt.Println(maxSubArray(l))
 }

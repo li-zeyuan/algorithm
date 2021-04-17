@@ -253,22 +253,23 @@ func countAndSay(n int) string {
 求最大子序列和
 https://leetcode-cn.com/problems/maximum-subarray/
 */
-// 方式一：贪心
-//func maxSubArray(nums []int) int {
-//	result := 0
-//	tempMaxSum := 0
-//	for i :=0; i < len(nums); i ++ {
-//		tempMaxSum += nums[i]
-//		if tempMaxSum >= result {
-//			result = tempMaxSum
-//		}
-//
-//		if tempMaxSum< 0 {
-//			tempMaxSum = 0
-//		}
-//	}
-//
-//	return result
-//}
+// 动态规划
+/*
+思路：
+滚动数组
+ */
+func maxSubArray(nums []int) int {
+	result := nums[0]
+	for i := 1; i < len(nums); i ++ {
+		if nums[i] + nums[i-1] > nums[i] { // 若当前数字 + 前一个数字 > 当前数字，
+			// 说明当前数字有增益效果，则滚动；否则，跳过
+			nums[i] = nums[i] + nums[i -1]
+		}
 
-// 方式二：动态规划
+		if nums[i] > result { // 数组滚动后，和当前最大结果比较，取最大值
+			result = nums[i]
+		}
+	}
+
+	return result
+}
