@@ -102,3 +102,8 @@ func TestMaxSubArray(t *testing.T)  {
 	}
 	fmt.Println(maxSubArray(l))
 }
+
+func TestLengthOfLastWord(t *testing.T)  {
+	//assert.Equal(t, lengthOfLastWord("li ze yuan"), 4)
+	assert.Equal(t, lengthOfLastWord("li ze yuan "), 4)
+}

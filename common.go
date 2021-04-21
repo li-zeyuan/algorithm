@@ -273,3 +273,31 @@ func maxSubArray(nums []int) int {
 
 	return result
 }
+
+/*
+最后一个单词长度
+https://leetcode-cn.com/problems/length-of-last-word/
+思路
+1、string转[]byte
+2、倒序遍历
+ */
+func lengthOfLastWord(s string) int {
+	if len(s) == 0 {
+		return 0
+	}
+
+	result := 0
+	strByte := []byte(s)
+	for i := len(strByte)-1; i >= 0 ; i -- {
+		if string(strByte[i]) != " " {
+			result ++
+			continue
+		}
+
+		if result != 0 && string(strByte[i]) == " " {
+			break
+		}
+	}
+
+	return result
+}
