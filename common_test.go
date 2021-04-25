@@ -107,3 +107,12 @@ func TestLengthOfLastWord(t *testing.T)  {
 	//assert.Equal(t, lengthOfLastWord("li ze yuan"), 4)
 	assert.Equal(t, lengthOfLastWord("li ze yuan "), 4)
 }
+
+func TestPlusOne(t *testing.T)  {
+	l := []int {
+		9,
+		9,
+		9,
+	}
+	fmt.Println(plusOne(l))
+}

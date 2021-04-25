@@ -257,13 +257,13 @@ https://leetcode-cn.com/problems/maximum-subarray/
 /*
 思路：
 滚动数组
- */
+*/
 func maxSubArray(nums []int) int {
 	result := nums[0]
-	for i := 1; i < len(nums); i ++ {
-		if nums[i] + nums[i-1] > nums[i] { // 若当前数字 + 前一个数字 > 当前数字，
+	for i := 1; i < len(nums); i++ {
+		if nums[i]+nums[i-1] > nums[i] { // 若当前数字 + 前一个数字 > 当前数字，
 			// 说明当前数字有增益效果，则滚动；否则，跳过
-			nums[i] = nums[i] + nums[i -1]
+			nums[i] = nums[i] + nums[i-1]
 		}
 
 		if nums[i] > result { // 数组滚动后，和当前最大结果比较，取最大值
@@ -280,7 +280,7 @@ https://leetcode-cn.com/problems/length-of-last-word/
 思路
 1、string转[]byte
 2、倒序遍历
- */
+*/
 func lengthOfLastWord(s string) int {
 	if len(s) == 0 {
 		return 0
@@ -288,9 +288,9 @@ func lengthOfLastWord(s string) int {
 
 	result := 0
 	strByte := []byte(s)
-	for i := len(strByte)-1; i >= 0 ; i -- {
+	for i := len(strByte) - 1; i >= 0; i-- {
 		if string(strByte[i]) != " " {
-			result ++
+			result++
 			continue
 		}
 
@@ -300,4 +300,32 @@ func lengthOfLastWord(s string) int {
 	}
 
 	return result
+}
+
+/*
+数组最后一个数加一
+https://leetcode-cn.com/problems/plus-one/
+*/
+func plusOne(digits []int) []int {
+	result := make([]int, 0)
+	if len(digits) == 0 {
+		return result
+	}
+
+	for i := len(digits) - 1; i >= 0; i-- {
+		if i == len(digits)-1 {
+			digits[i] = digits[i] + 1
+		}
+		if digits[i] >= 10 && i > 0 {
+			digits[i-1] = digits[i-1] + 1
+			digits[i] = digits[i] - 10
+		}
+
+		if digits[i] >= 10 && i == 0 {
+			digits[i] = digits[i] - 10
+			digits = append([]int{1}, digits...)
+		}
+	}
+
+	return digits
 }
