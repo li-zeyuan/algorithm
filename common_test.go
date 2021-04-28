@@ -116,3 +116,7 @@ func TestPlusOne(t *testing.T)  {
 	}
 	fmt.Println(plusOne(l))
 }
+
+func TestAddBinary(t *testing.T)  {
+	fmt.Println(addBinary("1010", 	"1011"))
+}
