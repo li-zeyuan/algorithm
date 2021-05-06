@@ -303,6 +303,74 @@ func lengthOfLastWord(s string) int {
 }
 
 /*
+数组最后一个数加一
+https://leetcode-cn.com/problems/plus-one/
+*/
+func plusOne(digits []int) []int {
+	result := make([]int, 0)
+	if len(digits) == 0 {
+		return result
+	}
+
+	for i := len(digits) - 1; i >= 0; i-- {
+		if i == len(digits)-1 {
+			digits[i] = digits[i] + 1
+		}
+		if digits[i] >= 10 && i > 0 {
+			digits[i-1] = digits[i-1] + 1
+			digits[i] = digits[i] - 10
+		}
+
+		if digits[i] >= 10 && i == 0 {
+			digits[i] = digits[i] - 10
+			digits = append([]int{1}, digits...)
+		}
+	}
+
+	return digits
+}
+
+/*
+二进制求和
+https://leetcode-cn.com/problems/add-binary/
+思路
+1、两二进制尾部对其
+2、定义一个变量存储是否进位
+3、从尾部遍历最长的str，每位：(temp + str1[i] + str2[i]) % 2; temp = (temp + str1[i] + str2[i]) / 2
+*/
+func addBinary(a string, b string) string {
+	maxStr := func(s1, s2 string) string {
+		if len(s1) > len(s2) {
+			return s1
+		}
+		return s2
+	}(a, b)
+
+	temp := 0
+	result := ""
+	for i := 0; i < len(maxStr); i++ {
+		aItem := 0
+		bItem := 0
+		if len(a) > i {
+			aItem = int(a[len(a)-1-i] - '0')
+		}
+		if len(b) > i {
+			bItem = int(b[len(b)-1-i] - '0')
+		}
+
+		result = strconv.Itoa((temp+aItem+bItem)%2) + result
+		temp = (temp + aItem + bItem) / 2
+	}
+
+	if temp == 1 {
+		result = "1" + result
+	}
+
+	return result
+}
+
+
+/*
 x 的平方根
 https://leetcode-cn.com/problems/sqrtx/
 思路：

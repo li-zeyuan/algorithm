@@ -108,6 +108,19 @@ func TestLengthOfLastWord(t *testing.T) {
 	assert.Equal(t, lengthOfLastWord("li ze yuan "), 4)
 }
 
+func TestPlusOne(t *testing.T)  {
+	l := []int {
+		9,
+		9,
+		9,
+	}
+	fmt.Println(plusOne(l))
+}
+
+func TestAddBinary(t *testing.T)  {
+	fmt.Println(addBinary("1010", 	"1011"))
+}
+
 func TestMySqrt(t *testing.T) {
 	fmt.Println(mySqrt(1))
 }
