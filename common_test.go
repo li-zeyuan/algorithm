@@ -87,11 +87,11 @@ func TestSearchInsert(t *testing.T) {
 	fmt.Println(searchInsert(l, 5))
 }
 
-func TestCountAndSay(t *testing.T)  {
+func TestCountAndSay(t *testing.T) {
 	fmt.Println(countAndSay(4))
 }
 
-func TestMaxSubArray(t *testing.T)  {
+func TestMaxSubArray(t *testing.T) {
 	l := []int{
 		1,
 		1,
@@ -103,7 +103,11 @@ func TestMaxSubArray(t *testing.T)  {
 	fmt.Println(maxSubArray(l))
 }
 
-func TestLengthOfLastWord(t *testing.T)  {
+func TestLengthOfLastWord(t *testing.T) {
 	//assert.Equal(t, lengthOfLastWord("li ze yuan"), 4)
 	assert.Equal(t, lengthOfLastWord("li ze yuan "), 4)
+}
+
+func TestMySqrt(t *testing.T) {
+	fmt.Println(mySqrt(1))
 }

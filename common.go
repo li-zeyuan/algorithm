@@ -257,13 +257,13 @@ https://leetcode-cn.com/problems/maximum-subarray/
 /*
 思路：
 滚动数组
- */
+*/
 func maxSubArray(nums []int) int {
 	result := nums[0]
-	for i := 1; i < len(nums); i ++ {
-		if nums[i] + nums[i-1] > nums[i] { // 若当前数字 + 前一个数字 > 当前数字，
+	for i := 1; i < len(nums); i++ {
+		if nums[i]+nums[i-1] > nums[i] { // 若当前数字 + 前一个数字 > 当前数字，
 			// 说明当前数字有增益效果，则滚动；否则，跳过
-			nums[i] = nums[i] + nums[i -1]
+			nums[i] = nums[i] + nums[i-1]
 		}
 
 		if nums[i] > result { // 数组滚动后，和当前最大结果比较，取最大值
@@ -280,7 +280,7 @@ https://leetcode-cn.com/problems/length-of-last-word/
 思路
 1、string转[]byte
 2、倒序遍历
- */
+*/
 func lengthOfLastWord(s string) int {
 	if len(s) == 0 {
 		return 0
@@ -288,9 +288,9 @@ func lengthOfLastWord(s string) int {
 
 	result := 0
 	strByte := []byte(s)
-	for i := len(strByte)-1; i >= 0 ; i -- {
+	for i := len(strByte) - 1; i >= 0; i-- {
 		if string(strByte[i]) != " " {
-			result ++
+			result++
 			continue
 		}
 
@@ -300,4 +300,24 @@ func lengthOfLastWord(s string) int {
 	}
 
 	return result
+}
+
+/*
+x 的平方根
+https://leetcode-cn.com/problems/sqrtx/
+思路：
+1、定义一个数n从0到x
+2、使得：n的平方 <= x && (n+1)的平方 > x
+*/
+func mySqrt(x int) int {
+	if x < 0 {
+		return 0
+	}
+	for n := 0; n <= x; n++ {
+		if n*n <= x && (n+1)*(n+1) > x {
+			return n
+		}
+	}
+
+	return 0
 }
