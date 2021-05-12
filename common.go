@@ -369,7 +369,6 @@ func addBinary(a string, b string) string {
 	return result
 }
 
-
 /*
 x 的平方根
 https://leetcode-cn.com/problems/sqrtx/
@@ -388,4 +387,20 @@ func mySqrt(x int) int {
 	}
 
 	return 0
+}
+
+/*
+爬楼梯
+https://leetcode-cn.com/problems/climbing-stairs/
+思路
+1、递归
+2、f(x) = f(x-1) + f(x-2)
+3、边界条件：f(0) = 0, f(1) = 1
+*/
+func climbStairs(n int) int {
+	if n <= 1 {
+		return 1
+	}
+
+	return climbStairs(n-1) + climbStairs(n-2)
 }
