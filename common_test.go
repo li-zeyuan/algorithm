@@ -126,5 +126,9 @@ func TestMySqrt(t *testing.T) {
 }
 
 func TestClimbStairs(t *testing.T) {
-	fmt.Println(climbStairs(3))
+	fmt.Println(climbStairs(7))
+}
+
+func TestClimbStairs2(t *testing.T) {
+	fmt.Println(climbStairs2(5))
 }

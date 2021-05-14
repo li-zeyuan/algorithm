@@ -397,10 +397,30 @@ https://leetcode-cn.com/problems/climbing-stairs/
 2、f(x) = f(x-1) + f(x-2)
 3、边界条件：f(0) = 0, f(1) = 1
 */
+// 方式一：递归，会超时
 func climbStairs(n int) int {
 	if n <= 1 {
 		return 1
 	}
 
 	return climbStairs(n-1) + climbStairs(n-2)
+}
+
+// 方式二：是个斐波那契数列，滚动数组
+/*
+      *
+(0 1) 1 2 3 5 8 13 21
+可以看成
+*/
+func climbStairs2(n int) int {
+	a := 0      // 初始 前第二个数
+	b := 1      // 初始 前第一个数
+	result := 0 // 初始 当前值
+	for i := 0; i < n; i++ {
+		result = a + b
+		a = b
+		b = result
+	}
+
+	return result
 }
