@@ -132,3 +132,17 @@ func TestClimbStairs(t *testing.T) {
 func TestClimbStairs2(t *testing.T) {
 	fmt.Println(climbStairs2(5))
 }
+
+func TestDeleteDuplicates(t *testing.T) {
+	h := &ListNode{
+		1,
+		&ListNode{
+			2,
+			&ListNode{
+				2,
+				nil,
+			},
+		},
+	}
+	fmt.Println(deleteDuplicates(h))
+}

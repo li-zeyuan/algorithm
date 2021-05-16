@@ -406,11 +406,10 @@ func climbStairs(n int) int {
 	return climbStairs(n-1) + climbStairs(n-2)
 }
 
-// 方式二：是个斐波那契数列，滚动数组
+// 方式二：可以看成是个斐波那契数列，滚动数组
 /*
       *
 (0 1) 1 2 3 5 8 13 21
-可以看成
 */
 func climbStairs2(n int) int {
 	a := 0      // 初始 前第二个数
@@ -423,4 +422,32 @@ func climbStairs2(n int) int {
 	}
 
 	return result
+}
+
+/*
+删除排序链表中的重复元素
+https://leetcode-cn.com/problems/remove-duplicates-from-sorted-list/
+思路：
+	1、遍历列表，若当前节点 等于 前一个节点，则删除当前节点
+*/
+type ListNode struct {
+	Val  int
+	Next *ListNode
+}
+
+func deleteDuplicates(head *ListNode) *ListNode {
+	if head == nil {
+		return nil
+	}
+
+	curNode := head // 1 、// 这一步：因为head是指针，curNode和head的内存地址是一样的
+	for curNode.Next != nil {
+		if curNode.Val == curNode.Next.Val {
+			curNode.Next = curNode.Next.Next // 3、对curNode.Next赋值，即对head元素Next赋值，因为是同一块内存
+		} else {
+			curNode = curNode.Next // 2、curNode被赋值head的元素内存地址
+		}
+	}
+
+	return head
 }
