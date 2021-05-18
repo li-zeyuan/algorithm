@@ -451,3 +451,25 @@ func deleteDuplicates(head *ListNode) *ListNode {
 
 	return head
 }
+
+/*
+合并两个有序链表
+https://leetcode-cn.com/problems/merge-sorted-array/
+ */
+/*
+方式一：直接合并后排序
+思路：
+直接合并后排序
+ */
+func merge(nums1 []int, m int, nums2 []int, n int)  {
+	copy(nums1[m:], nums2)
+	sort.Ints(nums1)
+}
+
+/*
+方式二：双指针
+ */
+
+/*
+方式三：二分查找
+ */
