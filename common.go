@@ -453,23 +453,43 @@ func deleteDuplicates(head *ListNode) *ListNode {
 }
 
 /*
-合并两个有序链表
+合并两个有序数组
 https://leetcode-cn.com/problems/merge-sorted-array/
- */
+*/
 /*
 方式一：直接合并后排序
 思路：
 直接合并后排序
- */
-func merge(nums1 []int, m int, nums2 []int, n int)  {
+*/
+func merge(nums1 []int, m int, nums2 []int, n int) {
 	copy(nums1[m:], nums2)
 	sort.Ints(nums1)
 }
 
 /*
 方式二：双指针
- */
+*/
+func merge2(nums1 []int, m int, nums2 []int, n int) {
+	result := make([]int, 0)
+	p1, p2 := 0, 0
+	for {
+		if p1 == m {
+			result = append(result, nums2[p2:n]...)
+			break
+		}
+		if p2 == n {
+			result = append(result, nums1[p1:m]...)
+			break
+		}
 
-/*
-方式三：二分查找
- */
+		if nums1[p1] <= nums2[p2] {
+			result = append(result, nums1[p1])
+			p1++
+		} else {
+			result = append(result, nums2[p2])
+			p2++
+		}
+	}
+
+	copy(nums1, result)
+}
