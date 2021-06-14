@@ -17,3 +17,34 @@ func TestInorderTraversal(t *testing.T)  {
 	}
 	fmt.Println(inorderTraversal(root))
 }
+
+func TestIsSameTree(t *testing.T) {
+	q := &TreeNode{
+		1,
+		&TreeNode{
+			2,
+			nil,
+			nil,
+		},
+		&TreeNode{
+			1,
+			nil,
+			nil,
+		},
+	}
+	p := &TreeNode{
+		1,
+		&TreeNode{
+			1,
+			nil,
+			nil,
+		},
+		&TreeNode{
+			2,
+			nil,
+			nil,
+		},
+	}
+
+	fmt.Println(isSameTree(q,p))
+}
