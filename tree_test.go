@@ -5,7 +5,7 @@ import (
 	"testing"
 )
 
-func TestInorderTraversal(t *testing.T)  {
+func TestInorderTraversal(t *testing.T) {
 	root := &TreeNode{
 		1,
 		&TreeNode{
@@ -46,5 +46,39 @@ func TestIsSameTree(t *testing.T) {
 		},
 	}
 
-	fmt.Println(isSameTree(q,p))
+	fmt.Println(isSameTree(q, p))
+}
+
+func TestIsSymmetric(t *testing.T) {
+	q := &TreeNode{
+		1,
+		&TreeNode{
+			2,
+			&TreeNode{
+				3,
+				nil,
+				nil,
+			},
+			&TreeNode{
+				4,
+				nil,
+				nil,
+			},
+		},
+		&TreeNode{
+			2,
+			&TreeNode{
+				4,
+				nil,
+				nil,
+			},
+			&TreeNode{
+				3,
+				nil,
+				nil,
+			},
+		},
+	}
+
+	fmt.Println(isSymmetric(q))
 }

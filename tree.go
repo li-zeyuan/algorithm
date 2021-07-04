@@ -1,10 +1,10 @@
 package algorithm
 
 type TreeNode struct {
-	     Val int
-	     Left *TreeNode
-	     Right *TreeNode
-	 }
+	Val   int
+	Left  *TreeNode
+	Right *TreeNode
+}
 
 func inorderTraversal(root *TreeNode) []int {
 	result := make([]int, 0)
@@ -25,9 +25,9 @@ https://leetcode-cn.com/problems/same-tree/
 思路：
 １．中序遍历树
 ２．对比树节点的值
- */
+*/
 func isSameTree(p *TreeNode, q *TreeNode) bool {
-	if p == nil && q == nil{
+	if p == nil && q == nil {
 		return true
 	}
 	if p == nil && q != nil {
@@ -41,4 +41,37 @@ func isSameTree(p *TreeNode, q *TreeNode) bool {
 	}
 
 	return isSameTree(p.Right, q.Right) && isSameTree(p.Left, q.Left)
+}
+
+/*
+对称二叉树
+https://leetcode-cn.com/problems/symmetric-tree/
+对称二叉树的条件：
+1、左右两颗子树互为镜像
+
+递归思路：
+1、对比左右两子树的值
+2、定义两指针，一个指针向左移，一个指针向右移
+3、对比两个指针的只是否相等
+
+迭代思路：
+1、定义一个队列
+2、初始放入两个root节点
+3、每次从队头取出两个节点最对比
+4、两个结点的左右子结点按相反的顺序插入队列中
+*/
+func isSymmetric(root *TreeNode) bool {
+	return check(root, root) // 初始化两指针都指向根
+}
+func check(l, r *TreeNode) bool {
+	if l == nil && r == nil {
+		return true
+	}
+	if l == nil || r == nil {
+		return false
+	}
+
+	return l.Val == r.Val &&
+		check(l.Left, r.Right) && // l指针向左移，r指针向右移
+		check(l.Right, r.Left) // // l指针向右移，r指针向左移
 }
