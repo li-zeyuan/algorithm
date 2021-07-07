@@ -75,24 +75,3 @@ func check(l, r *TreeNode) bool {
 		check(l.Left, r.Right) && // l指针向左移，r指针向右移
 		check(l.Right, r.Left) // // l指针向右移，r指针向左移
 }
-
-/*
-二叉树的最大深度
-https://leetcode-cn.com/problems/maximum-depth-of-binary-tree/
-思路：
-1、迭代终止条件：当前节点为nil
-2、当前节点不为空，则返回1 + max(左节点深度，右节点深度）
- */
-func maxDepth(root *TreeNode) int {
-	if root == nil {
-		return 0
-	}
-
-	leftDepth := maxDepth(root.Left)
-	rightDepth := maxDepth(root.Right)
-	if leftDepth > rightDepth {
-		return 1+leftDepth
-	}
-
-	return 1 + rightDepth
-}
