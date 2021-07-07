@@ -82,3 +82,37 @@ func TestIsSymmetric(t *testing.T) {
 
 	fmt.Println(isSymmetric(q))
 }
+
+func TestMaxDepth(t *testing.T) {
+	q := &TreeNode{
+		1,
+		&TreeNode{
+			2,
+			&TreeNode{
+				3,
+				nil,
+				nil,
+			},
+			&TreeNode{
+				4,
+				nil,
+				nil,
+			},
+		},
+		&TreeNode{
+			2,
+			&TreeNode{
+				4,
+				nil,
+				nil,
+			},
+			&TreeNode{
+				3,
+				nil,
+				nil,
+			},
+		},
+	}
+
+	fmt.Println(maxDepth(q))
+}
