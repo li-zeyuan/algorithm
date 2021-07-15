@@ -77,6 +77,27 @@ func check(l, r *TreeNode) bool {
 }
 
 /*
+二叉树的最大深度
+https://leetcode-cn.com/problems/maximum-depth-of-binary-tree/
+思路：
+1、迭代终止条件：当前节点为nil
+2、当前节点不为空，则返回1 + max(左节点深度，右节点深度）
+ */
+func maxDepth(root *TreeNode) int {
+	if root == nil {
+		return 0
+	}
+
+	leftDepth := maxDepth(root.Left)
+	rightDepth := maxDepth(root.Right)
+	if leftDepth > rightDepth {
+		return 1+leftDepth
+	}
+
+	return 1 + rightDepth
+}
+
+/*
 将有序数组转化成 高度平衡 二叉树搜索树
 https://leetcode-cn.com/problems/convert-sorted-array-to-binary-search-tree/submissions/
 高度平衡二叉树（平衡二叉树）：每个节点子树高度<=1
