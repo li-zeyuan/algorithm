@@ -82,3 +82,9 @@ func TestIsSymmetric(t *testing.T) {
 
 	fmt.Println(isSymmetric(q))
 }
+
+func TestSortedArrayToBST(t *testing.T) {
+	nums := []int{-10, -3, 0, 5, 9}
+	node := sortedArrayToBST(nums)
+	t.Log(node)
+}

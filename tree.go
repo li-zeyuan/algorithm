@@ -75,3 +75,30 @@ func check(l, r *TreeNode) bool {
 		check(l.Left, r.Right) && // l指针向左移，r指针向右移
 		check(l.Right, r.Left) // // l指针向右移，r指针向左移
 }
+
+/*
+将有序数组转化成 高度平衡 二叉树搜索树
+https://leetcode-cn.com/problems/convert-sorted-array-to-binary-search-tree/submissions/
+高度平衡二叉树（平衡二叉树）：每个节点子树高度<=1
+思路：
+1、二叉树的中序遍历就是有序数组
+2、截取数组中间位（或偏左）为根节点
+3、分别多左右两个子数组 递归操作（2）
+4、拼接成一颗树
+*/
+func sortedArrayToBST(nums []int) *TreeNode {
+	mid := (len(nums) - 1) / 2
+	node := &TreeNode{Val: nums[mid]}
+	if mid == 0 && len(nums) == 2 { // 当有两元素，需要继续把递归右侧，返回左元素
+		node.Right = sortedArrayToBST(nums[mid+1:])
+		return node
+	}
+	if mid == 0 && len(nums) < 2 { // 当只有一个元素，直接返回即可
+		return node
+	}
+
+	node.Left = sortedArrayToBST(nums[:mid])
+	node.Right = sortedArrayToBST(nums[mid+1:])
+
+	return node
+}
