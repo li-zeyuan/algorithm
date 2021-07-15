@@ -82,7 +82,7 @@ https://leetcode-cn.com/problems/maximum-depth-of-binary-tree/
 思路：
 1、迭代终止条件：当前节点为nil
 2、当前节点不为空，则返回1 + max(左节点深度，右节点深度）
- */
+*/
 func maxDepth(root *TreeNode) int {
 	if root == nil {
 		return 0
@@ -91,7 +91,7 @@ func maxDepth(root *TreeNode) int {
 	leftDepth := maxDepth(root.Left)
 	rightDepth := maxDepth(root.Right)
 	if leftDepth > rightDepth {
-		return 1+leftDepth
+		return 1 + leftDepth
 	}
 
 	return 1 + rightDepth
