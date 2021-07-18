@@ -123,3 +123,41 @@ func sortedArrayToBST(nums []int) *TreeNode {
 
 	return node
 }
+
+/*
+判断是否平衡二叉树
+https://leetcode-cn.com/problems/balanced-binary-tree/
+思路：
+1、问题转化成判断每个节点的左右两颗子树的最大高度差是否超过1
+2、从跟节点开始，递归判断左右两个节点
+*/
+func isBalanced(root *TreeNode) bool {
+	if root == nil {
+		return true
+	}
+
+	return abs(depth(root.Left)-depth(root.Right)) <= 1 && isBalanced(root.Left) && isBalanced(root.Right)
+}
+
+func abs(x int) int {
+	if x < 0 {
+		return -1 * x
+	}
+	return x
+}
+
+func max(x, y int) int {
+	if x > y {
+		return x
+	}
+	return y
+}
+
+// 求节点的最大深度
+func depth(node *TreeNode) int {
+	if node == nil {
+		return 0
+	}
+
+	return max(depth(node.Left), depth(node.Right)) + 1
+}

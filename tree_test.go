@@ -122,3 +122,38 @@ func TestSortedArrayToBST(t *testing.T) {
 	node := sortedArrayToBST(nums)
 	t.Log(node)
 }
+
+func TestIsBalanced(t *testing.T)  {
+	q := &TreeNode{
+		1,
+		&TreeNode{
+			2,
+			&TreeNode{
+				3,
+				&TreeNode{
+					4,
+					nil,
+					nil,
+				},
+				&TreeNode{
+					4,
+					nil,
+					nil,
+				},
+			},
+			&TreeNode{
+				3,
+				nil,
+				nil,
+			},
+		},
+		&TreeNode{
+			2,
+			nil,
+			nil,
+		},
+	}
+
+	t.Log(isBalanced(q))
+}
+
