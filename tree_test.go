@@ -157,3 +157,28 @@ func TestIsBalanced(t *testing.T)  {
 	t.Log(isBalanced(q))
 }
 
+func TestMinDepth(t *testing.T)  {
+	q := &TreeNode{
+		2,
+		nil,
+		&TreeNode{
+			3,
+			nil,
+			&TreeNode{
+				4,
+				nil,
+				&TreeNode{
+					5,
+					nil,
+					&TreeNode{
+						6,
+						nil,
+						nil,
+					},
+				},
+			},
+		},
+	}
+
+	t.Log(minDepth(q))
+}
