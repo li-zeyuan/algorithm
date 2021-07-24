@@ -123,7 +123,7 @@ func TestSortedArrayToBST(t *testing.T) {
 	t.Log(node)
 }
 
-func TestIsBalanced(t *testing.T)  {
+func TestIsBalanced(t *testing.T) {
 	q := &TreeNode{
 		1,
 		&TreeNode{
@@ -157,7 +157,7 @@ func TestIsBalanced(t *testing.T)  {
 	t.Log(isBalanced(q))
 }
 
-func TestMinDepth(t *testing.T)  {
+func TestMinDepth(t *testing.T) {
 	q := &TreeNode{
 		2,
 		nil,
@@ -181,4 +181,47 @@ func TestMinDepth(t *testing.T)  {
 	}
 
 	t.Log(minDepth(q))
+}
+
+//[5,4,8,11,null,13,4,7,2,null,null,null,1],
+func TestHasPathSum(t *testing.T) {
+	r := &TreeNode{
+		5,
+		&TreeNode{
+			4,
+			&TreeNode{
+				11,
+				&TreeNode{
+					7,
+					nil,
+					nil,
+				},
+				&TreeNode{
+					2,
+					nil,
+					nil,
+				},
+			},
+			nil,
+		},
+		&TreeNode{
+			8,
+			&TreeNode{
+				13,
+				nil,
+				nil,
+			},
+			&TreeNode{
+				4,
+				nil,
+				&TreeNode{
+					1,
+					nil,
+					nil,
+				},
+			},
+		},
+	}
+
+	t.Log(hasPathSum(r, 22))
 }

@@ -167,7 +167,7 @@ func depth(node *TreeNode) int {
 https://leetcode-cn.com/problems/minimum-depth-of-binary-tree/
 思路：
 
- */
+*/
 func minDepth(root *TreeNode) int {
 	if root == nil {
 		return 0
@@ -201,4 +201,25 @@ func min(x, y int) int { // 最小非零值
 		return y
 	}
 	return x
+}
+
+/*
+路径总和
+https://leetcode-cn.com/problems/path-sum/
+思路：
+1、边界条件：root == nil && targetSum > 0 返回 false
+2、边界条件：root != nil && targetSum == 0 返回 false
+3、递归查找树的左边
+4、递归查找树的右边
+5、只要有一边是返回true，则结果就是true
+*/
+func hasPathSum(root *TreeNode, targetSum int) bool {
+	if root == nil {
+		return false
+	}
+	if root.Left == nil && root.Right == nil && root.Val-targetSum == 0 {
+		return true
+	}
+
+	return hasPathSum(root.Left, targetSum-root.Val) || hasPathSum(root.Right, targetSum-root.Val)
 }
