@@ -5,8 +5,9 @@ import (
 	"sync"
 	"testing"
 
-	"github.com/bmizerany/assert"
 	"time"
+
+	"github.com/bmizerany/assert"
 )
 
 func TestGetSingleton(t *testing.T) {
@@ -149,4 +150,8 @@ func TestDeleteDuplicates(t *testing.T) {
 
 func TestMerge2(t *testing.T) {
 	merge2([]int{1, 2, 3, 0, 0, 0}, 3, []int{2, 5, 6}, 3)
+}
+
+func TestGenerate(t *testing.T) {
+	t.Log(generate(5))
 }

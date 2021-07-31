@@ -493,3 +493,32 @@ func merge2(nums1 []int, m int, nums2 []int, n int) {
 
 	copy(nums1, result)
 }
+
+/*
+杨辉三角形
+https://leetcode-cn.com/problems/pascals-triangle/
+*/
+func generate(numRows int) [][]int {
+	if numRows == 0 {
+		return [][]int{}
+	}
+
+	result := make([][]int, 0)
+	for i := 0; i < numRows; i++ {
+		inner := make([]int, 0)
+		inner = append(inner, 1)
+		if len(result) > 0 {
+			lastInner := result[len(result)-1]
+			j, k := 0, 1
+			for k < len(lastInner) {
+				inner = append(inner, lastInner[j]+lastInner[k])
+				j++
+				k++
+			}
+			inner = append(inner, 1)
+		}
+		result = append(result, inner)
+	}
+
+	return result
+}
