@@ -522,3 +522,31 @@ func generate(numRows int) [][]int {
 
 	return result
 }
+
+/*
+杨辉三角 II
+https://leetcode-cn.com/problems/pascals-triangle-ii/
+思路：
+1、通过递归的方式获取上一层结果
+2、在上层结果的基础上基础本层结果
+3、递归的终止条件：rowIndex == 0
+*/
+func getRow(rowIndex int) []int {
+	if rowIndex <= 0 {
+		return []int{1}
+	}
+
+	lastArray := getRow(rowIndex - 1)
+	result := make([]int, 0)
+	result = append(result, 1)
+
+	i, j := 1, 0
+	for i < len(lastArray) {
+		result = append(result, lastArray[j]+lastArray[i])
+		i++
+		j++
+	}
+
+	result = append(result, 1)
+	return result
+}

@@ -4,7 +4,6 @@ import (
 	"fmt"
 	"sync"
 	"testing"
-
 	"time"
 
 	"github.com/bmizerany/assert"
@@ -154,4 +153,8 @@ func TestMerge2(t *testing.T) {
 
 func TestGenerate(t *testing.T) {
 	t.Log(generate(5))
+}
+
+func TestGetRow(t *testing.T) {
+	t.Log(getRow(3))
 }
