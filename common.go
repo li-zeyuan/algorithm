@@ -2,6 +2,7 @@ package algorithm
 
 import (
 	"fmt"
+	"math"
 	"sort"
 	"strconv"
 	"strings"
@@ -549,4 +550,26 @@ func getRow(rowIndex int) []int {
 
 	result = append(result, 1)
 	return result
+}
+
+/*
+买卖股票的最佳时期
+https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock/solution/121-mai-mai-gu-piao-de-zui-jia-shi-ji-by-leetcode-/
+思路
+1、在最低点买入
+2、买入后遍历，找受益最高值
+*/
+func maxProfit(prices []int) int {
+	minPrice := math.MaxInt32
+	maxProfit := 0
+
+	for _, i := range prices {
+		if i < minPrice {
+			minPrice = i
+		} else if i-minPrice > maxProfit {
+			maxProfit = i - minPrice
+		}
+	}
+
+	return maxProfit
 }

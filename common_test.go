@@ -158,3 +158,7 @@ func TestGenerate(t *testing.T) {
 func TestGetRow(t *testing.T) {
 	t.Log(getRow(3))
 }
+
+func TestMaxProfit(t *testing.T) {
+	t.Log(maxProfit([]int{7, 1, 5, 3, 6, 4}))
+}
