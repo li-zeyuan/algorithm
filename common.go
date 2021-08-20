@@ -573,3 +573,35 @@ func maxProfit(prices []int) int {
 
 	return maxProfit
 }
+
+/*
+买卖股票最佳时间（可多次买卖）
+https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-ii/
+方式一：动态规划
+dp0[i]表示第i天手里没有股票的最大收益
+dp1[i]表示第i天手里有股票的最大收益
+
+第i天手里没有股票：dp0[i] = max{dp0[i-1], dp1[i-1]+prices[i]}
+第i天手里有股票：dp1[i] = max{dp1[i-1], dp0[i-1]-prices[i]}
+*/
+func maxProfit2(prices []int) int {
+	if len(prices) == 0 {
+		return 0
+	}
+
+	dp0, dp1 := 0, -prices[0] // dp1以0为持仓成本
+	for i := 1; i < len(prices); i++ {
+		dp0 = max2(dp0, dp1+prices[i])
+		dp1 = max2(dp1, dp0-prices[i])
+	}
+
+	return dp0 // 最后一天，手里没有股票，利润肯定是最大的
+}
+
+func max2(a, b int) int {
+	if a > b {
+		return a
+	}
+
+	return b
+}

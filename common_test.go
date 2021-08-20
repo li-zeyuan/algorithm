@@ -162,3 +162,11 @@ func TestGetRow(t *testing.T) {
 func TestMaxProfit(t *testing.T) {
 	t.Log(maxProfit([]int{7, 1, 5, 3, 6, 4}))
 }
+
+func TestMaxProfit2(t *testing.T) {
+	t.Log(maxProfit2([]int{7, 1, 5, 3, 6, 4}))
+}
+
+//i:    0    1 2 3 4
+//dp0:  0    8
+//dp1:  -7
