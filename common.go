@@ -605,3 +605,39 @@ func max2(a, b int) int {
 
 	return b
 }
+
+/*
+验证回文串
+https://leetcode-cn.com/problems/valid-palindrome/
+*/
+func isPalindrome2(s string) bool {
+	if len(s) <= 1 {
+		return true
+	}
+
+	start, end := 0, len(s)-1
+	for start < end {
+		if !isAlNum(s[start]) {
+			start++
+			continue
+		}
+		if !isAlNum(s[end]) {
+			end--
+			continue
+		}
+
+		if strings.ToLower(string(s[start])) != strings.ToLower(string(s[end])) {
+			return false
+		}
+		start++
+		end--
+	}
+
+	return true
+}
+
+func isAlNum(ch byte) bool {
+	return (ch >= 'A' && ch <= 'Z') ||
+		(ch >= 'a' && ch <= 'z') ||
+		(ch >= '0' && ch <= '9')
+}

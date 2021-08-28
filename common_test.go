@@ -167,6 +167,6 @@ func TestMaxProfit2(t *testing.T) {
 	t.Log(maxProfit2([]int{7, 1, 5, 3, 6, 4}))
 }
 
-//i:    0    1 2 3 4
-//dp0:  0    8
-//dp1:  -7
+func TestIsPalindrome2(t *testing.T) {
+	t.Log(isPalindrome2("A man, a plan, a canal: Panama"))
+}
