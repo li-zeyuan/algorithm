@@ -170,3 +170,7 @@ func TestMaxProfit2(t *testing.T) {
 func TestIsPalindrome2(t *testing.T) {
 	t.Log(isPalindrome2("A man, a plan, a canal: Panama"))
 }
+
+func TestSingleNumber(t *testing.T) {
+	t.Log(singleNumber([]int{2, 2, 1}))
+}

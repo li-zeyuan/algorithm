@@ -641,3 +641,22 @@ func isAlNum(ch byte) bool {
 		(ch >= 'a' && ch <= 'z') ||
 		(ch >= '0' && ch <= '9')
 }
+
+/*
+只出现一次的数字
+https://leetcode-cn.com/problems/single-number/
+异或运算（^）：两个数的二进制位不同时,当前位才置1 否则置0
+	1、a ^ 0 = a
+	2、a ^ a = 0
+	3、满足结合律、交换律
+思路
+	1、遍历异或
+	2、利用结合律、交换律的性质
+*/
+func singleNumber(nums []int) int {
+	single := 0
+	for i := 0; i < len(nums); i++ {
+		single ^= nums[i]
+	}
+	return single
+}
