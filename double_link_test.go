@@ -54,3 +54,20 @@ func TestDoubleLink_Del(t *testing.T) {
 	doubleLink.Del(1)
 	doubleLink.Scan()
 }
+
+func TestHasCycle(t *testing.T) {
+	node1 := &ListNode{
+		1,
+		nil,
+	}
+
+	node2 := &ListNode{
+		2,
+		node1,
+	}
+
+	node1.Next = node2
+
+	head := node1
+	t.Log(hasCycle(head))
+}

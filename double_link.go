@@ -141,3 +141,29 @@ func (d *DoubleLink) Reverse() {
 参考
 https://studygolang.com/articles/18042
 */
+
+/*
+环形链表
+https://leetcode-cn.com/problems/linked-list-cycle/
+思路
+	1、快指针每次移动2步，慢指针每次移动1步
+	2、若快慢指针都到链表尾部，即链表没有环
+	3、若没到链表尾部且快指针==慢指针，即链表有环
+*/
+func hasCycle(head *ListNode) bool {
+	if head == nil || head.Next == nil {
+		return false
+	}
+
+	slow, fast := head, head.Next
+	for slow != fast {
+		if slow == nil || fast.Next == nil {
+			return false
+		}
+
+		slow = slow.Next
+		fast = fast.Next.Next
+	}
+
+	return true
+}
