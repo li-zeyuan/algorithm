@@ -239,3 +239,19 @@ func preorderTraversal(root *TreeNode) []int {
 	result = append(result, preorderTraversal(root.Right)...)
 	return result
 }
+
+/*
+二叉树的后序遍历
+https://leetcode-cn.com/problems/binary-tree-postorder-traversal/
+*/
+func postorderTraversal(root *TreeNode) []int {
+	result := make([]int, 0)
+	if root == nil {
+		return result
+	}
+
+	result = append(result, postorderTraversal(root.Left)...)
+	result = append(result, postorderTraversal(root.Right)...)
+	result = append(result, root.Val)
+	return result
+}
