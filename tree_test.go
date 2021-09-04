@@ -225,3 +225,29 @@ func TestHasPathSum(t *testing.T) {
 
 	t.Log(hasPathSum(r, 22))
 }
+
+func TestPreorderTraversal(t *testing.T) {
+	q := &TreeNode{
+		2,
+		nil,
+		&TreeNode{
+			3,
+			nil,
+			&TreeNode{
+				4,
+				nil,
+				&TreeNode{
+					5,
+					nil,
+					&TreeNode{
+						6,
+						nil,
+						nil,
+					},
+				},
+			},
+		},
+	}
+
+	t.Log(preorderTraversal(q))
+}

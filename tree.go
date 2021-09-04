@@ -223,3 +223,19 @@ func hasPathSum(root *TreeNode, targetSum int) bool {
 
 	return hasPathSum(root.Left, targetSum-root.Val) || hasPathSum(root.Right, targetSum-root.Val)
 }
+
+/*
+二叉树的前序遍历
+https://leetcode-cn.com/problems/binary-tree-preorder-traversal/
+*/
+func preorderTraversal(root *TreeNode) []int {
+	result := make([]int, 0)
+	if root == nil {
+		return result
+	}
+
+	result = append(result, root.Val)
+	result = append(result, preorderTraversal(root.Left)...)
+	result = append(result, preorderTraversal(root.Right)...)
+	return result
+}
