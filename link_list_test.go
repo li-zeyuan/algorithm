@@ -60,3 +60,27 @@ func TestLList_Delete(t *testing.T) {
 
 	lList.Scan()
 }
+
+func TestLList_getIntersectionNode(t *testing.T) {
+	node1 := &ListNode{Val: 1}
+	node2 := &ListNode{Val: 2}
+	node3 := &ListNode{Val: 3}
+
+	node1.Next = node3
+	lA := node1
+	node2.Next = node3
+	lB := node2
+	t.Log(getIntersectionNode(lA, lB))
+}
+
+func TestLList_getIntersectionNode2(t *testing.T) {
+	node1 := &ListNode{Val: 1}
+	node2 := &ListNode{Val: 2}
+	node3 := &ListNode{Val: 3}
+
+	node1.Next = node3
+	lA := node1
+	node2.Next = node3
+	lB := node2
+	t.Log(getIntersectionNode2(lA, lB))
+}

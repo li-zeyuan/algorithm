@@ -146,3 +146,59 @@ func (l *LList) Scan() {
 参考
 https://learnku.com/articles/44998
 */
+
+/*
+相交链表
+https://leetcode-cn.com/problems/intersection-of-two-linked-lists/
+方式一：遍历
+1、每取出L1一个元素，遍历L2中的所有元素
+2、判断两个元素是否相等
+*/
+func getIntersectionNode(headA, headB *ListNode) *ListNode {
+	if headA == nil || headB == nil {
+		return nil
+	}
+	itemA := headA
+	for itemA != nil {
+		itemB := headB
+		for itemB != nil {
+			if itemA == itemB {
+				return itemA
+			}
+			itemB = itemB.Next
+		}
+
+		itemA = itemA.Next
+	}
+
+	return nil
+}
+
+/*
+相交链表
+https://leetcode-cn.com/problems/intersection-of-two-linked-lists/
+方式二：双指针
+1、pA、pB分别从 lA、lB的头节点出发，每次移动一个位置
+2、判断两个指针的元素是否相等，相等则返回该节点
+3、pA移动到尾部时，重新指向lB头节点
+4、pB移动到尾部时，重新指向lA头节点
+*/
+func getIntersectionNode2(headA, headB *ListNode) *ListNode {
+	if headA == nil || headB == nil {
+		return nil
+	}
+	pa, pb := headA, headB
+	for pa != pb {
+		if pa == nil {
+			pa = headB
+		} else {
+			pa = pa.Next
+		}
+		if pb == nil {
+			pb = headA
+		} else {
+			pb = pb.Next
+		}
+	}
+	return pa
+}

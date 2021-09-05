@@ -22,13 +22,17 @@ func A() {
 
 type Person struct {
 	name string
-	age int
+	age  int
 }
 
-func (p Person) howOld(i int){
+func (p Person) howOld(i int) {
 	p.age = i
 }
 
-func (p *Person) howOld2(s string){
+func (p *Person) howOld2(s string) {
 	p.name = s
+}
+
+func TestTwoSum2(t *testing.T) {
+	t.Log(twoSum2([]int{2, 7, 11, 15}, 9))
 }
