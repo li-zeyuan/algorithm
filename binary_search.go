@@ -34,3 +34,32 @@ func (b *BinarySearchObj) BinarySearch() int {
 
 	return -1
 }
+
+/*
+两数之和 II - 输入有序数组
+https://leetcode-cn.com/problems/two-sum-ii-input-array-is-sorted/
+方式一：二分查找
+1、依次遍历数组，得第一个元素
+2、第二个元素为target - 第一个元素，二分查找第二个元素
+*/
+func twoSum2(numbers []int, target int) []int {
+	if len(numbers) < 2 {
+		return nil
+	}
+
+	for i := 0; i < len(numbers); i++ {
+		start, end := i+1, len(numbers)-1
+		for start <= end {
+			mid := (start + end) / 2
+			if numbers[mid] == target-numbers[i] {
+				return []int{i + 1, mid + 1}
+			} else if numbers[mid] > target-numbers[i] {
+				end = mid - 1
+			} else {
+				start = mid + 1
+			}
+		}
+	}
+
+	return nil
+}
