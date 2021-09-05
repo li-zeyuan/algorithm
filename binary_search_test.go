@@ -36,3 +36,7 @@ func (p *Person) howOld2(s string) {
 func TestTwoSum2(t *testing.T) {
 	t.Log(twoSum2([]int{2, 7, 11, 15}, 9))
 }
+
+func TestTwoSum3(t *testing.T) {
+	t.Log(twoSum3([]int{2, 7, 11, 15}, 9))
+}

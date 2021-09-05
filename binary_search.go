@@ -63,3 +63,27 @@ func twoSum2(numbers []int, target int) []int {
 
 	return nil
 }
+
+/*
+方式二：双指针
+1、一个指针指向第一个元素，一个指针指向最后一个元素
+2、若两指针之和大与target，则右指针左移
+3、若两指针之和小与target，则左指针右移
+*/
+func twoSum3(numbers []int, target int) []int {
+	if len(numbers) < 2 {
+		return nil
+	}
+	start, end := 0, len(numbers)-1
+	for start < end {
+		if numbers[start]+numbers[end] == target {
+			return []int{start + 1, end + 1}
+		} else if numbers[start]+numbers[end] > target {
+			end--
+		} else {
+			start++
+		}
+	}
+
+	return nil
+}
