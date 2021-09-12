@@ -683,6 +683,20 @@ func convertToTitle(columnNumber int) string {
 }
 
 /*
+Excel 表列序号
+https://leetcode-cn.com/problems/excel-sheet-column-number/
+*/
+func titleToNumber(columnTitle string) int {
+	var result float64
+	for i := 0; i < len(columnTitle); i++ {
+		n := float64(columnTitle[i] - 64)
+		result = result + n*math.Pow(26, float64(len(columnTitle)-1-i))
+	}
+
+	return int(result)
+}
+
+/*
 多数元素
 https://leetcode-cn.com/problems/majority-element/
 */
@@ -716,4 +730,18 @@ func majorityElementV2(nums []int) int {
 	sort.Ints(nums)
 
 	return nums[len(nums)/2]
+}
+
+/*
+阶乘后的零
+https://leetcode-cn.com/problems/factorial-trailing-zeroes/
+*/
+func trailingZeroes(n int) int {
+	var ans int
+	for n > 0 {
+		n /= 5
+		ans += n
+	}
+	return ans
+
 }

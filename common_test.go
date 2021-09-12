@@ -186,3 +186,11 @@ func TestMajorityElement(t *testing.T) {
 func TestMajorityElementV2(t *testing.T) {
 	t.Log(majorityElementV2([]int{2, 2, 1, 1, 1, 2, 2}))
 }
+
+func TestTitleToNumber(t *testing.T) {
+	t.Log(titleToNumber("AB"))
+}
+
+func TestTrailingZeroes(t *testing.T) {
+	t.Log(trailingZeroes(30))
+}
