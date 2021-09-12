@@ -174,3 +174,7 @@ func TestIsPalindrome2(t *testing.T) {
 func TestSingleNumber(t *testing.T) {
 	t.Log(singleNumber([]int{2, 2, 1}))
 }
+
+func TestConvertToTitle(t *testing.T) {
+	t.Log(convertToTitle(701))
+}

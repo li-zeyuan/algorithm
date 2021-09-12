@@ -660,3 +660,24 @@ func singleNumber(nums []int) int {
 	}
 	return single
 }
+
+/*
+Excel表列名称
+https://leetcode-cn.com/problems/excel-sheet-column-title/
+思路：
+	1、26进制转化
+*/
+func convertToTitle(columnNumber int) string {
+	result := make([]byte, 0)
+	for columnNumber > 0 {
+		a := columnNumber % 26
+		if a == 0 {
+			a = 26                           // 整除时，余数强行等于26
+			columnNumber = columnNumber - 26 // 向上接一位
+		}
+		result = append([]byte{byte(a) + 64}, result...)
+		columnNumber = columnNumber / 26
+	}
+
+	return string(result)
+}
