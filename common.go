@@ -681,3 +681,39 @@ func convertToTitle(columnNumber int) string {
 
 	return string(result)
 }
+
+/*
+多数元素
+https://leetcode-cn.com/problems/majority-element/
+*/
+func majorityElement(nums []int) int {
+	if len(nums) == 0 {
+		return 0
+	}
+
+	eMap := make(map[int]int, 0)
+	for i := 0; i < len(nums); i++ {
+		eMap[nums[i]] = eMap[nums[i]] + 1
+	}
+
+	maxKey := 0
+	maxVal := 0
+	for k, v := range eMap {
+		if v > maxVal {
+			maxVal = v
+			maxKey = k
+		}
+	}
+
+	return maxKey
+}
+
+func majorityElementV2(nums []int) int {
+	if len(nums) == 0 {
+		return 0
+	}
+
+	sort.Ints(nums)
+
+	return nums[len(nums)/2]
+}

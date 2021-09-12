@@ -178,3 +178,11 @@ func TestSingleNumber(t *testing.T) {
 func TestConvertToTitle(t *testing.T) {
 	t.Log(convertToTitle(701))
 }
+
+func TestMajorityElement(t *testing.T) {
+	t.Log(majorityElement([]int{2, 2, 1, 1, 1, 2, 2}))
+}
+
+func TestMajorityElementV2(t *testing.T) {
+	t.Log(majorityElementV2([]int{2, 2, 1, 1, 1, 2, 2}))
+}
