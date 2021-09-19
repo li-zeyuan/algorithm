@@ -1,6 +1,8 @@
 package algorithm
 
-import "fmt"
+import (
+	"fmt"
+)
 
 /*
 单向链表
@@ -201,4 +203,37 @@ func getIntersectionNode2(headA, headB *ListNode) *ListNode {
 		}
 	}
 	return pa
+}
+
+/*
+203. 移除链表元素
+https://leetcode-cn.com/problems/remove-linked-list-elements/
+思路：
+1、快慢指针
+*/
+func removeElements(head *ListNode, val int) *ListNode {
+	if head == nil {
+		return nil
+	}
+
+	slow, fast := head, head // 初始都指向表头
+	for fast != nil {
+		if slow.Val == val { // 说明表头处为要移除的元素
+			head = head.Next
+			slow = head
+			fast = head
+			continue
+		}
+
+		if fast.Val == val {
+			slow.Next = fast.Next
+			fast = fast.Next
+			continue
+		}
+
+		slow = fast
+		fast = fast.Next
+	}
+
+	return head
 }

@@ -84,3 +84,29 @@ func TestLList_getIntersectionNode2(t *testing.T) {
 	lB := node2
 	t.Log(getIntersectionNode2(lA, lB))
 }
+
+func TestRemoveElements(t *testing.T) {
+	head := &ListNode{1, &ListNode{
+		2,
+		&ListNode{
+			6,
+			&ListNode{
+				3,
+				&ListNode{
+					4,
+					&ListNode{
+						5,
+						&ListNode{
+							6,
+							nil,
+						},
+					},
+				},
+			},
+		},
+	}}
+
+	//head := &ListNode{1, &ListNode{1, nil}}
+	result := removeElements(head, 6)
+	t.Log(result)
+}
