@@ -745,3 +745,32 @@ func trailingZeroes(n int) int {
 	return ans
 
 }
+
+/*
+快乐数
+https://leetcode-cn.com/problems/happy-number/
+*/
+func isHappy(n int) bool {
+	m := make(map[int]bool) // 判断是否重复
+	for {
+		stepNum := step(n)
+		if stepNum == 1 {
+			return true
+		}
+		if m[stepNum] {
+			return false
+		}
+		m[stepNum] = true
+		n = stepNum
+	}
+}
+
+func step(n int) int {
+	var pp float64 = 0
+	for n > 0 {
+		pp += math.Pow(float64(n%10), 2)
+		n /= 10
+	}
+
+	return int(pp)
+}

@@ -194,3 +194,7 @@ func TestTitleToNumber(t *testing.T) {
 func TestTrailingZeroes(t *testing.T) {
 	t.Log(trailingZeroes(30))
 }
+
+func TestIsHappy(t *testing.T) {
+	t.Log(isHappy(2))
+}
