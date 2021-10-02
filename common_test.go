@@ -198,3 +198,7 @@ func TestTrailingZeroes(t *testing.T) {
 func TestIsHappy(t *testing.T) {
 	t.Log(isHappy(2))
 }
+
+func TestIsIsomorphic(t *testing.T) {
+	t.Log(isIsomorphic("badc", "baba"))
+}

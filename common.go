@@ -774,3 +774,32 @@ func step(n int) int {
 
 	return int(pp)
 }
+
+/*
+205. 同构字符串
+https://leetcode-cn.com/problems/isomorphic-strings/
+*/
+func isIsomorphic(s string, t string) bool {
+	if len(s) != len(t) {
+		return false
+	}
+
+	sMap := make(map[uint8]uint8)
+	tMap := make(map[uint8]uint8)
+	for i := 0; i < len(s); i++ {
+		value1, ok1 := sMap[s[i]]
+		value2, ok2 := tMap[t[i]]
+		if ok1 || ok2 {
+			if s[i] == value2 && t[i] == value1 {
+				continue
+			} else {
+				return false
+			}
+		} else {
+			sMap[s[i]] = t[i]
+			tMap[t[i]] = s[i]
+		}
+	}
+
+	return true
+}
