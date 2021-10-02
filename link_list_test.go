@@ -85,6 +85,18 @@ func TestLList_getIntersectionNode2(t *testing.T) {
 	t.Log(getIntersectionNode2(lA, lB))
 }
 
+func TestLList_reverseList(t *testing.T) {
+	node1 := &ListNode{Val: 1}
+	node2 := &ListNode{Val: 2}
+	node3 := &ListNode{Val: 3}
+
+	node1.Next = node2
+	node2.Next = node3
+
+	reverseResult := reverseList(node1)
+	t.Log(reverseResult)
+}
+
 func TestRemoveElements(t *testing.T) {
 	head := &ListNode{1, &ListNode{
 		2,

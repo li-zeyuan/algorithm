@@ -237,3 +237,25 @@ func removeElements(head *ListNode, val int) *ListNode {
 
 	return head
 }
+
+/*
+反转链表
+https://leetcode-cn.com/problems/reverse-linked-list/
+*/
+func reverseList(head *ListNode) *ListNode {
+	if head == nil {
+		return nil
+	}
+	var result = &ListNode{head.Val, nil}
+
+	curNode := head.Next
+	for curNode != nil {
+		result = &ListNode{
+			Val:  curNode.Val,
+			Next: result,
+		}
+		curNode = curNode.Next
+	}
+
+	return result
+}
