@@ -202,3 +202,11 @@ func TestIsHappy(t *testing.T) {
 func TestIsIsomorphic(t *testing.T) {
 	t.Log(isIsomorphic("badc", "baba"))
 }
+
+func TestContainsDuplicate(t *testing.T) {
+	t.Log(containsDuplicate([]int{1, 2, 3, 1}))
+}
+
+func TestContainsNearbyDuplicate(t *testing.T) {
+	t.Log(containsNearbyDuplicate([]int{1, 2, 3, 1}, 3))
+}

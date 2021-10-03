@@ -803,3 +803,53 @@ func isIsomorphic(s string, t string) bool {
 
 	return true
 }
+
+/*
+217. 存在重复元素
+https://leetcode-cn.com/problems/contains-duplicate/
+*/
+func containsDuplicate(nums []int) bool {
+	if len(nums) == 0 {
+		return false
+	}
+	numMap := make(map[int]bool)
+	for i := 0; i < len(nums); i++ {
+		if _, ok := numMap[nums[i]]; ok {
+			return true
+		} else {
+			numMap[nums[i]] = true
+		}
+	}
+
+	return false
+}
+
+/*
+219. 存在重复元素 II
+https://leetcode-cn.com/problems/contains-duplicate-ii/
+思路：双指针
+1、外层指针依次指向一个值
+2、内层指针for遍历指向【1】后面的值
+3、判断两个指针的距离
+*/
+func containsNearbyDuplicate(nums []int, k int) bool {
+	if len(nums) == 0 {
+		return false
+	}
+
+	for i := 0; i < len(nums); i++ {
+		for j := i + 1; j < len(nums); j++ {
+			if j > i+k {
+				break
+			}
+			if nums[i] != nums[j] {
+				continue
+			}
+			if j-i <= k {
+				return true
+			}
+		}
+	}
+
+	return false
+}
