@@ -166,3 +166,19 @@ func (b *BinaryTree) Reverse() {
 参考
 - https://learnku.com/articles/48638
 */
+
+/*
+反转二叉树
+https://leetcode-cn.com/problems/invert-binary-tree/
+*/
+func invertTree(root *TreeNode) *TreeNode {
+	if root == nil {
+		return nil
+	}
+
+	root.Left, root.Right = root.Right, root.Left
+
+	invertTree(root.Right)
+	invertTree(root.Left)
+	return root
+}
