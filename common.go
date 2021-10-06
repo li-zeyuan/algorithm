@@ -895,3 +895,36 @@ func summaryRanges(nums []int) []string {
 
 	return result
 }
+
+/*
+方式二：双指针
+*/
+func summaryRanges2(nums []int) []string {
+	result := make([]string, 0)
+	if len(nums) == 0 {
+		return result
+	}
+
+	j := 0
+	for i := 1; i < len(nums); i++ {
+		if nums[i]-nums[i-1] == 1 {
+			continue
+		} else {
+			if nums[j] == nums[i-1] {
+				result = append(result, strconv.Itoa(nums[j]))
+			} else {
+				result = append(result, fmt.Sprintf("%s->%s", strconv.Itoa(nums[j]), strconv.Itoa(nums[i-1])))
+			}
+
+			j = i
+		}
+	}
+
+	if nums[j] == nums[len(nums)-1] {
+		result = append(result, strconv.Itoa(nums[j]))
+	} else {
+		result = append(result, fmt.Sprintf("%s->%s", strconv.Itoa(nums[j]), strconv.Itoa(nums[len(nums)-1])))
+	}
+
+	return result
+}
