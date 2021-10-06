@@ -210,3 +210,7 @@ func TestContainsDuplicate(t *testing.T) {
 func TestContainsNearbyDuplicate(t *testing.T) {
 	t.Log(containsNearbyDuplicate([]int{1, 2, 3, 1}, 3))
 }
+
+func TestSummaryRanges(t *testing.T) {
+	t.Log(summaryRanges([]int{0, 1, 2, 4, 5, 7}))
+}

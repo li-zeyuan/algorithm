@@ -853,3 +853,45 @@ func containsNearbyDuplicate(nums []int, k int) bool {
 
 	return false
 }
+
+/*
+228. 汇总区间
+https://leetcode-cn.com/problems/summary-ranges/
+方式一：遍历
+1、依次遍历，初始化第一个数为基准，基准数下标为0
+2、（若当前数减-基准数） != （当前下标-基准数下标）；则加入result数组
+*/
+func summaryRanges(nums []int) []string {
+	result := make([]string, 0)
+	if len(nums) == 0 {
+		return result
+	}
+
+	start := nums[0]
+	end := nums[0]
+	nIdx := 0
+	for i := 1; i < len(nums); i++ {
+		if nums[i]-start == i-nIdx {
+			end = nums[i]
+			continue
+		} else {
+			if start == end {
+				result = append(result, strconv.Itoa(start))
+			} else {
+				result = append(result, fmt.Sprintf("%s->%s", strconv.Itoa(start), strconv.Itoa(end)))
+			}
+
+			start = nums[i]
+			end = nums[i]
+			nIdx = i
+		}
+	}
+
+	if start == end {
+		result = append(result, strconv.Itoa(start))
+	} else {
+		result = append(result, fmt.Sprintf("%s->%s", strconv.Itoa(start), strconv.Itoa(end)))
+	}
+
+	return result
+}
