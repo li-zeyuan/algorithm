@@ -218,3 +218,8 @@ func TestSummaryRanges(t *testing.T) {
 func TestSummaryRanges2(t *testing.T) {
 	t.Log(summaryRanges2([]int{0, 1, 2, 4, 5, 7}))
 }
+
+func TestIsPowerOfTwo(t *testing.T) {
+	t.Log(isPowerOfTwo(2))
+	fmt.Printf("==%b==", 1>>1)
+}
