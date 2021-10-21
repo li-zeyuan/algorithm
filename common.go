@@ -745,3 +745,194 @@ func trailingZeroes(n int) int {
 	return ans
 
 }
+
+/*
+快乐数
+https://leetcode-cn.com/problems/happy-number/
+*/
+func isHappy(n int) bool {
+	m := make(map[int]bool) // 判断是否重复
+	for {
+		stepNum := step(n)
+		if stepNum == 1 {
+			return true
+		}
+		if m[stepNum] {
+			return false
+		}
+		m[stepNum] = true
+		n = stepNum
+	}
+}
+
+func step(n int) int {
+	var pp float64 = 0
+	for n > 0 {
+		pp += math.Pow(float64(n%10), 2)
+		n /= 10
+	}
+
+	return int(pp)
+}
+
+/*
+205. 同构字符串
+https://leetcode-cn.com/problems/isomorphic-strings/
+*/
+func isIsomorphic(s string, t string) bool {
+	if len(s) != len(t) {
+		return false
+	}
+
+	sMap := make(map[uint8]uint8)
+	tMap := make(map[uint8]uint8)
+	for i := 0; i < len(s); i++ {
+		value1, ok1 := sMap[s[i]]
+		value2, ok2 := tMap[t[i]]
+		if ok1 || ok2 {
+			if s[i] == value2 && t[i] == value1 {
+				continue
+			} else {
+				return false
+			}
+		} else {
+			sMap[s[i]] = t[i]
+			tMap[t[i]] = s[i]
+		}
+	}
+
+	return true
+}
+
+/*
+217. 存在重复元素
+https://leetcode-cn.com/problems/contains-duplicate/
+*/
+func containsDuplicate(nums []int) bool {
+	if len(nums) == 0 {
+		return false
+	}
+	numMap := make(map[int]bool)
+	for i := 0; i < len(nums); i++ {
+		if _, ok := numMap[nums[i]]; ok {
+			return true
+		} else {
+			numMap[nums[i]] = true
+		}
+	}
+
+	return false
+}
+
+/*
+219. 存在重复元素 II
+https://leetcode-cn.com/problems/contains-duplicate-ii/
+思路：双指针
+1、外层指针依次指向一个值
+2、内层指针for遍历指向【1】后面的值
+3、判断两个指针的距离
+*/
+func containsNearbyDuplicate(nums []int, k int) bool {
+	if len(nums) == 0 {
+		return false
+	}
+
+	for i := 0; i < len(nums); i++ {
+		for j := i + 1; j < len(nums); j++ {
+			if j > i+k {
+				break
+			}
+			if nums[i] != nums[j] {
+				continue
+			}
+			if j-i <= k {
+				return true
+			}
+		}
+	}
+
+	return false
+}
+
+/*
+228. 汇总区间
+https://leetcode-cn.com/problems/summary-ranges/
+方式一：遍历
+1、依次遍历，初始化第一个数为基准，基准数下标为0
+2、（若当前数减-基准数） != （当前下标-基准数下标）；则加入result数组
+*/
+func summaryRanges(nums []int) []string {
+	result := make([]string, 0)
+	if len(nums) == 0 {
+		return result
+	}
+
+	start := nums[0]
+	end := nums[0]
+	nIdx := 0
+	for i := 1; i < len(nums); i++ {
+		if nums[i]-start == i-nIdx {
+			end = nums[i]
+			continue
+		} else {
+			if start == end {
+				result = append(result, strconv.Itoa(start))
+			} else {
+				result = append(result, fmt.Sprintf("%s->%s", strconv.Itoa(start), strconv.Itoa(end)))
+			}
+
+			start = nums[i]
+			end = nums[i]
+			nIdx = i
+		}
+	}
+
+	if start == end {
+		result = append(result, strconv.Itoa(start))
+	} else {
+		result = append(result, fmt.Sprintf("%s->%s", strconv.Itoa(start), strconv.Itoa(end)))
+	}
+
+	return result
+}
+
+/*
+方式二：双指针
+*/
+func summaryRanges2(nums []int) []string {
+	result := make([]string, 0)
+	if len(nums) == 0 {
+		return result
+	}
+
+	j := 0
+	for i := 1; i < len(nums); i++ {
+		if nums[i]-nums[i-1] == 1 {
+			continue
+		} else {
+			if nums[j] == nums[i-1] {
+				result = append(result, strconv.Itoa(nums[j]))
+			} else {
+				result = append(result, fmt.Sprintf("%s->%s", strconv.Itoa(nums[j]), strconv.Itoa(nums[i-1])))
+			}
+
+			j = i
+		}
+	}
+
+	if nums[j] == nums[len(nums)-1] {
+		result = append(result, strconv.Itoa(nums[j]))
+	} else {
+		result = append(result, fmt.Sprintf("%s->%s", strconv.Itoa(nums[j]), strconv.Itoa(nums[len(nums)-1])))
+	}
+
+	return result
+}
+
+/*
+231. 2 的幂
+https://leetcode-cn.com/problems/power-of-two/
+*/
+func isPowerOfTwo(n int) bool {
+	return n > 0 && n&(n-1) == 0
+}

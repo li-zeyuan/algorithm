@@ -62,3 +62,36 @@ func TestBinaryTree_FirstShow(t *testing.T) {
 	tree.Reverse()
 	tree.MiddleShow()
 }
+
+func TestInvertTree(t *testing.T) {
+	root := &TreeNode{
+		Val: 4,
+		Left: &TreeNode{
+			2,
+			&TreeNode{
+				1,
+				nil,
+				nil,
+			},
+			&TreeNode{
+				3,
+				nil,
+				nil,
+			},
+		},
+		Right: &TreeNode{
+			7,
+			&TreeNode{
+				6,
+				nil,
+				nil,
+			},
+			&TreeNode{
+				9,
+				nil,
+				nil,
+			},
+		}}
+	tree := invertTree(root)
+	t.Log(tree)
+}

@@ -194,3 +194,32 @@ func TestTitleToNumber(t *testing.T) {
 func TestTrailingZeroes(t *testing.T) {
 	t.Log(trailingZeroes(30))
 }
+
+func TestIsHappy(t *testing.T) {
+	t.Log(isHappy(2))
+}
+
+func TestIsIsomorphic(t *testing.T) {
+	t.Log(isIsomorphic("badc", "baba"))
+}
+
+func TestContainsDuplicate(t *testing.T) {
+	t.Log(containsDuplicate([]int{1, 2, 3, 1}))
+}
+
+func TestContainsNearbyDuplicate(t *testing.T) {
+	t.Log(containsNearbyDuplicate([]int{1, 2, 3, 1}, 3))
+}
+
+func TestSummaryRanges(t *testing.T) {
+	t.Log(summaryRanges([]int{0, 1, 2, 4, 5, 7}))
+}
+
+func TestSummaryRanges2(t *testing.T) {
+	t.Log(summaryRanges2([]int{0, 1, 2, 4, 5, 7}))
+}
+
+func TestIsPowerOfTwo(t *testing.T) {
+	t.Log(isPowerOfTwo(2))
+	fmt.Printf("==%b==", 1>>1)
+}
