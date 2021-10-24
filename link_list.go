@@ -259,3 +259,41 @@ func reverseList(head *ListNode) *ListNode {
 
 	return result
 }
+
+/*
+234. 回文链表
+https://leetcode-cn.com/problems/palindrome-linked-list/
+思路：
+1、翻转链表
+2、对比翻转后和当前链表
+ */
+func isPalindrome3(head *ListNode) bool {
+	if head == nil {
+		return false
+	}
+
+	var revList *ListNode
+	curNode := head
+	for curNode != nil {
+		tempNode := &ListNode{
+			Val: curNode.Val,
+		}
+		tempNode.Next = revList
+		revList = tempNode
+
+		curNode = curNode.Next
+	}
+
+	curNode2 := head
+	revNode := revList
+	for curNode2.Next != nil {
+		if curNode2.Val != revNode.Val {
+			return false
+		}
+
+		curNode2 = curNode2.Next
+		revNode = revNode.Next
+	}
+
+	return true
+}
