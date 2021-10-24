@@ -40,3 +40,56 @@ func TestTwoSum2(t *testing.T) {
 func TestTwoSum3(t *testing.T) {
 	t.Log(twoSum3([]int{2, 7, 11, 15}, 9))
 }
+
+func TestLowestCommonAncestor(t *testing.T) {
+	root := &TreeNode{
+		Val: 6,
+		Left: &TreeNode{
+			Val: 2,
+			Left: &TreeNode{
+				Val:   0,
+				Left:  nil,
+				Right: nil,
+			},
+			Right: &TreeNode{
+				Val: 4,
+				Left: &TreeNode{
+					Val:   3,
+					Left:  nil,
+					Right: nil,
+				},
+				Right: &TreeNode{
+					Val:   5,
+					Left:  nil,
+					Right: nil,
+				},
+			},
+		},
+		Right: &TreeNode{
+			Val: 8,
+			Left: &TreeNode{
+				Val:   7,
+				Left:  nil,
+				Right: nil,
+			},
+			Right: &TreeNode{
+				Val:   9,
+				Left:  nil,
+				Right: nil,
+			},
+		},
+	}
+
+	p := &TreeNode{
+		Val:   2,
+		Left:  nil,
+		Right: nil,
+	}
+	q := &TreeNode{
+		Val:   8,
+		Left:  nil,
+		Right: nil,
+	}
+	node := lowestCommonAncestor(root, p, q)
+	t.Log(node)
+}
