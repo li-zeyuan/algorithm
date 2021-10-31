@@ -115,3 +115,7 @@ func TestBinaryTreePaths(t *testing.T)  {
 
 	t.Log(binaryTreePaths(root))
 }
+
+func TestAddDigits(t *testing.T)  {
+	t.Log(addDigits(38))
+}

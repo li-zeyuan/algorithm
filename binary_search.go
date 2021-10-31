@@ -167,12 +167,29 @@ func binaryTreePaths2(root *TreeNode) []string {
 		}
 		if node.Left != nil {
 			nodeQueue = append(nodeQueue, node.Left)
-			pathQueue = append(pathQueue, path + "->" + strconv.Itoa(node.Left.Val))
+			pathQueue = append(pathQueue, path+"->"+strconv.Itoa(node.Left.Val))
 		}
 		if node.Right != nil {
 			nodeQueue = append(nodeQueue, node.Right)
-			pathQueue = append(pathQueue, path + "->" + strconv.Itoa(node.Right.Val))
+			pathQueue = append(pathQueue, path+"->"+strconv.Itoa(node.Right.Val))
 		}
 	}
 	return paths
+}
+
+/*
+258. 各位相加
+https://leetcode-cn.com/problems/add-digits/
+*/
+func addDigits(num int) int {
+	if num < 10 {
+		return num
+	}
+	sum := 0
+	for num > 0 {
+		sum = sum + num % 10
+		num = num / 10
+	}
+
+	return addDigits(sum)
 }
