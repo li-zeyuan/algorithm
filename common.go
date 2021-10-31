@@ -936,3 +936,51 @@ https://leetcode-cn.com/problems/power-of-two/
 func isPowerOfTwo(n int) bool {
 	return n > 0 && n&(n-1) == 0
 }
+
+/*
+242. 有效的字母异位词
+https://leetcode-cn.com/problems/valid-anagram/
+方式一：哈希表
+*/
+func isAnagram(s string, t string) bool {
+	if len(s) != len(t) {
+		return false
+	}
+	if len(s) == 0 {
+		return true
+	}
+
+	sNumMap := make(map[int32]int)
+	for _, sItem := range s {
+		sNumMap[sItem] += 1
+	}
+	tNumMap := make(map[int32]int)
+	for _, tItem := range t {
+		tNumMap[tItem] += 1
+	}
+
+	for k, v := range sNumMap {
+		tNum2, ok := tNumMap[k]
+		if v != tNum2 || !ok {
+			return false
+		}
+	}
+
+	return true
+}
+
+/*
+方式二：排序
+ */
+func isAnagram2(s string, t string) bool {
+	sArray := []byte(s)
+	tArray := []byte(t)
+	sort.Slice(sArray, func(i, j int) bool {
+		return sArray[i]<  sArray[j]
+	})
+	sort.Slice(tArray, func(i, j int) bool {
+		return tArray[i]<  tArray[j]
+	})
+
+	return string(sArray) == string(tArray)
+}

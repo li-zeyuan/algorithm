@@ -223,3 +223,7 @@ func TestIsPowerOfTwo(t *testing.T) {
 	t.Log(isPowerOfTwo(2))
 	fmt.Printf("==%b==", 1>>1)
 }
+
+func TestIsAnagram( t *testing.T)  {
+	assert.Equal(t, isAnagram("rat", "car"), false)
+}
