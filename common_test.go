@@ -227,3 +227,6 @@ func TestIsPowerOfTwo(t *testing.T) {
 func TestIsAnagram( t *testing.T)  {
 	assert.Equal(t, isAnagram("rat", "car"), false)
 }
+func TestIsAnagram2( t *testing.T)  {
+	assert.Equal(t, isAnagram2("rat", "car"), false)
+}
