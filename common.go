@@ -984,3 +984,21 @@ func isAnagram2(s string, t string) bool {
 
 	return string(sArray) == string(tArray)
 }
+
+/*
+263. 丑数
+https://leetcode-cn.com/problems/ugly-number/
+ */
+var factors = []int{2, 3, 5}
+
+func isUgly(n int) bool {
+	if n <= 0 {
+		return false
+	}
+	for _, f := range factors {
+		for n%f == 0 {
+			n /= f
+		}
+	}
+	return n == 1
+}
