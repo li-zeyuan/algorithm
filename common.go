@@ -971,15 +971,15 @@ func isAnagram(s string, t string) bool {
 
 /*
 方式二：排序
- */
+*/
 func isAnagram2(s string, t string) bool {
 	sArray := []byte(s)
 	tArray := []byte(t)
 	sort.Slice(sArray, func(i, j int) bool {
-		return sArray[i]<  sArray[j]
+		return sArray[i] < sArray[j]
 	})
 	sort.Slice(tArray, func(i, j int) bool {
-		return tArray[i]<  tArray[j]
+		return tArray[i] < tArray[j]
 	})
 
 	return string(sArray) == string(tArray)
@@ -988,7 +988,7 @@ func isAnagram2(s string, t string) bool {
 /*
 263. 丑数
 https://leetcode-cn.com/problems/ugly-number/
- */
+*/
 var factors = []int{2, 3, 5}
 
 func isUgly(n int) bool {
@@ -1001,4 +1001,22 @@ func isUgly(n int) bool {
 		}
 	}
 	return n == 1
+}
+
+/*
+268. 丢失的数字
+https://leetcode-cn.com/problems/missing-number/
+*/
+func missingNumber(nums []int) int {
+	sort.Slice(nums, func(i, j int) bool {
+		return nums[i] <= nums[j]
+	})
+
+	for i := 0; i < len(nums); i++ {
+		if nums[i] != i {
+			return nums[i] - 1
+		}
+	}
+
+	return nums[len(nums)-1] + 1
 }
