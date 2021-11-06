@@ -239,3 +239,7 @@ func TestIsUgly(t *testing.T) {
 func TestMissingNumber(t *testing.T) {
 	assert.Equal(t, missingNumber([]int{1, 0}), 2)
 }
+
+func TestFirstBadVersion(t *testing.T) {
+	assert.Equal(t, firstBadVersion(5), 3)
+}

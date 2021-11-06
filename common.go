@@ -1020,3 +1020,33 @@ func missingNumber(nums []int) int {
 
 	return nums[len(nums)-1] + 1
 }
+
+func isBadVersion(version int) bool {
+	if version >= 3 {
+		return true
+	}
+	return false
+}
+
+/*
+278. 第一个错误的版本
+https://leetcode-cn.com/problems/first-bad-version/
+思路：
+二分查找
+*/
+func firstBadVersion(n int) int {
+	return bSearch(0, n)
+}
+
+func bSearch(s, e int) int {
+	if s >= e {
+		return e
+	}
+
+	m := (s + e) / 2
+	if isBadVersion(m) {
+		return bSearch(s, m)
+	} else {
+		return bSearch(m+1, e)
+	}
+}
