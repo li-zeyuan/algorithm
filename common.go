@@ -1050,3 +1050,21 @@ func bSearch(s, e int) int {
 		return bSearch(m+1, e)
 	}
 }
+
+/*
+283. 移动零
+https://leetcode-cn.com/problems/move-zeroes/
+思路
+逐个遍历
+*/
+func moveZeroes(nums []int) {
+	n := 0
+	for i := 0; i < len(nums)-n; i++ {
+		if nums[i] == 0 {
+			nums = append(nums[:i], nums[i+1:]...)
+			nums = append(nums, 0)
+			n++
+			i--
+		}
+	}
+}

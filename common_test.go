@@ -243,3 +243,9 @@ func TestMissingNumber(t *testing.T) {
 func TestFirstBadVersion(t *testing.T) {
 	assert.Equal(t, firstBadVersion(5), 3)
 }
+
+func TestMoveZeroes(t *testing.T) {
+	nums := []int{0, 1, 0, 3, 12}
+	moveZeroes(nums)
+	t.Log(nums)
+}
