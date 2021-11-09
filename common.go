@@ -971,15 +971,15 @@ func isAnagram(s string, t string) bool {
 
 /*
 方式二：排序
- */
+*/
 func isAnagram2(s string, t string) bool {
 	sArray := []byte(s)
 	tArray := []byte(t)
 	sort.Slice(sArray, func(i, j int) bool {
-		return sArray[i]<  sArray[j]
+		return sArray[i] < sArray[j]
 	})
 	sort.Slice(tArray, func(i, j int) bool {
-		return tArray[i]<  tArray[j]
+		return tArray[i] < tArray[j]
 	})
 
 	return string(sArray) == string(tArray)
@@ -988,7 +988,7 @@ func isAnagram2(s string, t string) bool {
 /*
 263. 丑数
 https://leetcode-cn.com/problems/ugly-number/
- */
+*/
 var factors = []int{2, 3, 5}
 
 func isUgly(n int) bool {
@@ -1001,4 +1001,59 @@ func isUgly(n int) bool {
 		}
 	}
 	return n == 1
+}
+
+/*
+290. 单词规律
+https://leetcode-cn.com/problems/word-pattern/
+思路：
+构造map
+*/
+func wordPattern(pattern string, s string) bool {
+	pattern = strings.TrimSpace(pattern)
+	s = strings.TrimSpace(s)
+	if len(pattern) == 0 && len(s) == 0 {
+		return true
+	}
+
+	strItem := ""
+	j := 0
+	pM := make(map[string]string)
+	sM := make(map[string]string)
+	for i := 0; i < len(s); i++ {
+		if string(s[i]) != " " {
+			strItem += string(s[i])
+			if i < len(s)-1 {
+				continue
+			}
+		}
+
+		if j >= len(pattern) {
+			return false
+		}
+		v, ok := pM[string(pattern[j])]
+		_, ok2 := sM[strItem]
+		if ok && ok2 && v != strItem {
+			return false
+		}
+		if (ok && !ok2) || (!ok && ok2) {
+			return false
+		}
+
+		if !ok {
+			pM[string(pattern[j])] = strItem
+		}
+		if !ok2 {
+			sM[strItem] =string(pattern[j])
+		}
+
+		strItem = ""
+		j++
+	}
+
+	if j != len(pattern) {
+		return false
+	}
+
+	return true
 }

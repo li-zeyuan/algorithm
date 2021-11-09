@@ -1,6 +1,8 @@
 package algorithm
 
-import "strconv"
+import (
+	"strconv"
+)
 
 /*
 二分法通过对折的方式查找一个数据，条件是必须是一个有序的数组。数组底层是顺序链表，可以随机获取一个值 O (log n)
@@ -187,7 +189,7 @@ func addDigits(num int) int {
 	}
 	sum := 0
 	for num > 0 {
-		sum = sum + num % 10
+		sum = sum + num%10
 		num = num / 10
 	}
 

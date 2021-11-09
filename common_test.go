@@ -235,3 +235,6 @@ func TestIsAnagram2( t *testing.T)  {
 func TestIsUgly(t *testing.T)  {
 	assert.T(t, isUgly(1), true)
 }
+func TestWordPattern(t *testing.T)  {
+	assert.Equal(t, wordPattern("abba","dog cat cat dog"), true)
+}
