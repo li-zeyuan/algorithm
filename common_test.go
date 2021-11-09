@@ -224,17 +224,32 @@ func TestIsPowerOfTwo(t *testing.T) {
 	fmt.Printf("==%b==", 1>>1)
 }
 
-func TestIsAnagram( t *testing.T)  {
+func TestIsAnagram(t *testing.T) {
 	assert.Equal(t, isAnagram("rat", "car"), false)
 }
 
-func TestIsAnagram2( t *testing.T)  {
+func TestIsAnagram2(t *testing.T) {
 	assert.Equal(t, isAnagram2("rat", "car"), false)
 }
 
-func TestIsUgly(t *testing.T)  {
+func TestIsUgly(t *testing.T) {
 	assert.T(t, isUgly(1), true)
 }
+
+func TestMissingNumber(t *testing.T) {
+	assert.Equal(t, missingNumber([]int{1, 0}), 2)
+}
+
+func TestFirstBadVersion(t *testing.T) {
+	assert.Equal(t, firstBadVersion(5), 3)
+}
+
+func TestMoveZeroes(t *testing.T) {
+	nums := []int{0, 1, 0, 3, 12}
+	moveZeroes(nums)
+	t.Log(nums)
+}
+
 func TestWordPattern(t *testing.T)  {
 	assert.Equal(t, wordPattern("abba","dog cat cat dog"), true)
 }

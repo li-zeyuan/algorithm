@@ -1004,6 +1004,73 @@ func isUgly(n int) bool {
 }
 
 /*
+268. 丢失的数字
+https://leetcode-cn.com/problems/missing-number/
+*/
+func missingNumber(nums []int) int {
+	sort.Slice(nums, func(i, j int) bool {
+		return nums[i] <= nums[j]
+	})
+
+	for i := 0; i < len(nums); i++ {
+		if nums[i] != i {
+			return nums[i] - 1
+		}
+	}
+
+	return nums[len(nums)-1] + 1
+}
+
+func isBadVersion(version int) bool {
+	if version >= 3 {
+		return true
+	}
+	return false
+}
+
+/*
+278. 第一个错误的版本
+https://leetcode-cn.com/problems/first-bad-version/
+思路：
+二分查找
+*/
+func firstBadVersion(n int) int {
+	return bSearch(0, n)
+}
+
+func bSearch(s, e int) int {
+	if s >= e {
+		return e
+	}
+
+	m := (s + e) / 2
+	if isBadVersion(m) {
+		return bSearch(s, m)
+	} else {
+		return bSearch(m+1, e)
+	}
+}
+
+/*
+283. 移动零
+https://leetcode-cn.com/problems/move-zeroes/
+思路
+逐个遍历
+*/
+func moveZeroes(nums []int) {
+	n := 0
+	for i := 0; i < len(nums)-n; i++ {
+		if nums[i] == 0 {
+			nums = append(nums[:i], nums[i+1:]...)
+			nums = append(nums, 0)
+			n++
+			i--
+		}
+	}
+}
+
+
+/*
 290. 单词规律
 https://leetcode-cn.com/problems/word-pattern/
 思路：
