@@ -253,3 +253,10 @@ func TestMoveZeroes(t *testing.T) {
 func TestWordPattern(t *testing.T)  {
 	assert.Equal(t, wordPattern("abba","dog cat cat dog"), true)
 }
+
+func TestConstructor3(t *testing.T)  {
+	obj := Constructor3([]int{-2, 0, 3, -5, 2, -1})
+	assert.Equal(t, obj.SumRange(0, 2),1)
+	assert.Equal(t, obj.SumRange(2, 5),-1)
+	assert.Equal(t, obj.SumRange(0, 5), -3)
+}

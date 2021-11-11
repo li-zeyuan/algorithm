@@ -1069,7 +1069,6 @@ func moveZeroes(nums []int) {
 	}
 }
 
-
 /*
 290. 单词规律
 https://leetcode-cn.com/problems/word-pattern/
@@ -1111,7 +1110,7 @@ func wordPattern(pattern string, s string) bool {
 			pM[string(pattern[j])] = strItem
 		}
 		if !ok2 {
-			sM[strItem] =string(pattern[j])
+			sM[strItem] = string(pattern[j])
 		}
 
 		strItem = ""
@@ -1124,3 +1123,52 @@ func wordPattern(pattern string, s string) bool {
 
 	return true
 }
+
+/*
+292. Nim 游戏
+https://leetcode-cn.com/problems/nim-game/
+思路：
+若n位4的倍数，则自己输
+*/
+func canWinNim(n int) bool {
+	return n%4 != 0
+}
+
+/*
+303. 区域和检索 - 数组不可变
+https://leetcode-cn.com/problems/range-sum-query-immutable/
+*/
+type NumArray struct {
+	list []int
+}
+
+func Constructor3(nums []int) NumArray {
+	return NumArray{
+		list: nums,
+	}
+}
+
+func (this *NumArray) SumRange(left int, right int) int {
+	if left > right {
+		return 0
+	}
+
+	if left >= len(this.list) {
+		return 0
+	}
+	if right >= len(this.list) {
+		right = right - 1
+	}
+
+	result := 0
+	for _, n := range this.list[left : right+1] {
+		result += n
+	}
+	return result
+}
+
+/**
+ * Your NumArray object will be instantiated and called as such:
+ * obj := Constructor(nums);
+ * param_1 := obj.SumRange(left,right);
+ */
