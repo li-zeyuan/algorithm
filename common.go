@@ -1167,8 +1167,25 @@ func (this *NumArray) SumRange(left int, right int) int {
 	return result
 }
 
-/**
- * Your NumArray object will be instantiated and called as such:
- * obj := Constructor(nums);
- * param_1 := obj.SumRange(left,right);
+/*
+326. 3的幂
+https://leetcode-cn.com/problems/power-of-three/
  */
+func isPowerOfThree(n int) bool {
+	if n <=0 {
+		return false
+	}
+	if n < 3 && n > 1 {
+		return false
+	}
+
+	if n == 1 {
+		return true
+	}
+
+	if (n % 3) > 0 {
+		return false
+	}
+
+	return isPowerOfThree(n / 3)
+}

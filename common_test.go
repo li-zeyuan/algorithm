@@ -260,3 +260,9 @@ func TestConstructor3(t *testing.T)  {
 	assert.Equal(t, obj.SumRange(2, 5),-1)
 	assert.Equal(t, obj.SumRange(0, 5), -3)
 }
+
+func TestIsPowerOfThree(t *testing.T)  {
+	assert.Equal(t, isPowerOfThree(0), false)
+	assert.Equal(t, isPowerOfThree(27), true)
+	assert.Equal(t, isPowerOfThree(4), false)
+}
