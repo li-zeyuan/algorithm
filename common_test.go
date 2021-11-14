@@ -266,3 +266,15 @@ func TestIsPowerOfThree(t *testing.T)  {
 	assert.Equal(t, isPowerOfThree(27), true)
 	assert.Equal(t, isPowerOfThree(4), false)
 }
+
+func TestCountBits(t *testing.T)  {
+	assert.Equal(t, countBits(0), []int{0})
+	assert.Equal(t, countBits(2), []int{0,1,1})
+	assert.Equal(t, countBits(5), []int{0,1,1,2,1,2})
+}
+
+func TestCountOneBit(t *testing.T)  {
+	assert.Equal(t, countOneBit(0), 0)
+	assert.Equal(t, countOneBit(2), 1)
+	assert.Equal(t, countOneBit(5), 2)
+}

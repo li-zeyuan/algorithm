@@ -1189,3 +1189,37 @@ func isPowerOfThree(n int) bool {
 
 	return isPowerOfThree(n / 3)
 }
+
+/*
+338. 比特位计数
+https://leetcode-cn.com/problems/counting-bits/
+ */
+func countBits(n int) []int {
+	if n < 0 {
+		return nil
+	}
+	if n == 0 {
+		return []int{0}
+	}
+
+	return  append(countBits(n-1), countOneBit(n))
+}
+
+func countOneBit(num int) int {
+	if num <= 0 {
+		return 0
+	}
+
+	result := 0
+	for num / 2 > 0 {
+		if num % 2 == 1 {
+			result ++
+		}
+		num = num / 2
+	}
+
+	if num == 1 {
+		result ++
+	}
+	return result
+}
