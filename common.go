@@ -1197,9 +1197,9 @@ func (this *NumArray) SumRange(left int, right int) int {
 /*
 326. 3的幂
 https://leetcode-cn.com/problems/power-of-three/
- */
+*/
 func isPowerOfThree(n int) bool {
-	if n <=0 {
+	if n <= 0 {
 		return false
 	}
 	if n < 3 && n > 1 {
@@ -1220,7 +1220,7 @@ func isPowerOfThree(n int) bool {
 /*
 338. 比特位计数
 https://leetcode-cn.com/problems/counting-bits/
- */
+*/
 func countBits(n int) []int {
 	if n < 0 {
 		return nil
@@ -1229,7 +1229,7 @@ func countBits(n int) []int {
 		return []int{0}
 	}
 
-	return  append(countBits(n-1), countOneBit(n))
+	return append(countBits(n-1), countOneBit(n))
 }
 
 func countOneBit(num int) int {
@@ -1238,15 +1238,15 @@ func countOneBit(num int) int {
 	}
 
 	result := 0
-	for num / 2 > 0 {
-		if num % 2 == 1 {
-			result ++
+	for num/2 > 0 {
+		if num%2 == 1 {
+			result++
 		}
 		num = num / 2
 	}
 
 	if num == 1 {
-		result ++
+		result++
 	}
 	return result
 }

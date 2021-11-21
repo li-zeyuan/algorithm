@@ -260,30 +260,30 @@ func TestIsPowerOfFour(t *testing.T) {
 	assert.Equal(t, isPowerOfFour(16), true)
 }
 
-func TestWordPattern(t *testing.T)  {
-	assert.Equal(t, wordPattern("abba","dog cat cat dog"), true)
+func TestWordPattern(t *testing.T) {
+	assert.Equal(t, wordPattern("abba", "dog cat cat dog"), true)
 }
 
-func TestConstructor3(t *testing.T)  {
+func TestConstructor3(t *testing.T) {
 	obj := Constructor3([]int{-2, 0, 3, -5, 2, -1})
-	assert.Equal(t, obj.SumRange(0, 2),1)
-	assert.Equal(t, obj.SumRange(2, 5),-1)
+	assert.Equal(t, obj.SumRange(0, 2), 1)
+	assert.Equal(t, obj.SumRange(2, 5), -1)
 	assert.Equal(t, obj.SumRange(0, 5), -3)
 }
 
-func TestIsPowerOfThree(t *testing.T)  {
+func TestIsPowerOfThree(t *testing.T) {
 	assert.Equal(t, isPowerOfThree(0), false)
 	assert.Equal(t, isPowerOfThree(27), true)
 	assert.Equal(t, isPowerOfThree(4), false)
 }
 
-func TestCountBits(t *testing.T)  {
+func TestCountBits(t *testing.T) {
 	assert.Equal(t, countBits(0), []int{0})
-	assert.Equal(t, countBits(2), []int{0,1,1})
-	assert.Equal(t, countBits(5), []int{0,1,1,2,1,2})
+	assert.Equal(t, countBits(2), []int{0, 1, 1})
+	assert.Equal(t, countBits(5), []int{0, 1, 1, 2, 1, 2})
 }
 
-func TestCountOneBit(t *testing.T)  {
+func TestCountOneBit(t *testing.T) {
 	assert.Equal(t, countOneBit(0), 0)
 	assert.Equal(t, countOneBit(2), 1)
 	assert.Equal(t, countOneBit(5), 2)
