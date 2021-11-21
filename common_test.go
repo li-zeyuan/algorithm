@@ -249,3 +249,13 @@ func TestMoveZeroes(t *testing.T) {
 	moveZeroes(nums)
 	t.Log(nums)
 }
+
+func TestIsPowerOfFour(t *testing.T) {
+	assert.Equal(t, isPowerOfFour(17), false)
+	assert.Equal(t, isPowerOfFour(0), false)
+	assert.Equal(t, isPowerOfFour(1), true)
+	assert.Equal(t, isPowerOfFour(4), true)
+	assert.Equal(t, isPowerOfFour(5), false)
+	assert.Equal(t, isPowerOfFour(8), false)
+	assert.Equal(t, isPowerOfFour(16), true)
+}

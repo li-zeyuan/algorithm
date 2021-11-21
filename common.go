@@ -1068,3 +1068,30 @@ func moveZeroes(nums []int) {
 		}
 	}
 }
+
+/*
+342. 4的幂
+https://leetcode-cn.com/problems/power-of-four/
+*/
+func isPowerOfFour(n int) bool {
+	if n == 0 {
+		return false
+	}
+	if n == 1 {
+		return true
+	}
+
+	for n > 0 {
+		i := n % 4
+		if i == 0 && n/4 == 1 {
+			return true
+		}
+		if i > 0 && i < 4 {
+			return false
+		}
+
+		n = n / 4
+	}
+
+	return false
+}
