@@ -1095,3 +1095,158 @@ func isPowerOfFour(n int) bool {
 
 	return false
 }
+
+/*
+290. 单词规律
+https://leetcode-cn.com/problems/word-pattern/
+思路：
+构造map
+*/
+func wordPattern(pattern string, s string) bool {
+	pattern = strings.TrimSpace(pattern)
+	s = strings.TrimSpace(s)
+	if len(pattern) == 0 && len(s) == 0 {
+		return true
+	}
+
+	strItem := ""
+	j := 0
+	pM := make(map[string]string)
+	sM := make(map[string]string)
+	for i := 0; i < len(s); i++ {
+		if string(s[i]) != " " {
+			strItem += string(s[i])
+			if i < len(s)-1 {
+				continue
+			}
+		}
+
+		if j >= len(pattern) {
+			return false
+		}
+		v, ok := pM[string(pattern[j])]
+		_, ok2 := sM[strItem]
+		if ok && ok2 && v != strItem {
+			return false
+		}
+		if (ok && !ok2) || (!ok && ok2) {
+			return false
+		}
+
+		if !ok {
+			pM[string(pattern[j])] = strItem
+		}
+		if !ok2 {
+			sM[strItem] = string(pattern[j])
+		}
+
+		strItem = ""
+		j++
+	}
+
+	if j != len(pattern) {
+		return false
+	}
+
+	return true
+}
+
+/*
+292. Nim 游戏
+https://leetcode-cn.com/problems/nim-game/
+思路：
+若n位4的倍数，则自己输
+*/
+func canWinNim(n int) bool {
+	return n%4 != 0
+}
+
+/*
+303. 区域和检索 - 数组不可变
+https://leetcode-cn.com/problems/range-sum-query-immutable/
+*/
+type NumArray struct {
+	list []int
+}
+
+func Constructor3(nums []int) NumArray {
+	return NumArray{
+		list: nums,
+	}
+}
+
+func (this *NumArray) SumRange(left int, right int) int {
+	if left > right {
+		return 0
+	}
+
+	if left >= len(this.list) {
+		return 0
+	}
+	if right >= len(this.list) {
+		right = right - 1
+	}
+
+	result := 0
+	for _, n := range this.list[left : right+1] {
+		result += n
+	}
+	return result
+}
+
+/*
+326. 3的幂
+https://leetcode-cn.com/problems/power-of-three/
+ */
+func isPowerOfThree(n int) bool {
+	if n <=0 {
+		return false
+	}
+	if n < 3 && n > 1 {
+		return false
+	}
+
+	if n == 1 {
+		return true
+	}
+
+	if (n % 3) > 0 {
+		return false
+	}
+
+	return isPowerOfThree(n / 3)
+}
+
+/*
+338. 比特位计数
+https://leetcode-cn.com/problems/counting-bits/
+ */
+func countBits(n int) []int {
+	if n < 0 {
+		return nil
+	}
+	if n == 0 {
+		return []int{0}
+	}
+
+	return  append(countBits(n-1), countOneBit(n))
+}
+
+func countOneBit(num int) int {
+	if num <= 0 {
+		return 0
+	}
+
+	result := 0
+	for num / 2 > 0 {
+		if num % 2 == 1 {
+			result ++
+		}
+		num = num / 2
+	}
+
+	if num == 1 {
+		result ++
+	}
+	return result
+}
