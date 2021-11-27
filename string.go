@@ -9,16 +9,16 @@ import "strings"
 
 思路
 	- strings.Count的使用
- */
+*/
 func isUniqueString(s string) bool {
-	if strings.Count(s,"") > 3000{
-		return  false
+	if strings.Count(s, "") > 3000 {
+		return false
 	}
-	for _,v := range s {
+	for _, v := range s {
 		if v > 127 {
 			return false
 		}
-		if strings.Count(s,string(v)) > 1 {
+		if strings.Count(s, string(v)) > 1 {
 			return false
 		}
 	}
@@ -32,28 +32,28 @@ func isUniqueString(s string) bool {
 思路
 	- 将string转成[]rune
 	- 以中心字符为轴，交换两边的字符
- */
+*/
 func ReversedString(s string) string {
 	if len(s) > 5000 {
 		return ""
 	}
 
 	strList := []rune(s)
-	for i := 0; i < len(s)/2; i ++ {
-		strList[i], strList[len(s)-1 - i] = strList[len(s)-1 - i], strList[i]
+	for i := 0; i < len(s)/2; i++ {
+		strList[i], strList[len(s)-1-i] = strList[len(s)-1-i], strList[i]
 	}
 
 	return string(strList)
 }
 
 /*
-给定两个字符串，请编写程序，确定其中一个字符串的字符重新排列后，能否变成另一个字符串。 
+给定两个字符串，请编写程序，确定其中一个字符串的字符重新排列后，能否变成另一个字符串。
 这里规定【大小写为不同字符】，且考虑字符串重点空格。给定一个string s1和一个string s2，请返回一个bool，
 代表两串是否重新排列后可相同。 保证两串的长度都小于等于5000。
 
 思路
 	1、strings.Count()判断s1中的某个字符，在s2中的数量是否一致
- */
+*/
 func IsRegroup(s1, s2 string) bool {
 	if len(s1) == 0 || len(s1) > 5000 {
 		return false
@@ -72,4 +72,45 @@ func IsRegroup(s1, s2 string) bool {
 	}
 
 	return true
+}
+
+/*
+345. 反转字符串中的元音字母
+https://leetcode-cn.com/problems/reverse-vowels-of-a-string/
+思路：双指针
+*/
+
+var vowelMap = map[string]struct{}{
+	"a": {},
+	"e": {},
+	"i": {},
+	"o": {},
+	"u": {},
+}
+
+func reverseVowels(s string) string {
+	if len(s) <= 1 {
+		return s
+	}
+
+	bStr := []byte(s)
+
+	j := len(bStr) - 1
+	for i := 0; i < len(s); i++ {
+		_, ok := vowelMap[strings.ToLower(string(bStr[i]))]
+		if ok {
+			for j > i {
+				_, ok2 := vowelMap[strings.ToLower(string(bStr[j]))]
+				if ok2 {
+					bStr[i], bStr[j] = bStr[j], bStr[i]
+					j--
+					break
+				}
+				j--
+			}
+		}
+
+	}
+
+	return string(bStr)
 }
