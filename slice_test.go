@@ -26,3 +26,8 @@ func TestReverseString(t *testing.T) {
 	reverseString(l1)
 	assert.Equal(t, l3, []byte{99, 98, 97, 96})
 }
+
+func TestIntersection(t *testing.T) {
+	l1 := intersection([]int{1, 2, 2, 1}, []int{2, 2})
+	assert.Equal(t, l1[0], 2)
+}

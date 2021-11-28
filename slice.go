@@ -32,3 +32,29 @@ func reverseString(s []byte) {
 		s[i], s[len(s)-1-i] = s[len(s)-1-i], s[i]
 	}
 }
+
+/*
+349. 两个数组的交集
+https://leetcode-cn.com/problems/intersection-of-two-arrays/
+思路：map
+*/
+func intersection(nums1 []int, nums2 []int) []int {
+	nums1Map := make(map[int]struct{})
+	for i := 0; i < len(nums1); i++ {
+		nums1Map[nums1[i]] = struct{}{}
+	}
+
+	nums2Map := make(map[int]struct{})
+	for i := 0; i < len(nums2); i++ {
+		nums2Map[nums2[i]] = struct{}{}
+	}
+
+	result := make([]int, 0)
+	for k := range nums2Map {
+		if _, ok := nums1Map[k]; ok {
+			result = append(result, k)
+		}
+	}
+
+	return result
+}
