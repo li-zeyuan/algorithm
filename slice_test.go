@@ -31,3 +31,15 @@ func TestIntersection(t *testing.T) {
 	l1 := intersection([]int{1, 2, 2, 1}, []int{2, 2})
 	assert.Equal(t, l1[0], 2)
 }
+
+func TestIntersect(t *testing.T) {
+	l1 := intersect([]int{1, 2, 2, 1}, []int{2, 2})
+	assert.Equal(t, len(l1), 2)
+	assert.Equal(t, l1[0], 2)
+	assert.Equal(t, l1[1], 2)
+
+	l2 := intersect([]int{4, 9, 5}, []int{9, 4, 9, 8, 4})
+	assert.Equal(t, len(l2), 2)
+	assert.Equal(t, l2[0], 4)
+	assert.Equal(t, l2[1], 9)
+}

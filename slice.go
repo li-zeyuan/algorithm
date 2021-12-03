@@ -1,5 +1,7 @@
 package algorithm
 
+import "math"
+
 /*
 反转字符列表
 使得{"A", "B", "C", "D"} -> {"D", "C", "B", "A"}
@@ -53,6 +55,42 @@ func intersection(nums1 []int, nums2 []int) []int {
 	for k := range nums2Map {
 		if _, ok := nums1Map[k]; ok {
 			result = append(result, k)
+		}
+	}
+
+	return result
+}
+
+/*
+350. 两个数组的交集 II
+https://leetcode-cn.com/problems/intersection-of-two-arrays-ii/
+*/
+func intersect(nums1 []int, nums2 []int) []int {
+	if len(nums1) == 0 || len(nums2) == 0 {
+		return []int{}
+	}
+
+	nums1Map := make(map[int]int)
+	for i := 0; i < len(nums1); i++ {
+		nums1Map[nums1[i]] += 1
+	}
+
+	nums2Map := make(map[int]int)
+	for i := 0; i < len(nums2); i++ {
+		nums2Map[nums2[i]] += 1
+	}
+
+	result := make([]int, 0)
+	for k, v := range nums1Map {
+		amount, ok := nums2Map[k]
+		if !ok {
+			continue
+		}
+
+		maxAmount := int(math.Min(float64(v), float64(amount)))
+		for maxAmount > 0 {
+			result = append(result, k)
+			maxAmount--
 		}
 	}
 
