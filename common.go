@@ -1272,3 +1272,37 @@ func isPerfectSquare(num int) bool {
 		i++
 	}
 }
+
+/*
+374. 猜数字大小
+https://leetcode-cn.com/problems/guess-number-higher-or-lower/
+*/
+
+func guess(num int) int {
+	if num == 2 {
+		return 0
+	} else if num < 2 {
+		return 1
+	} else {
+		return -1
+	}
+}
+
+func guessNumber(n int) int {
+	if n < 1 {
+		return 0
+	}
+
+	start, end := 1, n
+	for {
+		mid := (start + end) / 2
+		g := guess(mid)
+		if g == 0 {
+			return mid
+		} else if g == -1 {
+			end = mid - 1
+		} else if g == 1 {
+			start = mid + 1
+		}
+	}
+}
