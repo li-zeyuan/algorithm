@@ -1250,3 +1250,25 @@ func countOneBit(num int) int {
 	}
 	return result
 }
+
+/*
+367. 有效的完全平方数
+https://leetcode-cn.com/problems/valid-perfect-square/
+*/
+func isPerfectSquare(num int) bool {
+	if num <= 0 {
+		return false
+	}
+
+	i := 1
+	for {
+		if i*i == num {
+			return true
+		}
+		if i*i > num {
+			return false
+		}
+
+		i++
+	}
+}

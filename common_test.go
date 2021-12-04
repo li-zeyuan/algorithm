@@ -288,3 +288,9 @@ func TestCountOneBit(t *testing.T) {
 	assert.Equal(t, countOneBit(2), 1)
 	assert.Equal(t, countOneBit(5), 2)
 }
+
+func TestIsPerfectSquare(t *testing.T) {
+	assert.Equal(t, isPerfectSquare(1), true)
+	assert.Equal(t, isPerfectSquare(16), true)
+	assert.Equal(t, isPerfectSquare(14), false)
+}
