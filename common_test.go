@@ -294,6 +294,14 @@ func TestIsPerfectSquare(t *testing.T) {
 	assert.Equal(t, isPerfectSquare(16), true)
 	assert.Equal(t, isPerfectSquare(14), false)
 }
+
 func TestGuessNumber(t *testing.T) {
 	assert.Equal(t, guessNumber(2), 2)
+}
+
+func TestCanConstruct(t *testing.T) {
+	assert.Equal(t, canConstruct("a", "b"), false)
+	assert.Equal(t, canConstruct("aa", "ab"), false)
+	assert.Equal(t, canConstruct("aa", "aab"), true)
+	assert.Equal(t, canConstruct("aab", "baa"), true)
 }

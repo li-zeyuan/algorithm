@@ -1306,3 +1306,42 @@ func guessNumber(n int) int {
 		}
 	}
 }
+
+/*
+383. 赎金信
+https://leetcode-cn.com/problems/ransom-note/
+*/
+func canConstruct(ransomNote string, magazine string) bool {
+	if len(ransomNote) > len(magazine) {
+		return false
+	}
+
+	ransomNoteList := []byte(ransomNote)
+	magazineList := []byte(magazine)
+
+	sort.Slice(ransomNoteList, func(i, j int) bool {
+		return ransomNoteList[j] > ransomNoteList[i]
+	})
+	sort.Slice(magazineList, func(i, j int) bool {
+		return magazineList[j] > magazineList[i]
+	})
+
+	fmt.Println(string(ransomNoteList))
+	fmt.Println(string(magazineList))
+
+	i, j, num := 0, 0, 0
+	for i < len(ransomNoteList) {
+		for j < len(magazineList) {
+			if ransomNoteList[i] == magazineList[j] {
+				j++
+				num++
+				break
+			}
+			j++
+		}
+
+		i++
+	}
+
+	return num == len(ransomNoteList)
+}
