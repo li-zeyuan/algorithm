@@ -28,3 +28,8 @@ func TestReverseVowels(t *testing.T) {
 	assert.Equal(t, reverseVowels("hello"), "holle")
 	assert.Equal(t, reverseVowels("leetcode"), "leotcede")
 }
+
+func TestFirstUniqChar(t *testing.T) {
+	assert.Equal(t, firstUniqChar("leetcode"), 0)
+	assert.Equal(t, firstUniqChar("loveleetcode"), 2)
+}

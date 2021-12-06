@@ -114,3 +114,26 @@ func reverseVowels(s string) string {
 
 	return string(bStr)
 }
+
+/*
+387. 字符串中的第一个唯一字符
+https://leetcode-cn.com/problems/first-unique-character-in-a-string/
+ */
+func firstUniqChar(s string) int {
+	if len(s) == 0 {
+		return -1
+	}
+
+	sMap := make(map[string]int)
+	for i := 0; i < len(s); i ++ {
+		sMap[string(s[i])] += 1
+	}
+
+	for j := 0 ; j < len(s); j ++ {
+		if num, ok := sMap[string(s[j])]; ok && num == 1{
+			return j
+		}
+	}
+
+	return -1
+}
