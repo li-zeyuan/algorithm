@@ -33,3 +33,8 @@ func TestFirstUniqChar(t *testing.T) {
 	assert.Equal(t, firstUniqChar("leetcode"), 0)
 	assert.Equal(t, firstUniqChar("loveleetcode"), 2)
 }
+
+func TestFindTheDifference(t *testing.T) {
+	assert.Equal(t, findTheDifference("abcd", "abcde"), byte('e'))
+	assert.Equal(t, findTheDifference( "",  "y"), byte('y'))
+}

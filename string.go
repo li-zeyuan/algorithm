@@ -1,6 +1,9 @@
 package algorithm
 
-import "strings"
+import (
+	"sort"
+	"strings"
+)
 
 /*
 请实现一个算法，确定一个字符串的所有字符【是否全都不同】。这里我们要求【不允许使用额外的存储结构】。
@@ -136,4 +139,34 @@ func firstUniqChar(s string) int {
 	}
 
 	return -1
+}
+
+/*
+389. 找不同
+https://leetcode-cn.com/problems/find-the-difference/
+思路：
+1、排序
+2、双指针
+ */
+func findTheDifference(s string, t string) byte {
+	if len(s) + 1 != len(t) {
+		return 0
+	}
+
+ 	sArray := []byte(s)
+ 	tArray := []byte(t)
+ 	sort.Slice(sArray, func(i, j int) bool {
+		return sArray[j] > sArray[i]
+	})
+	sort.Slice(tArray, func(i, j int) bool {
+		return tArray[j] > tArray[i]
+	})
+
+ 	for i := 0 ; i < len(sArray); i ++  {
+ 		if sArray[i] != tArray[i] {
+ 			return tArray[i]
+		}
+	}
+
+	return tArray[len(tArray) - 1]
 }
