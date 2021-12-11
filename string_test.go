@@ -28,3 +28,9 @@ func TestReverseVowels(t *testing.T) {
 	assert.Equal(t, reverseVowels("hello"), "holle")
 	assert.Equal(t, reverseVowels("leetcode"), "leotcede")
 }
+
+func TestIsSubsequence(t *testing.T) {
+	assert.Equal(t, isSubsequence("abc", "ahbgdc"), true)
+	assert.Equal(t, isSubsequence("axc", "ahbgdc"), false)
+	assert.Equal(t, isSubsequence("aaaaaa", "bbaaaa"), false)
+}
