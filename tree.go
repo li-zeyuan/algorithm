@@ -255,3 +255,49 @@ func postorderTraversal(root *TreeNode) []int {
 	result = append(result, root.Val)
 	return result
 }
+
+/*
+404. 左叶子之和
+https://leetcode-cn.com/problems/sum-of-left-leaves/
+思路：深度优先
+1、isLeft标识是否未左节点
+*/
+func sumOfLeftLeaves(root *TreeNode) int {
+	return nodeOfLeftLeave(root.Left, true) + nodeOfLeftLeave(root.Right, false)
+}
+
+func nodeOfLeftLeave(node *TreeNode, isLeft bool) int {
+	if node == nil {
+		return 0
+	}
+
+	if node.Left == nil && node.Right == nil && isLeft {
+		return node.Val
+	}
+
+	return nodeOfLeftLeave(node.Left, true) + nodeOfLeftLeave(node.Right, false)
+}
+
+/*
+404. 左叶子之和
+https://leetcode-cn.com/problems/sum-of-left-leaves/
+思路：广度优先
+*/
+func sumOfLeftLeaves2(root *TreeNode) int {
+	result := 0
+	q := []*TreeNode{root}
+	for len(q) > 0 {
+		node := q[0]
+		q = q[1:]
+		if node.Left != nil && node.Left.Left == nil && node.Left.Right == nil {
+			result += node.Left.Val
+		} else if node.Left != nil {
+			q = append(q, node.Left)
+		}
+		if node.Right != nil {
+			q = append(q, node.Right)
+		}
+	}
+
+	return result
+}

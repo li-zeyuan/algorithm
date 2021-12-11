@@ -36,7 +36,7 @@ func TestFirstUniqChar(t *testing.T) {
 
 func TestFindTheDifference(t *testing.T) {
 	assert.Equal(t, findTheDifference("abcd", "abcde"), byte('e'))
-	assert.Equal(t, findTheDifference( "",  "y"), byte('y'))
+	assert.Equal(t, findTheDifference("", "y"), byte('y'))
 }
 
 func TestIsSubsequence(t *testing.T) {

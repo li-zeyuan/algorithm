@@ -3,6 +3,8 @@ package algorithm
 import (
 	"fmt"
 	"testing"
+
+	"github.com/stretchr/testify/assert"
 )
 
 func TestInorderTraversal(t *testing.T) {
@@ -275,4 +277,72 @@ func TestPostorderTraversal(t *testing.T) {
 	}
 
 	t.Log(postorderTraversal(q))
+}
+
+func TestSumOfLeftLeaves(t *testing.T) {
+	q := &TreeNode{
+		3,
+		&TreeNode{
+			9,
+			nil,
+			nil,
+		},
+		&TreeNode{
+			20,
+			&TreeNode{
+				15,
+				nil,
+				nil,
+			},
+			&TreeNode{
+				7,
+				nil,
+				nil,
+			},
+		},
+	}
+
+	assert.Equal(t, sumOfLeftLeaves(q), 24)
+
+	q2 := &TreeNode{
+		1,
+		nil,
+		nil,
+	}
+
+	assert.Equal(t, sumOfLeftLeaves(q2), 0)
+}
+
+func TestSumOfLeftLeaves2(t *testing.T) {
+	q := &TreeNode{
+		3,
+		&TreeNode{
+			9,
+			nil,
+			nil,
+		},
+		&TreeNode{
+			20,
+			&TreeNode{
+				15,
+				nil,
+				nil,
+			},
+			&TreeNode{
+				7,
+				nil,
+				nil,
+			},
+		},
+	}
+
+	assert.Equal(t, sumOfLeftLeaves2(q), 24)
+
+	q2 := &TreeNode{
+		1,
+		nil,
+		nil,
+	}
+
+	assert.Equal(t, sumOfLeftLeaves2(q2), 0)
 }
