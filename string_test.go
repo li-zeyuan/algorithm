@@ -38,3 +38,12 @@ func TestFindTheDifference(t *testing.T) {
 	assert.Equal(t, findTheDifference("abcd", "abcde"), byte('e'))
 	assert.Equal(t, findTheDifference( "",  "y"), byte('y'))
 }
+
+func TestLongestPalindrome(t *testing.T) {
+	assert.Equal(t, longestPalindrome("a"), 1)
+	assert.Equal(t, longestPalindrome( ""), 0)
+	assert.Equal(t, longestPalindrome( "ab"), 1)
+	assert.Equal(t, longestPalindrome( "abccccdd"), 7)
+	assert.Equal(t, longestPalindrome( "ccd"), 3)
+	assert.Equal(t, longestPalindrome( "vv"), 2)
+}

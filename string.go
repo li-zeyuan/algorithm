@@ -121,19 +121,19 @@ func reverseVowels(s string) string {
 /*
 387. 字符串中的第一个唯一字符
 https://leetcode-cn.com/problems/first-unique-character-in-a-string/
- */
+*/
 func firstUniqChar(s string) int {
 	if len(s) == 0 {
 		return -1
 	}
 
 	sMap := make(map[string]int)
-	for i := 0; i < len(s); i ++ {
+	for i := 0; i < len(s); i++ {
 		sMap[string(s[i])] += 1
 	}
 
-	for j := 0 ; j < len(s); j ++ {
-		if num, ok := sMap[string(s[j])]; ok && num == 1{
+	for j := 0; j < len(s); j++ {
+		if num, ok := sMap[string(s[j])]; ok && num == 1 {
 			return j
 		}
 	}
@@ -147,26 +147,81 @@ https://leetcode-cn.com/problems/find-the-difference/
 思路：
 1、排序
 2、双指针
- */
+*/
 func findTheDifference(s string, t string) byte {
-	if len(s) + 1 != len(t) {
+	if len(s)+1 != len(t) {
 		return 0
 	}
 
- 	sArray := []byte(s)
- 	tArray := []byte(t)
- 	sort.Slice(sArray, func(i, j int) bool {
+	sArray := []byte(s)
+	tArray := []byte(t)
+	sort.Slice(sArray, func(i, j int) bool {
 		return sArray[j] > sArray[i]
 	})
 	sort.Slice(tArray, func(i, j int) bool {
 		return tArray[j] > tArray[i]
 	})
 
- 	for i := 0 ; i < len(sArray); i ++  {
- 		if sArray[i] != tArray[i] {
- 			return tArray[i]
+	for i := 0; i < len(sArray); i++ {
+		if sArray[i] != tArray[i] {
+			return tArray[i]
 		}
 	}
 
-	return tArray[len(tArray) - 1]
+	return tArray[len(tArray)-1]
+}
+
+/*
+409. 最长回文串
+https://leetcode-cn.com/problems/longest-palindrome/
+思路：
+1、排序
+2、求最大偶数字符串长度
+*/
+func longestPalindrome(s string) int {
+	if len(s) <= 1 {
+		return len(s)
+	}
+
+	sByte := []byte(s)
+	sort.Slice(sByte, func(i, j int) bool {
+		return sByte[i] < sByte[j]
+	})
+
+	i, sum, isAdd := 0, 0, false
+	for i < len(sByte) {
+		strNum := 1
+		for j := i + 1; j < len(sByte); j++ {
+			if sByte[i] == sByte[j] {
+				strNum++
+				if j == len(sByte)-1 {
+					i = j
+					break
+				}
+				continue
+			}
+			i = j
+			break
+		}
+
+		if strNum%2 == 0 {
+			sum += strNum
+		} else {
+			sum += strNum - 1
+			isAdd = true
+		}
+
+		if i == len(sByte)-1 {
+			if strNum == 1 {
+				isAdd = true
+			}
+			i++
+		}
+	}
+
+	if isAdd {
+		sum++
+	}
+
+	return sum
 }
