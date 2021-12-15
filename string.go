@@ -195,3 +195,52 @@ func isSubsequence(s string, t string) bool {
 
 	return len(s) == amount
 }
+
+/*
+aa
+aab
+aabb
+aabbcccd
+*/
+func rev(s string) int {
+	if len(s) <= 1 {
+		return len(s)
+	}
+
+	sByte := []byte(s)
+	sort.Slice(sByte, func(i, j int) bool {
+		return sByte[i] < sByte[j]
+	})
+
+	i, sum, mid := 0, 0, 0
+	for i < len(sByte) {
+		strNum := 1
+		for j := i + 1; j < len(sByte); j++ {
+			if sByte[i] == sByte[j] {
+				strNum++
+				i = j
+				continue
+			} else {
+				i = j
+				break
+			}
+
+		}
+
+		if strNum%2 == 1 {
+			mid = 1
+		}
+		sum += strNum / 2 * 2
+
+		if i == len(sByte)-1 && sByte[i] == sByte[i-1] {
+			i++
+		}
+		if i == len(sByte)-1 && sByte[i] != sByte[i-1] {
+			mid = 1
+			i++
+		}
+
+	}
+
+	return sum + mid
+}

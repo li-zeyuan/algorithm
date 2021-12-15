@@ -60,8 +60,8 @@ func TestRW(t *testing.T) {
 
 	rw.Lock()
 
+	wg.Add(1)
 	go func() {
-		wg.Add(1)
 		defer rw.RUnlock()
 		defer wg.Done()
 		fmt.Println("111")
@@ -304,4 +304,12 @@ func TestCanConstruct(t *testing.T) {
 	assert.Equal(t, canConstruct("aa", "ab"), false)
 	assert.Equal(t, canConstruct("aa", "aab"), true)
 	assert.Equal(t, canConstruct("aab", "baa"), true)
+}
+
+func TestMerge(t *testing.T) {
+	merge([]int{1}, 2, []int{3}, 3)
+}
+
+func TestCanWinNim(t *testing.T) {
+	_ = canWinNim(3)
 }

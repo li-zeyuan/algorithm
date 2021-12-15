@@ -50,9 +50,8 @@ const (
 	b = iota
 )
 const (
-	name = "menglu" // 占位
-	c    = iota
-	d    = iota
+	c = iota
+	d = iota
 )
 
 func GetIota() {
@@ -626,7 +625,7 @@ func isPalindrome2(s string) bool {
 			continue
 		}
 
-		if strings.ToLower(string(s[start])) != strings.ToLower(string(s[end])) {
+		if strings.EqualFold(strings.ToLower(string(s[start])), strings.ToLower(string(s[end]))) {
 			return false
 		}
 		start++
@@ -705,7 +704,7 @@ func majorityElement(nums []int) int {
 		return 0
 	}
 
-	eMap := make(map[int]int, 0)
+	eMap := make(map[int]int)
 	for i := 0; i < len(nums); i++ {
 		eMap[nums[i]] = eMap[nums[i]] + 1
 	}
@@ -1022,10 +1021,7 @@ func missingNumber(nums []int) int {
 }
 
 func isBadVersion(version int) bool {
-	if version >= 3 {
-		return true
-	}
-	return false
+	return version >= 3
 }
 
 /*
@@ -1144,11 +1140,7 @@ func wordPattern(pattern string, s string) bool {
 		j++
 	}
 
-	if j != len(pattern) {
-		return false
-	}
-
-	return true
+	return j == len(pattern)
 }
 
 /*

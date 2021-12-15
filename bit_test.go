@@ -3,5 +3,9 @@ package algorithm
 import "testing"
 
 func TestHammingWeight(t *testing.T) {
-	hammingWeight(2)
+	_ = hammingWeight(2)
+}
+
+func TestReverseBits(t *testing.T) {
+	_ = reverseBits(2)
 }

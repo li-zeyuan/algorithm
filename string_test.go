@@ -44,3 +44,13 @@ func TestIsSubsequence(t *testing.T) {
 	assert.Equal(t, isSubsequence("axc", "ahbgdc"), false)
 	assert.Equal(t, isSubsequence("aaaaaa", "bbaaaa"), false)
 }
+
+func TestRev(t *testing.T) {
+	assert.Equal(t, rev(""), 0)
+	assert.Equal(t, rev("a"), 1)
+	assert.Equal(t, rev("aa"), 2)
+	assert.Equal(t, rev("aab"), 3)
+	assert.Equal(t, rev("aabb"), 4)
+	assert.Equal(t, rev("aabbcd"), 5)
+	assert.Equal(t, rev("aabbcccd"), 7)
+}
