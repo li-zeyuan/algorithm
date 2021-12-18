@@ -1,6 +1,9 @@
 package algorithm
 
-import "math"
+import (
+	"math"
+	"sort"
+)
 
 /*
 反转字符列表
@@ -95,4 +98,32 @@ func intersect(nums1 []int, nums2 []int) []int {
 	}
 
 	return result
+}
+
+/*
+414. 第三大的数
+https://leetcode-cn.com/problems/third-maximum-number/
+*/
+func thirdMax(nums []int) int {
+	if len(nums) == 0 {
+		return 0
+	}
+	sort.Slice(nums, func(i, j int) bool {
+		return nums[i] > nums[j]
+	})
+
+	if len(nums) <3 {
+		return nums[0]
+	}
+	j := 0
+	for i := 1 ; i < len(nums); i ++ {
+		if nums[i] < nums[i -1] {
+			j ++
+		}
+		if j == 2 {
+			return nums[i]
+		}
+	}
+
+	return nums[0]
 }

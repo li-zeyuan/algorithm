@@ -43,3 +43,9 @@ func TestIntersect(t *testing.T) {
 	assert.Equal(t, l2[0], 4)
 	assert.Equal(t, l2[1], 9)
 }
+
+func TestThirdMax(t *testing.T) {
+	assert.Equal(t, thirdMax([]int{3, 2, 1}), 1)
+	assert.Equal(t, thirdMax([]int{1, 2}), 2)
+	assert.Equal(t, thirdMax([]int{2, 2, 3, 1}), 1)
+}
