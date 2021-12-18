@@ -60,8 +60,8 @@ func TestRW(t *testing.T) {
 
 	rw.Lock()
 
+	wg.Add(1)
 	go func() {
-		wg.Add(1)
 		defer rw.RUnlock()
 		defer wg.Done()
 		fmt.Println("111")
@@ -304,4 +304,26 @@ func TestCanConstruct(t *testing.T) {
 	assert.Equal(t, canConstruct("aa", "ab"), false)
 	assert.Equal(t, canConstruct("aa", "aab"), true)
 	assert.Equal(t, canConstruct("aab", "baa"), true)
+}
+
+func TestMerge(t *testing.T) {
+	merge([]int{1}, 2, []int{3}, 3)
+}
+
+func TestCanWinNim(t *testing.T) {
+	_ = canWinNim(3)
+}
+
+func TestFizzBuzz(t *testing.T)  {
+	assert.Equal(t, len(fizzBuzz(3)), 3)
+	assert.Equal(t, fizzBuzz(3)[0], "1")
+	assert.Equal(t, fizzBuzz(3)[1], "2")
+	assert.Equal(t, fizzBuzz(3)[2], "Fizz")
+
+	assert.Equal(t, len(fizzBuzz(5)), 5)
+	assert.Equal(t, fizzBuzz(5)[0], "1")
+	assert.Equal(t, fizzBuzz(5)[1], "2")
+	assert.Equal(t, fizzBuzz(5)[2], "Fizz")
+	assert.Equal(t, fizzBuzz(5)[3], "4")
+	assert.Equal(t, fizzBuzz(5)[4], "Buzz")
 }

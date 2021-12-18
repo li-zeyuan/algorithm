@@ -172,6 +172,32 @@ func findTheDifference(s string, t string) byte {
 }
 
 /*
+392. 判断子序列
+https://leetcode-cn.com/problems/is-subsequence/
+*/
+func isSubsequence(s string, t string) bool {
+	if len(s) > len(t) {
+		return false
+	}
+
+	amount := 0
+	j := 0
+	for i := 0; i < len(s); i++ {
+		for j < len(t) {
+			if s[i] == t[j] {
+				amount++
+				j++
+				break
+			}
+			j++
+		}
+	}
+
+	return len(s) == amount
+}
+
+
+/*
 409. 最长回文串
 https://leetcode-cn.com/problems/longest-palindrome/
 思路：

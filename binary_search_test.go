@@ -25,7 +25,7 @@ type Person struct {
 	age  int
 }
 
-func (p Person) howOld(i int) {
+func (p *Person) howOld(i int) {
 	p.age = i
 }
 
@@ -94,28 +94,32 @@ func TestLowestCommonAncestor(t *testing.T) {
 	t.Log(node)
 }
 
-func TestBinaryTreePaths(t *testing.T)  {
+func TestBinaryTreePaths(t *testing.T) {
 	root := &TreeNode{
-	Val:   1,
-	//Left:  &TreeNode{
-	//	Val:   2,
-	//	Left:  nil,
-	//	Right: &TreeNode{
-	//		Val:   5,
-	//		Left:  nil,
-	//		Right: nil,
-	//	},
-	//},
-	//Right: &TreeNode{
-	//	Val:   3,
-	//	Left:  nil,
-	//	Right: nil,
-	//},
-}
+		Val: 1,
+		//Left:  &TreeNode{
+		//	Val:   2,
+		//	Left:  nil,
+		//	Right: &TreeNode{
+		//		Val:   5,
+		//		Left:  nil,
+		//		Right: nil,
+		//	},
+		//},
+		//Right: &TreeNode{
+		//	Val:   3,
+		//	Left:  nil,
+		//	Right: nil,
+		//},
+	}
 
 	t.Log(binaryTreePaths(root))
 }
 
-func TestAddDigits(t *testing.T)  {
+func TestAddDigits(t *testing.T) {
 	t.Log(addDigits(38))
+}
+
+func TestBinaryTreePaths2(t *testing.T) {
+	t.Log(binaryTreePaths2(nil))
 }
