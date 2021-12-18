@@ -45,7 +45,6 @@ func TestIsSubsequence(t *testing.T) {
 	assert.Equal(t, isSubsequence("aaaaaa", "bbaaaa"), false)
 }
 
-
 func TestLongestPalindrome(t *testing.T) {
 	assert.Equal(t, longestPalindrome("a"), 1)
 	assert.Equal(t, longestPalindrome( ""), 0)
@@ -53,4 +52,10 @@ func TestLongestPalindrome(t *testing.T) {
 	assert.Equal(t, longestPalindrome( "abccccdd"), 7)
 	assert.Equal(t, longestPalindrome( "ccd"), 3)
 	assert.Equal(t, longestPalindrome( "vv"), 2)
+}
+
+func TestAddStrings(t *testing.T) {
+	assert.Equal(t, addStrings("11", "123"), "134")
+	assert.Equal(t, addStrings("456", "77"), "533")
+	assert.Equal(t, addStrings("0", "0"), "0")
 }

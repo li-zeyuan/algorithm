@@ -196,7 +196,6 @@ func isSubsequence(s string, t string) bool {
 	return len(s) == amount
 }
 
-
 /*
 409. 最长回文串
 https://leetcode-cn.com/problems/longest-palindrome/
@@ -250,4 +249,44 @@ func longestPalindrome(s string) int {
 	}
 
 	return sum
+}
+
+/*
+415. 字符串相加
+https://leetcode-cn.com/problems/add-strings/
+*/
+func addStrings(num1 string, num2 string) string {
+	max := max3(len(num1), len(num2))
+	isN := false
+	result := ""
+	for i := 1; i <= max; i++ {
+		var num1Item byte
+		var num2Item byte
+
+		if len(num1)-i >= 0 {
+			num1Item = num1[len(num1)-i] - 48
+		}
+		if len(num2)-i >= 0 {
+			num2Item = num2[len(num2)-i] -48
+		}
+		sum := num1Item + num2Item
+		if isN {
+			sum ++
+		}
+
+		isN = sum / 10 > 0
+		result = string((sum) % 10 + 48) + result
+	}
+	if isN {
+		result = "1" + result
+	}
+
+	return result
+}
+
+func max3(a, b int) int {
+	if a > b {
+		return a
+	}
+	return b
 }
