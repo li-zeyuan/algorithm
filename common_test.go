@@ -327,3 +327,9 @@ func TestFizzBuzz(t *testing.T)  {
 	assert.Equal(t, fizzBuzz(5)[3], "4")
 	assert.Equal(t, fizzBuzz(5)[4], "Buzz")
 }
+
+func TestCountSegments(t *testing.T)  {
+	assert.Equal(t, countSegments("Hello, my name is John"), 5)
+	assert.Equal(t, countSegments(""), 0)
+	assert.Equal(t, countSegments(" Hello, "), 1)
+}

@@ -1362,3 +1362,33 @@ func fizzBuzz(n int) []string {
 
 	return result
 }
+
+/*
+434. 字符串中的单词数
+https://leetcode-cn.com/problems/number-of-segments-in-a-string/
+ */
+func countSegments(s string) int {
+	if len(s) == 0 {
+		return 0
+	}
+
+	result := 0
+	isWord := false
+	for i := 0 ; i< len(s); i ++ {
+		if string(s[i]) != " " {
+			isWord = true
+			continue
+		}
+
+		if isWord && string(s[i]) == " "{
+			result ++
+			isWord = false
+		}
+	}
+
+	if isWord {
+		result ++
+	}
+
+	return result
+}
