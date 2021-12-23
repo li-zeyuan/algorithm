@@ -1392,3 +1392,17 @@ func countSegments(s string) int {
 
 	return result
 }
+
+/*
+441. 排列硬币
+https://leetcode-cn.com/problems/arranging-coins/
+ */
+func arrangeCoins(n int) int {
+	num := 0
+	for n >num  {
+		num ++
+		n = n -num
+	}
+
+	return num
+}

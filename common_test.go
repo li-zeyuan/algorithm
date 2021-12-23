@@ -333,3 +333,8 @@ func TestCountSegments(t *testing.T)  {
 	assert.Equal(t, countSegments(""), 0)
 	assert.Equal(t, countSegments(" Hello, "), 1)
 }
+
+func TestArrangeCoins(t *testing.T)  {
+	assert.Equal(t, arrangeCoins(5), 2)
+	assert.Equal(t, arrangeCoins(8), 3)
+}
