@@ -49,3 +49,16 @@ func TestThirdMax(t *testing.T) {
 	assert.Equal(t, thirdMax([]int{1, 2}), 2)
 	assert.Equal(t, thirdMax([]int{2, 2, 3, 1}), 1)
 }
+
+func TestFindDisappearedNumbers(t *testing.T) {
+	assert.Equal(t, len(findDisappearedNumbers([]int{4,3,2,7,8,2,3,1})), 2)
+	assert.Equal(t, findDisappearedNumbers([]int{4,3,2,7,8,2,3,1})[0], 5)
+	assert.Equal(t, findDisappearedNumbers([]int{4,3,2,7,8,2,3,1})[1], 6)
+
+	assert.Equal(t, len(findDisappearedNumbers([]int{1,1})), 1)
+	assert.Equal(t, findDisappearedNumbers([]int{1,1})[0], 2)
+}
+
+func TestFindDisappearedNumbers2(t *testing.T) {
+	assert.Equal(t, len(findDisappearedNumbers2([]int{1,2,1})), 2)
+}

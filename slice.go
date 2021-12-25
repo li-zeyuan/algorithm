@@ -127,3 +127,48 @@ func thirdMax(nums []int) int {
 
 	return nums[0]
 }
+
+/*
+448. 找到所有数组中消失的数字
+https://leetcode-cn.com/problems/find-all-numbers-disappeared-in-an-array/
+思路：
+1、构造map
+2、遍历nums
+ */
+func findDisappearedNumbers(nums []int) []int {
+	if len(nums) == 0 {
+		return nums
+	}
+	numsMap := make(map[int]struct{})
+	for i:= 0 ; i < len(nums) ; i ++ {
+		numsMap[nums[i]] = struct{}{}
+	}
+
+	result := make([]int, 0)
+	for j:= 1 ; j <= len(nums) ; j ++ {
+		if _, ok :=  numsMap[j] ; !ok {
+			result = append(result, j)
+		}
+	}
+
+	return result
+}
+
+/*
+思路：
+1、第一次遍历，把num放回顺序的位置，并+n
+2、第二次遍历，没有大于n的num为缺失num
+ */
+func findDisappearedNumbers2(nums []int) (ans []int) {
+	n := len(nums)
+	for _, v := range nums {
+		v = (v - 1) % n
+		nums[v] += n
+	}
+	for i, v := range nums {
+		if v <= n {
+			ans = append(ans, i+1)
+		}
+	}
+	return
+}
