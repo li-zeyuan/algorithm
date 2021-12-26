@@ -172,3 +172,30 @@ func findDisappearedNumbers2(nums []int) (ans []int) {
 	}
 	return
 }
+
+/*
+453. 最小操作次数使数组元素相等
+https://leetcode-cn.com/problems/minimum-moves-to-equal-array-elements/
+思路：
+1、“每次操作将会使 n - 1 个元素增加 1” 等同于 “每次将1个元素减1”
+2、最少的操作即将所有的元素减到数组的最小值
+ */
+func minMoves(nums []int) int {
+	if len(nums) <= 1 {
+		return 0
+	}
+
+	min := nums[0]
+	for _, n := range nums[1:] {
+		if n < min {
+			min = n
+		}
+	}
+
+	result := 0
+	for _, n2 :=range nums {
+		result = result + (n2 - min)
+	}
+
+	return result
+}
