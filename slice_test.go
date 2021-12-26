@@ -62,3 +62,9 @@ func TestFindDisappearedNumbers(t *testing.T) {
 func TestFindDisappearedNumbers2(t *testing.T) {
 	assert.Equal(t, len(findDisappearedNumbers2([]int{1,2,1})), 2)
 }
+
+func TestFindContentChildren(t *testing.T) {
+	assert.Equal(t, findContentChildren([]int{1,2,3}, []int{1,1}), 1)
+	assert.Equal(t, findContentChildren([]int{1,2}, []int{1,2,3}), 2)
+	assert.Equal(t, findContentChildren([]int{10,9,8,7}, []int{5,6,7,8}), 2)
+}

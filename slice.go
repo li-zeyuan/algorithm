@@ -112,13 +112,13 @@ func thirdMax(nums []int) int {
 		return nums[i] > nums[j]
 	})
 
-	if len(nums) <3 {
+	if len(nums) < 3 {
 		return nums[0]
 	}
 	j := 0
-	for i := 1 ; i < len(nums); i ++ {
-		if nums[i] < nums[i -1] {
-			j ++
+	for i := 1; i < len(nums); i++ {
+		if nums[i] < nums[i-1] {
+			j++
 		}
 		if j == 2 {
 			return nums[i]
@@ -134,19 +134,19 @@ https://leetcode-cn.com/problems/find-all-numbers-disappeared-in-an-array/
 思路：
 1、构造map
 2、遍历nums
- */
+*/
 func findDisappearedNumbers(nums []int) []int {
 	if len(nums) == 0 {
 		return nums
 	}
 	numsMap := make(map[int]struct{})
-	for i:= 0 ; i < len(nums) ; i ++ {
+	for i := 0; i < len(nums); i++ {
 		numsMap[nums[i]] = struct{}{}
 	}
 
 	result := make([]int, 0)
-	for j:= 1 ; j <= len(nums) ; j ++ {
-		if _, ok :=  numsMap[j] ; !ok {
+	for j := 1; j <= len(nums); j++ {
+		if _, ok := numsMap[j]; !ok {
 			result = append(result, j)
 		}
 	}
@@ -158,7 +158,7 @@ func findDisappearedNumbers(nums []int) []int {
 思路：
 1、第一次遍历，把num放回顺序的位置，并+n
 2、第二次遍历，没有大于n的num为缺失num
- */
+*/
 func findDisappearedNumbers2(nums []int) (ans []int) {
 	n := len(nums)
 	for _, v := range nums {
@@ -179,7 +179,7 @@ https://leetcode-cn.com/problems/minimum-moves-to-equal-array-elements/
 思路：
 1、“每次操作将会使 n - 1 个元素增加 1” 等同于 “每次将1个元素减1”
 2、最少的操作即将所有的元素减到数组的最小值
- */
+*/
 func minMoves(nums []int) int {
 	if len(nums) <= 1 {
 		return 0
@@ -193,8 +193,41 @@ func minMoves(nums []int) int {
 	}
 
 	result := 0
-	for _, n2 :=range nums {
+	for _, n2 := range nums {
 		result = result + (n2 - min)
+	}
+
+	return result
+}
+
+/*
+455. 分发饼干
+https://leetcode-cn.com/problems/assign-cookies/
+思路：
+1、排序两数组
+2、双指针遍历，若s[j] >= g[i];则result ++
+*/
+func findContentChildren(g []int, s []int) int {
+	if len(g) == 0 || len(s) == 0 {
+		return 0
+	}
+
+	sort.Slice(g, func(i, j int) bool {
+		return g[i] < g[j]
+	})
+	sort.Slice(s, func(i, j int) bool {
+		return s[i] < s[j]
+	})
+
+	i, j, result := 0, 0, 0
+	for i < len(g) && j < len(s) {
+		if g[i] <= s[j] {
+			result++
+			i++
+			j++
+		} else {
+			j++
+		}
 	}
 
 	return result
