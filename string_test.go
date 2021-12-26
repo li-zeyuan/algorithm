@@ -59,3 +59,11 @@ func TestAddStrings(t *testing.T) {
 	assert.Equal(t, addStrings("456", "77"), "533")
 	assert.Equal(t, addStrings("0", "0"), "0")
 }
+
+func TestRepeatedSubstringPattern(t *testing.T) {
+	assert.Equal(t, repeatedSubstringPattern("ababac"), false)
+	assert.Equal(t, repeatedSubstringPattern("babbabbabbabbab"), true)
+	assert.Equal(t, repeatedSubstringPattern("abab"), true)
+	assert.Equal(t, repeatedSubstringPattern("aba"), false)
+	assert.Equal(t, repeatedSubstringPattern("abcabcabcabc"), true)
+}

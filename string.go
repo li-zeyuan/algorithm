@@ -290,3 +290,36 @@ func max3(a, b int) int {
 	}
 	return b
 }
+
+/*
+459. 重复的子字符串
+https://leetcode-cn.com/problems/repeated-substring-pattern/
+思路：枚举
+1、len(s)为偶数
+2、枚举子字符串长度n2，1 < n2 <= len(s)
+3、s[i] == s[i + n2]
+ */
+func repeatedSubstringPattern(s string) bool {
+	if len(s) == 0 {
+		return false
+	}
+
+	n := len(s)
+	for n2 := 1; n2 <= n/2; n2++ {
+		if n%n2 == 0 && s[0] == s[n2]{ // 子长度需为n的倍数
+			match := true
+			for i := 0; i + n2 < n; i++ {
+				if s[i] != s[i+n2] {
+					 match = false
+					 break
+				}
+			}
+			if match {
+				return true
+			}
+		}
+
+	}
+
+	return false
+}
