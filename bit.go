@@ -26,3 +26,21 @@ func hammingWeight(num uint32) int {
 	}
 	return ones
 }
+
+/*
+461. 汉明距离
+https://leetcode-cn.com/problems/hamming-distance/
+思路：
+1、x ^ y；^:异或，二进制位相同时为0，不相同时为1
+2、求异或后1的个数
+ */
+func hammingDistance(x int, y int) int {
+	temp := x ^ y
+	ones := 0
+	for i := 0; i < 64; i++ { // 有32位
+		if 1<<i&temp > 0 { // 1右移i位，1<<i依次从num低位开始 &运算
+			ones++
+		}
+	}
+	return ones
+}
