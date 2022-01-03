@@ -267,15 +267,15 @@ func addStrings(num1 string, num2 string) string {
 			num1Item = num1[len(num1)-i] - 48
 		}
 		if len(num2)-i >= 0 {
-			num2Item = num2[len(num2)-i] -48
+			num2Item = num2[len(num2)-i] - 48
 		}
 		sum := num1Item + num2Item
 		if isN {
-			sum ++
+			sum++
 		}
 
-		isN = sum / 10 > 0
-		result = string((sum) % 10 + 48) + result
+		isN = sum/10 > 0
+		result = string((sum)%10+48) + result
 	}
 	if isN {
 		result = "1" + result
@@ -298,7 +298,7 @@ https://leetcode-cn.com/problems/repeated-substring-pattern/
 1、len(s)为偶数
 2、枚举子字符串长度n2，1 < n2 <= len(s)
 3、s[i] == s[i + n2]
- */
+*/
 func repeatedSubstringPattern(s string) bool {
 	if len(s) == 0 {
 		return false
@@ -306,12 +306,12 @@ func repeatedSubstringPattern(s string) bool {
 
 	n := len(s)
 	for n2 := 1; n2 <= n/2; n2++ {
-		if n%n2 == 0 && s[0] == s[n2]{ // 子长度需为n的倍数
+		if n%n2 == 0 && s[0] == s[n2] { // 子长度需为n的倍数
 			match := true
-			for i := 0; i + n2 < n; i++ {
+			for i := 0; i+n2 < n; i++ {
 				if s[i] != s[i+n2] {
-					 match = false
-					 break
+					match = false
+					break
 				}
 			}
 			if match {
@@ -322,4 +322,41 @@ func repeatedSubstringPattern(s string) bool {
 	}
 
 	return false
+}
+
+/*
+482. 密钥格式化
+https://leetcode-cn.com/problems/license-key-formatting/
+*/
+func licenseKeyFormatting(s string, k int) string {
+	if len(s) == 0 || k == 0 {
+		return ""
+	}
+
+	str := ""
+	for _, i := range s {
+		if string(i) != "-" {
+			str += string(i)
+		}
+	}
+	l := len(str)
+	if l == 0 {
+		return ""
+	}
+	str = strings.ToUpper(str)
+
+	firstLen := l % k
+	if l%k == 0 {
+		firstLen = k
+	}
+	result := str[:firstLen]
+	strItem := ""
+	for i := firstLen; i < l; i++ {
+		strItem += string(str[i])
+		if len(strItem) == k {
+			result = result + "-" + strItem
+			strItem = ""
+		}
+	}
+	return result
 }

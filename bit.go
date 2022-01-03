@@ -1,6 +1,8 @@
 package algorithm
 
-import "fmt"
+import (
+	"fmt"
+)
 
 /*
 翻转二进制位
@@ -35,7 +37,7 @@ https://leetcode-cn.com/problems/hamming-distance/
 思路：
 1、x ^ y；^:异或，二进制位相同时为0，不相同时为1
 2、求异或后1的个数
- */
+*/
 func hammingDistance(x int, y int) int {
 	temp := x ^ y
 	ones := 0
@@ -54,11 +56,11 @@ https://leetcode-cn.com/problems/number-complement/
 1、找出1最高位
 2、求num的掩码
 3、num ^ 掩码
- */
+*/
 func findComplement(num int) int {
 	highBit := 0
 	for i := 30; i >= 0; i-- { // 2^i ≤num<2^i+1
-		if num & (1<<i) > 0 {
+		if num&(1<<i) > 0 {
 			highBit = i
 			break
 		}
@@ -71,3 +73,4 @@ func findComplement(num int) int {
 func findComplement2(num int) {
 	fmt.Println(num ^ 1)
 }
+
