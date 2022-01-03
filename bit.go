@@ -1,5 +1,7 @@
 package algorithm
 
+import "fmt"
+
 /*
 翻转二进制位
 https://leetcode-cn.com/problems/reverse-bits/
@@ -43,4 +45,29 @@ func hammingDistance(x int, y int) int {
 		}
 	}
 	return ones
+}
+
+/*
+476. 数字的补数
+https://leetcode-cn.com/problems/number-complement/
+思路：
+1、找出1最高位
+2、求num的掩码
+3、num ^ 掩码
+ */
+func findComplement(num int) int {
+	highBit := 0
+	for i := 30; i >= 0; i-- { // 2^i ≤num<2^i+1
+		if num & (1<<i) > 0 {
+			highBit = i
+			break
+		}
+	}
+
+	mask := 1<<(highBit+1) - 1 // 掩码mask = 2^i+1 - 1
+	return num ^ mask
+}
+
+func findComplement2(num int) {
+	fmt.Println(num ^ 1)
 }

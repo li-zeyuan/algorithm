@@ -14,6 +14,16 @@ func TestReverseBits(t *testing.T) {
 }
 
 func TestHammingDistance(t *testing.T) {
-	assert.Equal(t , hammingDistance(1, 4 ), 2)
-	assert.Equal(t , hammingDistance(3, 1), 1)
+	assert.Equal(t, hammingDistance(1, 4), 2)
+	assert.Equal(t, hammingDistance(3, 1), 1)
+}
+
+func TestFindComplement(t *testing.T) {
+	assert.Equal(t, findComplement(5), 2)
+	assert.Equal(t, findComplement(1), 0)
+}
+
+func TestFindComplement2(t *testing.T) {
+	findComplement2(1)
+	findComplement2(2)
 }
