@@ -1429,3 +1429,22 @@ func findMaxConsecutiveOnes(nums []int) int {
 
 	return int(math.Max(float64(result), float64(tempResult)))
 }
+
+/*
+492. 构造矩形
+https://leetcode-cn.com/problems/construct-the-rectangle/
+思路：
+1、双指针
+ */
+func constructRectangle(area int) []int {
+	if area <= 1 {
+		return []int{area, area}
+	}
+
+	l := int(math.Sqrt(float64(area)))
+	for area % l > 0 {
+		l ++
+	}
+
+	return  []int{int(math.Max(float64(l),float64( area / l))),int(math.Min(float64(l),  float64(area / l)))}
+}

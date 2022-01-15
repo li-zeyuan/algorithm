@@ -345,3 +345,14 @@ func TestFindMaxConsecutiveOnes(t *testing.T)  {
 	assert.Equal(t, findMaxConsecutiveOnes([]int{0}), 0)
 	assert.Equal(t, findMaxConsecutiveOnes([]int{1}), 1)
 }
+
+func TestConstructRectangle(t *testing.T)  {
+	assert.Equal(t, constructRectangle(1)[0], 1)
+	assert.Equal(t, constructRectangle(1)[1], 1)
+	assert.Equal(t, constructRectangle(4)[0], 2)
+	assert.Equal(t, constructRectangle(4)[1], 2)
+	assert.Equal(t, constructRectangle(6)[0], 3)
+	assert.Equal(t, constructRectangle(6)[1], 2)
+	assert.Equal(t, constructRectangle(122122)[0], 427)
+	assert.Equal(t, constructRectangle(122122)[1], 286)
+}
