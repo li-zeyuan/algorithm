@@ -1406,3 +1406,26 @@ func arrangeCoins(n int) int {
 
 	return num
 }
+
+/*
+485. 最大连续 1 的个数
+https://leetcode-cn.com/problems/max-consecutive-ones/
+ */
+func findMaxConsecutiveOnes(nums []int) int {
+	if len(nums) == 0 {
+		return 0
+	}
+
+	result := 0
+	tempResult := 0
+	for _, num := range nums {
+		if num == 1 {
+			tempResult ++
+		}else {
+			result = int(math.Max(float64(result), float64(tempResult)))
+			tempResult = 0
+		}
+	}
+
+	return int(math.Max(float64(result), float64(tempResult)))
+}

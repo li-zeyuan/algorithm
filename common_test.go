@@ -338,3 +338,10 @@ func TestArrangeCoins(t *testing.T)  {
 	assert.Equal(t, arrangeCoins(5), 2)
 	assert.Equal(t, arrangeCoins(8), 3)
 }
+
+func TestFindMaxConsecutiveOnes(t *testing.T)  {
+	assert.Equal(t, findMaxConsecutiveOnes([]int{1,1,0,1,1,1}), 3)
+	assert.Equal(t, findMaxConsecutiveOnes([]int{}), 0)
+	assert.Equal(t, findMaxConsecutiveOnes([]int{0}), 0)
+	assert.Equal(t, findMaxConsecutiveOnes([]int{1}), 1)
+}
