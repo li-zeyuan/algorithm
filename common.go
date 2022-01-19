@@ -1341,22 +1341,22 @@ func canConstruct(ransomNote string, magazine string) bool {
 /*
 412. Fizz Buzz
 https://leetcode-cn.com/problems/fizz-buzz/
- */
+*/
 func fizzBuzz(n int) []string {
 	if n <= 0 {
 		return nil
 	}
 
 	result := make([]string, 0)
-	for i := 1 ; i <= n; i ++ {
-		if i % 3 == 0 && i %5 == 0 {
+	for i := 1; i <= n; i++ {
+		if i%3 == 0 && i%5 == 0 {
 			result = append(result, "FizzBuzz")
-		}else if i % 3 == 0 {
+		} else if i%3 == 0 {
 			result = append(result, "Fizz")
-		}else if i%5 == 0 {
+		} else if i%5 == 0 {
 			result = append(result, "Buzz")
-			}else {
-				result = append(result, strconv.Itoa(i))
+		} else {
+			result = append(result, strconv.Itoa(i))
 		}
 	}
 
@@ -1366,7 +1366,7 @@ func fizzBuzz(n int) []string {
 /*
 434. 字符串中的单词数
 https://leetcode-cn.com/problems/number-of-segments-in-a-string/
- */
+*/
 func countSegments(s string) int {
 	if len(s) == 0 {
 		return 0
@@ -1374,20 +1374,20 @@ func countSegments(s string) int {
 
 	result := 0
 	isWord := false
-	for i := 0 ; i< len(s); i ++ {
+	for i := 0; i < len(s); i++ {
 		if string(s[i]) != " " {
 			isWord = true
 			continue
 		}
 
-		if isWord && string(s[i]) == " "{
-			result ++
+		if isWord && string(s[i]) == " " {
+			result++
 			isWord = false
 		}
 	}
 
 	if isWord {
-		result ++
+		result++
 	}
 
 	return result
@@ -1396,12 +1396,12 @@ func countSegments(s string) int {
 /*
 441. 排列硬币
 https://leetcode-cn.com/problems/arranging-coins/
- */
+*/
 func arrangeCoins(n int) int {
 	num := 0
-	for n >num  {
-		num ++
-		n = n -num
+	for n > num {
+		num++
+		n = n - num
 	}
 
 	return num
@@ -1410,7 +1410,7 @@ func arrangeCoins(n int) int {
 /*
 485. 最大连续 1 的个数
 https://leetcode-cn.com/problems/max-consecutive-ones/
- */
+*/
 func findMaxConsecutiveOnes(nums []int) int {
 	if len(nums) == 0 {
 		return 0
@@ -1420,8 +1420,8 @@ func findMaxConsecutiveOnes(nums []int) int {
 	tempResult := 0
 	for _, num := range nums {
 		if num == 1 {
-			tempResult ++
-		}else {
+			tempResult++
+		} else {
 			result = int(math.Max(float64(result), float64(tempResult)))
 			tempResult = 0
 		}
@@ -1435,16 +1435,74 @@ func findMaxConsecutiveOnes(nums []int) int {
 https://leetcode-cn.com/problems/construct-the-rectangle/
 思路：
 1、双指针
- */
+*/
 func constructRectangle(area int) []int {
 	if area <= 1 {
 		return []int{area, area}
 	}
 
 	l := int(math.Sqrt(float64(area)))
-	for area % l > 0 {
-		l ++
+	for area%l > 0 {
+		l++
 	}
 
-	return  []int{int(math.Max(float64(l),float64( area / l))),int(math.Min(float64(l),  float64(area / l)))}
+	return []int{int(math.Max(float64(l), float64(area/l))), int(math.Min(float64(l), float64(area/l)))}
+}
+
+/*
+495. 提莫攻击
+https://leetcode-cn.com/problems/teemo-attacking/
+思路：
+数学问题
+*/
+func findPoisonedDuration(timeSeries []int, duration int) int {
+	if len(timeSeries) == 0 || duration <= 0 {
+		return 0
+	}
+
+	total := duration
+	tEnd := timeSeries[0] + duration // 上次攻击截止时间
+	for _, t := range timeSeries[1:] {
+		if t >= tEnd {
+			total += duration
+		} else if t+duration-tEnd > 0 {
+			total = total + t + duration - tEnd
+		}
+		tEnd = t + duration
+	}
+
+	return total
+}
+
+/*
+496. 下一个更大元素 I
+https://leetcode-cn.com/problems/next-greater-element-i/
+思路：
+双指针
+*/
+func nextGreaterElement(nums1 []int, nums2 []int) []int {
+	if len(nums1) == 0 || len(nums2) == 0 {
+		return nil
+	}
+
+	result := make([]int, 0)
+	for i, n1 := range nums1 {
+		target := false
+		for _, n2 := range nums2 {
+			if n1 == n2 {
+				target = true
+				continue
+			}
+			if target && n2 > n1 {
+				result = append(result, n2)
+				break
+			}
+		}
+
+		if len(result) < i + 1 {
+			result = append(result, -1)
+		}
+	}
+
+	return result
 }

@@ -356,3 +356,13 @@ func TestConstructRectangle(t *testing.T)  {
 	assert.Equal(t, constructRectangle(122122)[0], 427)
 	assert.Equal(t, constructRectangle(122122)[1], 286)
 }
+
+func TestFindPoisonedDuration(t *testing.T)  {
+	assert.Equal(t, findPoisonedDuration([]int{1,4}, 2), 4)
+	assert.Equal(t, findPoisonedDuration([]int{1,2}, 2), 3)
+	assert.Equal(t, findPoisonedDuration([]int{1,2,3,4,5}, 5), 9)
+}
+func TestNextGreaterElement(t *testing.T)  {
+	t.Log(nextGreaterElement([]int{4,1,2}, []int{1,3,4,2}))
+	t.Log(nextGreaterElement([]int{2,4}, []int{1,2,3,4}))
+}
