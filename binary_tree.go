@@ -182,3 +182,41 @@ func invertTree(root *TreeNode) *TreeNode {
 	invertTree(root.Left)
 	return root
 }
+
+/*
+501. 二叉搜索树中的众数
+https://leetcode-cn.com/problems/find-mode-in-binary-search-tree/
+思路：
+1、深度遍历，存map
+2、遍历map
+ */
+func findMode(root *TreeNode) []int {
+	m := make(map[int]int)
+	deepSearch(root, m)
+
+	moreList := make([]int, 0)
+	moreNum := 0
+	for n, num :=range m {
+		if num > moreNum {
+			moreNum = num
+			moreList = make([]int, 0)
+			moreList = append(moreList, n)
+		}else if num == moreNum {
+			moreList = append(moreList, n)
+		}
+	}
+
+
+
+	return moreList
+}
+
+func deepSearch(n *TreeNode, m map[int]int){
+	if n == nil {
+		return
+	}
+
+	m[n.Val] ++
+	deepSearch(n.Left, m)
+	deepSearch(n.Right, m)
+}
