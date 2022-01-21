@@ -362,7 +362,14 @@ func TestFindPoisonedDuration(t *testing.T)  {
 	assert.Equal(t, findPoisonedDuration([]int{1,2}, 2), 3)
 	assert.Equal(t, findPoisonedDuration([]int{1,2,3,4,5}, 5), 9)
 }
+
 func TestNextGreaterElement(t *testing.T)  {
 	t.Log(nextGreaterElement([]int{4,1,2}, []int{1,3,4,2}))
 	t.Log(nextGreaterElement([]int{2,4}, []int{1,2,3,4}))
+}
+
+func TestConvertToBase7(t *testing.T)  {
+	assert.Equal(t, convertToBase7(-8), "-11")
+	assert.Equal(t, convertToBase7(100), "202")
+	assert.Equal(t, convertToBase7( -7), "-10")
 }

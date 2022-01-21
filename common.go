@@ -1506,3 +1506,28 @@ func nextGreaterElement(nums1 []int, nums2 []int) []int {
 
 	return result
 }
+
+/*
+504. 七进制数
+https://leetcode-cn.com/problems/base-7/
+ */
+func convertToBase7(num int) string {
+	if num == 0 {
+		return "0"
+	}
+
+	gtZero := num > 0
+	num = int(math.Abs(float64(num)))
+
+	result := ""
+	for num != 0{
+		result = strconv.Itoa(num % 7) + result
+		num = num / 7
+	}
+
+	if !gtZero {
+		result = "-" + result
+	}
+
+	return result
+}
