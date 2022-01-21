@@ -373,3 +373,8 @@ func TestConvertToBase7(t *testing.T)  {
 	assert.Equal(t, convertToBase7(100), "202")
 	assert.Equal(t, convertToBase7( -7), "-10")
 }
+
+func TestFindRelativeRanks(t *testing.T)  {
+	t.Log(findRelativeRanks([]int{5,4,3,2,1}))
+	t.Log(findRelativeRanks([]int{10,3,8,9,4}))
+}

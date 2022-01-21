@@ -1499,7 +1499,7 @@ func nextGreaterElement(nums1 []int, nums2 []int) []int {
 			}
 		}
 
-		if len(result) < i + 1 {
+		if len(result) < i+1 {
 			result = append(result, -1)
 		}
 	}
@@ -1510,7 +1510,7 @@ func nextGreaterElement(nums1 []int, nums2 []int) []int {
 /*
 504. 七进制数
 https://leetcode-cn.com/problems/base-7/
- */
+*/
 func convertToBase7(num int) string {
 	if num == 0 {
 		return "0"
@@ -1520,8 +1520,8 @@ func convertToBase7(num int) string {
 	num = int(math.Abs(float64(num)))
 
 	result := ""
-	for num != 0{
-		result = strconv.Itoa(num % 7) + result
+	for num != 0 {
+		result = strconv.Itoa(num%7) + result
 		num = num / 7
 	}
 
@@ -1530,4 +1530,30 @@ func convertToBase7(num int) string {
 	}
 
 	return result
+}
+
+/*
+506. 相对名次
+https://leetcode-cn.com/problems/relative-ranks/
+*/
+var desc = [3]string{"Gold Medal", "Silver Medal", "Bronze Medal"}
+
+func findRelativeRanks(score []int) []string {
+	n := len(score)
+	type pair struct{ score, idx int }
+	arr := make([]pair, n)
+	for i, s := range score {
+		arr[i] = pair{s, i}
+	}
+	sort.Slice(arr, func(i, j int) bool { return arr[i].score > arr[j].score })
+
+	ans := make([]string, n)
+	for i, p := range arr {
+		if i < 3 {
+			ans[p.idx] = desc[i]
+		} else {
+			ans[p.idx] = strconv.Itoa(i + 1)
+		}
+	}
+	return ans
 }
