@@ -378,3 +378,15 @@ func TestFindRelativeRanks(t *testing.T)  {
 	t.Log(findRelativeRanks([]int{5,4,3,2,1}))
 	t.Log(findRelativeRanks([]int{10,3,8,9,4}))
 }
+
+func TestCheckPerfectNumber(t *testing.T)  {
+	assert.Equal(t, checkPerfectNumber(28), true)
+	assert.Equal(t, checkPerfectNumber(6), true)
+}
+
+func TestFib(t *testing.T)  {
+	assert.Equal(t, fib(0), 0)
+	assert.Equal(t, fib(1), 1)
+	assert.Equal(t, fib(2), 1)
+	assert.Equal(t, fib(3), 2)
+}

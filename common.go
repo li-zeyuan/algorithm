@@ -1557,3 +1557,44 @@ func findRelativeRanks(score []int) []string {
 	}
 	return ans
 }
+
+/*
+507. 完美数
+https://leetcode-cn.com/problems/perfect-number/
+思路：
+1、求所有正因子数
+2、求正因子数之和
+ */
+func checkPerfectNumber(num int) bool {
+	if num == 1 {
+		return false
+	}
+
+	sum := 1
+	for d := 2; d*d <= num; d++ {
+		if num%d == 0 {
+			sum += d
+			if d*d < num {
+				sum += num / d
+			}
+		}
+	}
+	return sum == num
+}
+
+/*
+509. 斐波那契数
+https://leetcode-cn.com/problems/fibonacci-number/
+F(0) = 0，F(1) = 1
+F(n) = F(n - 1) + F(n - 2)，其中 n > 1
+ */
+func fib(n int) int {
+	if n== 0 {
+		return 0
+	}
+	if n == 1 {
+		return 1
+	}
+
+	return fib(n - 1) + fib(n - 2)
+}
