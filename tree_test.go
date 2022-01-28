@@ -346,3 +346,77 @@ func TestSumOfLeftLeaves2(t *testing.T) {
 
 	assert.Equal(t, sumOfLeftLeaves2(q2), 0)
 }
+
+func TestGetMinimumDifference(t *testing.T) {
+	q := &TreeNode{
+		4,
+		&TreeNode{
+			2,
+			&TreeNode{
+				1,
+				nil,
+				nil,
+			},
+			&TreeNode{
+				3,
+				nil,
+				nil,
+			},
+		},
+		&TreeNode{
+			6,
+			nil,
+			nil,
+		},
+	}
+
+	assert.Equal(t, getMinimumDifference(q), 1)
+
+	q2 := &TreeNode{
+		1,
+		&TreeNode{
+			0,
+			nil,
+			nil,
+		},
+		&TreeNode{
+			48,
+			&TreeNode{
+				12,
+				nil,
+				nil,
+			},
+			&TreeNode{
+				49,
+				nil,
+				nil,
+			},
+		},
+	}
+
+	assert.Equal(t, getMinimumDifference(q2), 1)
+
+	q3 := &TreeNode{
+		236,
+		&TreeNode{
+			104,
+			nil,
+			&TreeNode{
+				227,
+				nil,
+				nil,
+			},
+		},
+		&TreeNode{
+			701,
+			nil,
+			&TreeNode{
+				911,
+				nil,
+				nil,
+			},
+		},
+	}
+
+	assert.Equal(t, getMinimumDifference(q3), 9)
+}

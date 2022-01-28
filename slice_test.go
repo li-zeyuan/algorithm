@@ -51,20 +51,20 @@ func TestThirdMax(t *testing.T) {
 }
 
 func TestFindDisappearedNumbers(t *testing.T) {
-	assert.Equal(t, len(findDisappearedNumbers([]int{4,3,2,7,8,2,3,1})), 2)
-	assert.Equal(t, findDisappearedNumbers([]int{4,3,2,7,8,2,3,1})[0], 5)
-	assert.Equal(t, findDisappearedNumbers([]int{4,3,2,7,8,2,3,1})[1], 6)
+	assert.Equal(t, len(findDisappearedNumbers([]int{4, 3, 2, 7, 8, 2, 3, 1})), 2)
+	assert.Equal(t, findDisappearedNumbers([]int{4, 3, 2, 7, 8, 2, 3, 1})[0], 5)
+	assert.Equal(t, findDisappearedNumbers([]int{4, 3, 2, 7, 8, 2, 3, 1})[1], 6)
 
-	assert.Equal(t, len(findDisappearedNumbers([]int{1,1})), 1)
-	assert.Equal(t, findDisappearedNumbers([]int{1,1})[0], 2)
+	assert.Equal(t, len(findDisappearedNumbers([]int{1, 1})), 1)
+	assert.Equal(t, minMoves([]int{1, 1}), 2)
 }
 
 func TestFindDisappearedNumbers2(t *testing.T) {
-	assert.Equal(t, len(findDisappearedNumbers2([]int{1,2,1})), 2)
+	assert.Equal(t, len(findDisappearedNumbers2([]int{1, 2, 1})), 2)
 }
 
 func TestFindContentChildren(t *testing.T) {
-	assert.Equal(t, findContentChildren([]int{1,2,3}, []int{1,1}), 1)
-	assert.Equal(t, findContentChildren([]int{1,2}, []int{1,2,3}), 2)
-	assert.Equal(t, findContentChildren([]int{10,9,8,7}, []int{5,6,7,8}), 2)
+	assert.Equal(t, findContentChildren([]int{1, 2, 3}, []int{1, 1}), 1)
+	assert.Equal(t, findContentChildren([]int{1, 2}, []int{1, 2, 3}), 2)
+	assert.Equal(t, findContentChildren([]int{10, 9, 8, 7}, []int{5, 6, 7, 8}), 2)
 }

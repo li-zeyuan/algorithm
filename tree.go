@@ -1,5 +1,9 @@
 package algorithm
 
+import (
+	"math"
+)
+
 type TreeNode struct {
 	Val   int
 	Left  *TreeNode
@@ -300,4 +304,30 @@ func sumOfLeftLeaves2(root *TreeNode) int {
 	}
 
 	return result
+}
+
+/*
+530. 二叉搜索树的最小绝对差
+https://leetcode-cn.com/problems/minimum-absolute-difference-in-bst/
+思路：
+1、二叉树中序便利为有序数组
+2、有序数组的最小距离为相邻两个元素的差值
+3、pre为前一个节点的值，用当前值-pre 和 结果做比较
+*/
+func getMinimumDifference(root *TreeNode) int {
+	ans, pre := math.MaxInt64, -1
+	var dfs func(*TreeNode)
+	dfs = func(node *TreeNode) {
+		if node == nil {
+			return
+		}
+		dfs(node.Left)
+		if pre != -1 && node.Val-pre < ans {
+			ans = node.Val - pre
+		}
+		pre = node.Val
+		dfs(node.Right)
+	}
+	dfs(root)
+	return ans
 }
