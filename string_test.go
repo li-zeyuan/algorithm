@@ -47,11 +47,11 @@ func TestIsSubsequence(t *testing.T) {
 
 func TestLongestPalindrome(t *testing.T) {
 	assert.Equal(t, longestPalindrome("a"), 1)
-	assert.Equal(t, longestPalindrome( ""), 0)
-	assert.Equal(t, longestPalindrome( "ab"), 1)
-	assert.Equal(t, longestPalindrome( "abccccdd"), 7)
-	assert.Equal(t, longestPalindrome( "ccd"), 3)
-	assert.Equal(t, longestPalindrome( "vv"), 2)
+	assert.Equal(t, longestPalindrome(""), 0)
+	assert.Equal(t, longestPalindrome("ab"), 1)
+	assert.Equal(t, longestPalindrome("abccccdd"), 7)
+	assert.Equal(t, longestPalindrome("ccd"), 3)
+	assert.Equal(t, longestPalindrome("vv"), 2)
 }
 
 func TestAddStrings(t *testing.T) {
@@ -70,6 +70,12 @@ func TestRepeatedSubstringPattern(t *testing.T) {
 
 func TestListicenseKeyFormatting(t *testing.T) {
 	assert.Equal(t, licenseKeyFormatting("5F3Z-2e-9-w", 4), "5F3Z-2E9W")
-	assert.Equal(t, licenseKeyFormatting("2-5g-3-J",  2), "2-5G-3J")
-	assert.Equal(t, licenseKeyFormatting("---",  3), "")
+	assert.Equal(t, licenseKeyFormatting("2-5g-3-J", 2), "2-5G-3J")
+	assert.Equal(t, licenseKeyFormatting("---", 3), "")
+}
+
+func TestReverseStr(t *testing.T) {
+	assert.Equal(t, reverseStr("5F3Z-2e-9-w", 4), "5F3Z-2E9W")
+	assert.Equal(t, reverseStr("2-5g-3-J", 2), "2-5G-3J")
+	assert.Equal(t, reverseStr("---", 3), "")
 }

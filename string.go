@@ -360,3 +360,25 @@ func licenseKeyFormatting(s string, k int) string {
 	}
 	return result
 }
+
+/*
+541. 反转字符串 II
+https://leetcode-cn.com/problems/reverse-string-ii/
+*/
+func reverseStr(s string, k int) string {
+	t := []byte(s)
+	for i := 0; i < len(s); i += 2 * k {
+		sub := t[i:min2(i+k, len(s))]
+		for j, n := 0, len(sub); j < n/2; j++ {
+			sub[j], sub[n-1-j] = sub[n-1-j], sub[j]
+		}
+	}
+	return string(t)
+}
+
+func min2(a, b int) int {
+	if a < b {
+		return a
+	}
+	return b
+}

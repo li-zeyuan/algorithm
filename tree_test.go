@@ -420,3 +420,41 @@ func TestGetMinimumDifference(t *testing.T) {
 
 	assert.Equal(t, getMinimumDifference(q3), 9)
 }
+
+func TestDiameterOfBinaryTree(t *testing.T) {
+	q := &TreeNode{
+		1,
+		&TreeNode{
+			2,
+			&TreeNode{
+				4,
+				nil,
+				nil,
+			},
+			&TreeNode{
+				5,
+				nil,
+				nil,
+			},
+		},
+		&TreeNode{
+			3,
+			nil,
+			nil,
+		},
+	}
+
+	assert.Equal(t, diameterOfBinaryTree(q), 3)
+
+	q2 := &TreeNode{
+		1,
+		&TreeNode{
+			2,
+			nil,
+			nil,
+		},
+		nil,
+	}
+
+	assert.Equal(t, diameterOfBinaryTree(q2), 1)
+}

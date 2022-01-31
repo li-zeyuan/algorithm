@@ -331,3 +331,38 @@ func getMinimumDifference(root *TreeNode) int {
 	dfs(root)
 	return ans
 }
+
+/*
+543. 二叉树的直径
+https://leetcode-cn.com/problems/diameter-of-binary-tree/
+思路：
+1、不一定经过根结点，定义一个变量保存最大路径
+2、最大左边节点路径 + 最大右边节点路径 = 当前节点最大值
+3、递归所有的节点，比1中的变量大则更新值
+*/
+func diameterOfBinaryTree(root *TreeNode) int {
+	result := 0 // 保存最大路径和、
+
+	var dfs func(node *TreeNode) int // 求该节点的最大深度
+	dfs = func(node *TreeNode) int {
+		if node == nil {
+			return 0
+		}
+
+		lh := dfs(node.Left)
+		rh := dfs(node.Right)
+		result = max4(lh+rh, result)
+
+		return max4(lh, rh) + 1
+	}
+	dfs(root)
+
+	return result
+}
+
+func max4(x, y int) int {
+	if x > y {
+		return x
+	}
+	return y
+}
