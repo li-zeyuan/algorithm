@@ -1,12 +1,17 @@
 package algorithm
 
 import (
-	"github.com/bmizerany/assert"
 	"testing"
+
+	"github.com/bmizerany/assert"
 )
 
 func TestHammingWeight(t *testing.T) {
 	_ = hammingWeight(2)
+}
+
+func TestMain1(t *testing.T) {
+	main1()
 }
 
 func TestReverseBits(t *testing.T) {

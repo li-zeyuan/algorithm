@@ -458,3 +458,46 @@ func TestDiameterOfBinaryTree(t *testing.T) {
 
 	assert.Equal(t, diameterOfBinaryTree(q2), 1)
 }
+
+func TestMostSumOfBinaryTree(t *testing.T) {
+
+	q2 := &TreeNode{
+		1,
+		&TreeNode{
+			2,
+			nil,
+			nil,
+		},
+		&TreeNode{
+			3,
+			nil,
+			nil,
+		},
+	}
+
+	assert.Equal(t, mostSumOfBinaryTree(q2), 6)
+
+	q3 := &TreeNode{
+		-10,
+		&TreeNode{
+			9,
+			nil,
+			nil,
+		},
+		&TreeNode{
+			20,
+			&TreeNode{
+				15,
+				nil,
+				nil,
+			},
+			&TreeNode{
+				7,
+				nil,
+				nil,
+			},
+		},
+	}
+
+	assert.Equal(t, mostSumOfBinaryTree(q3), 42)
+}

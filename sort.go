@@ -5,7 +5,7 @@ type SortObj struct {
 }
 
 /*
-快排
+QuicklySort 快排:分治的思想
 1、选择列表的第一个元素为基准
 2、头尾指针移动遍历列表
 3、尾指针元素 比 基准小，则对换位置，前移尾指针
@@ -45,9 +45,8 @@ func (s *SortObj) QuicklySort() {
 	subLRList.QuicklySort()
 }
 
-// =============================
 /*
-冒泡排序
+BubbleSort 冒泡排序
 时间复杂度：O(n2)
 
 思路

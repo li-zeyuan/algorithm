@@ -1564,7 +1564,7 @@ https://leetcode-cn.com/problems/perfect-number/
 思路：
 1、求所有正因子数
 2、求正因子数之和
- */
+*/
 func checkPerfectNumber(num int) bool {
 	if num == 1 {
 		return false
@@ -1587,14 +1587,40 @@ func checkPerfectNumber(num int) bool {
 https://leetcode-cn.com/problems/fibonacci-number/
 F(0) = 0，F(1) = 1
 F(n) = F(n - 1) + F(n - 2)，其中 n > 1
- */
+*/
 func fib(n int) int {
-	if n== 0 {
+	if n == 0 {
 		return 0
 	}
 	if n == 1 {
 		return 1
 	}
 
-	return fib(n - 1) + fib(n - 2)
+	return fib(n-1) + fib(n-2)
+}
+
+/*
+重新排列句子中的单词
+思路：
+1、分割成单词数组
+2、冒泡排序
+3、首字母大写
+*/
+func reSortWorld(in string) string {
+	in = strings.ToLower(in)
+	wList := strings.Split(in, " ")
+	if len(wList) <= 1 {
+		return in
+	}
+
+	for i := 0; i < len(wList); i++ {
+		for j := i; j < len(wList)-1; j++ {
+			if len(wList[j+1]) < len(wList[i]) {
+				wList[i], wList[j+1] = wList[j+1], wList[i]
+			}
+		}
+	}
+
+	result := strings.Join(wList, " ")
+	return strings.ToUpper(result[:1]) + result[1:]
 }

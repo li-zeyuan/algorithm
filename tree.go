@@ -2,6 +2,7 @@ package algorithm
 
 import (
 	"math"
+	"sort"
 )
 
 type TreeNode struct {
@@ -365,4 +366,42 @@ func max4(x, y int) int {
 		return x
 	}
 	return y
+}
+
+/*
+leetcode No.124 二叉树中的最大路径和
+思路：对于任意节点
+1、最长路径和 = 左子树最大路径和
+2、最长路径和 = 右子树最大路径和
+3、最长路径和 = 左子树最大路径和 + 右子树最大路径和 + 当前节点
+*/
+func mostSumOfBinaryTree(root *TreeNode) int {
+	result := 0
+
+	var dfs func(n *TreeNode) int
+	dfs = func(n *TreeNode) int {
+		if n == nil {
+			return 0
+		}
+
+		leftSum := dfs(n.Left)
+		rightSum := dfs(n.Right)
+		sumList := []int{
+			leftSum,
+			rightSum,
+			leftSum + rightSum + n.Val,
+		}
+
+		sort.Slice(sumList, func(i, j int) bool {
+			return sumList[i] > sumList[j]
+		})
+		if sumList[0] > result {
+			result = sumList[0]
+		}
+
+		return sumList[0]
+	}
+	dfs(root)
+
+	return result
 }

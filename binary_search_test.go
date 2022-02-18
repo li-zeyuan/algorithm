@@ -11,10 +11,10 @@ func TestBinarySearchObj_BinarySearch(t *testing.T) {
 }
 
 func Test1(t *testing.T) {
-	A()
+	A2()
 }
 
-func A() {
+func A2() {
 	p := Person{}
 	p.howOld(2)
 	p.howOld2("lizeyuan")

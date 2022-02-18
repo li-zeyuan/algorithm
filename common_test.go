@@ -314,7 +314,7 @@ func TestCanWinNim(t *testing.T) {
 	_ = canWinNim(3)
 }
 
-func TestFizzBuzz(t *testing.T)  {
+func TestFizzBuzz(t *testing.T) {
 	assert.Equal(t, len(fizzBuzz(3)), 3)
 	assert.Equal(t, fizzBuzz(3)[0], "1")
 	assert.Equal(t, fizzBuzz(3)[1], "2")
@@ -328,25 +328,25 @@ func TestFizzBuzz(t *testing.T)  {
 	assert.Equal(t, fizzBuzz(5)[4], "Buzz")
 }
 
-func TestCountSegments(t *testing.T)  {
+func TestCountSegments(t *testing.T) {
 	assert.Equal(t, countSegments("Hello, my name is John"), 5)
 	assert.Equal(t, countSegments(""), 0)
 	assert.Equal(t, countSegments(" Hello, "), 1)
 }
 
-func TestArrangeCoins(t *testing.T)  {
+func TestArrangeCoins(t *testing.T) {
 	assert.Equal(t, arrangeCoins(5), 2)
 	assert.Equal(t, arrangeCoins(8), 3)
 }
 
-func TestFindMaxConsecutiveOnes(t *testing.T)  {
-	assert.Equal(t, findMaxConsecutiveOnes([]int{1,1,0,1,1,1}), 3)
+func TestFindMaxConsecutiveOnes(t *testing.T) {
+	assert.Equal(t, findMaxConsecutiveOnes([]int{1, 1, 0, 1, 1, 1}), 3)
 	assert.Equal(t, findMaxConsecutiveOnes([]int{}), 0)
 	assert.Equal(t, findMaxConsecutiveOnes([]int{0}), 0)
 	assert.Equal(t, findMaxConsecutiveOnes([]int{1}), 1)
 }
 
-func TestConstructRectangle(t *testing.T)  {
+func TestConstructRectangle(t *testing.T) {
 	assert.Equal(t, constructRectangle(1)[0], 1)
 	assert.Equal(t, constructRectangle(1)[1], 1)
 	assert.Equal(t, constructRectangle(4)[0], 2)
@@ -357,36 +357,40 @@ func TestConstructRectangle(t *testing.T)  {
 	assert.Equal(t, constructRectangle(122122)[1], 286)
 }
 
-func TestFindPoisonedDuration(t *testing.T)  {
-	assert.Equal(t, findPoisonedDuration([]int{1,4}, 2), 4)
-	assert.Equal(t, findPoisonedDuration([]int{1,2}, 2), 3)
-	assert.Equal(t, findPoisonedDuration([]int{1,2,3,4,5}, 5), 9)
+func TestFindPoisonedDuration(t *testing.T) {
+	assert.Equal(t, findPoisonedDuration([]int{1, 4}, 2), 4)
+	assert.Equal(t, findPoisonedDuration([]int{1, 2}, 2), 3)
+	assert.Equal(t, findPoisonedDuration([]int{1, 2, 3, 4, 5}, 5), 9)
 }
 
-func TestNextGreaterElement(t *testing.T)  {
-	t.Log(nextGreaterElement([]int{4,1,2}, []int{1,3,4,2}))
-	t.Log(nextGreaterElement([]int{2,4}, []int{1,2,3,4}))
+func TestNextGreaterElement(t *testing.T) {
+	t.Log(nextGreaterElement([]int{4, 1, 2}, []int{1, 3, 4, 2}))
+	t.Log(nextGreaterElement([]int{2, 4}, []int{1, 2, 3, 4}))
 }
 
-func TestConvertToBase7(t *testing.T)  {
+func TestConvertToBase7(t *testing.T) {
 	assert.Equal(t, convertToBase7(-8), "-11")
 	assert.Equal(t, convertToBase7(100), "202")
-	assert.Equal(t, convertToBase7( -7), "-10")
+	assert.Equal(t, convertToBase7(-7), "-10")
 }
 
-func TestFindRelativeRanks(t *testing.T)  {
-	t.Log(findRelativeRanks([]int{5,4,3,2,1}))
-	t.Log(findRelativeRanks([]int{10,3,8,9,4}))
+func TestFindRelativeRanks(t *testing.T) {
+	t.Log(findRelativeRanks([]int{5, 4, 3, 2, 1}))
+	t.Log(findRelativeRanks([]int{10, 3, 8, 9, 4}))
 }
 
-func TestCheckPerfectNumber(t *testing.T)  {
+func TestCheckPerfectNumber(t *testing.T) {
 	assert.Equal(t, checkPerfectNumber(28), true)
 	assert.Equal(t, checkPerfectNumber(6), true)
 }
 
-func TestFib(t *testing.T)  {
+func TestFib(t *testing.T) {
 	assert.Equal(t, fib(0), 0)
 	assert.Equal(t, fib(1), 1)
 	assert.Equal(t, fib(2), 1)
 	assert.Equal(t, fib(3), 2)
+}
+
+func TestSortWorld(t *testing.T) {
+	assert.Equal(t, reSortWorld("Leetcode is cool"), "Is cool leetcode")
 }

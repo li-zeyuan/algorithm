@@ -4,6 +4,19 @@ import (
 	"fmt"
 )
 
+type A struct {
+	id   int
+	name string
+}
+
+func main1() {
+	a := A{id: 5, name: "123"}
+	b := A{id: 5, name: "123"}
+	c := A{id: 5, name: "1234"}
+	fmt.Println(a == b) // true
+	fmt.Println(a == c) // false
+}
+
 /*
 翻转二进制位
 https://leetcode-cn.com/problems/reverse-bits/
@@ -73,4 +86,3 @@ func findComplement(num int) int {
 func findComplement2(num int) {
 	fmt.Println(num ^ 1)
 }
-
