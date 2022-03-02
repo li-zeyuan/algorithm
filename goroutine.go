@@ -2,9 +2,145 @@ package algorithm
 
 import (
 	"fmt"
+	"runtime"
 	"sync"
 	"time"
 )
+
+//使用两个goroutine交替打奇偶数
+//如：123456
+/*
+方式一：
+一个无缓冲chan：读写同时，才不会阻塞
+waitGroup做协程同步
+*/
+func AlternatePrintNum(n int) {
+	w := sync.WaitGroup{}
+	c := make(chan int)
+	w.Add(2)
+
+	go func() {
+		defer w.Done()
+		for i := 1; i <= n; i++ {
+			c <- 1
+			if i%2 != 0 {
+				fmt.Println("oddc: ", i)
+			}
+		}
+	}()
+	go func() {
+		defer w.Done()
+		for i := 1; i <= n; i++ {
+			<-c
+			if i%2 == 0 {
+				fmt.Println("even: ", i)
+			}
+		}
+	}()
+
+	w.Wait()
+}
+
+/*
+方式二：
+一对 无缓冲chan：读写同时，才不会阻塞
+waitGroup做协程同步
+*/
+func AlternatePrintNum2(n int) {
+	w := sync.WaitGroup{}
+	c := make(chan int)
+	w.Add(2)
+
+	go func() {
+		defer w.Done()
+		for i := 1; i <= n; i += 2 {
+			fmt.Println("oddc: ", i)
+			c <- 1 // 第一对
+			<-c // 第二对
+		}
+	}()
+	go func() {
+		defer w.Done()
+		for i := 2; i <= n; i += 2 {
+			<-c // 第一对
+			fmt.Println("even: ", i)
+			c <- 1 // 第二对
+		}
+	}()
+
+	w.Wait()
+}
+
+/*
+方式三：
+一个goroutine打印完成向另一个goroutine发送消息
+*/
+func AlternatePrintNum3(n int) {
+	oddC := make(chan int)
+	evenC := make(chan int)
+	w := sync.WaitGroup{}
+
+	go func() {
+		for num := range oddC {
+			fmt.Println("oddC: ", num)
+			if num >= n {
+				break
+			}
+			evenC <- num + 1
+		}
+		close(evenC)
+		w.Done()
+	}()
+
+	go func() {
+		for num := range evenC {
+			fmt.Println("evenC: ", num)
+			if num >= n {
+				break
+			}
+			oddC <- num + 1
+		}
+		close(oddC)
+		w.Done()
+	}()
+	w.Add(2)
+	oddC <- 1
+
+	w.Wait()
+}
+
+/*
+方式四： 单核cpu
+*/
+func AlternatePrintNum4(n int32) {
+	//设置可同时使用的CPU核数为1
+	var wg sync.WaitGroup
+	runtime.GOMAXPROCS(1)
+	wg.Add(2)
+	go func() {
+		defer wg.Done()
+		for i := 1; i < 101; i++ {
+			//奇数
+			if i%2 == 1 {
+				fmt.Println("线程1打印:",i)
+			}
+			//让出cpu
+			runtime.Gosched()
+		}
+	}()
+	go func() {
+		defer wg.Done()
+		for i := 1; i < 101; i++ {
+			//偶数
+			if i%2 == 0 {
+				fmt.Println("线程2打印:",i)
+			}
+			//让出cpu
+			runtime.Gosched()
+		}
+	}()
+	wg.Wait()
+}
 
 /*
 使用两个 goroutine 交替打印序列，一个 goroutine 打印数字， 另外一个 goroutine 打印字母，
