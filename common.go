@@ -46,19 +46,13 @@ func coolFunc(a func()) { // go 通过函数传参实现装饰器
 
 // iota :一个const中，iota初始值为0（第一行为0），可跳过，可占位
 const (
-	a = iota
-	b = iota
-)
-const (
-	c = iota
-	d = iota
+	a = -iota
+	b
 )
 
 func GetIota() {
 	fmt.Println(a) // 0
 	fmt.Println(b) // 1
-	fmt.Println(c) // 1
-	fmt.Println(d) // 2
 }
 
 /*
@@ -253,21 +247,21 @@ func countAndSay(n int) string {
 求最大子序列和
 https://leetcode-cn.com/problems/maximum-subarray/
 */
-// 动态规划
-/*
-思路：
-滚动数组
-*/
+// 动态规划:http://sunshuyi.vip/2020/02/07/leetcode/leetcode-array/
 func maxSubArray(nums []int) int {
-	result := nums[0]
+	result := nums[0] // 全局最大值
+	subMax := nums[0] // 前一个子组合的最大值
 	for i := 1; i < len(nums); i++ {
-		if nums[i]+nums[i-1] > nums[i] { // 若当前数字 + 前一个数字 > 当前数字，
-			// 说明当前数字有增益效果，则滚动；否则，跳过
-			nums[i] = nums[i] + nums[i-1]
+		if subMax > 0 { // 若当前数字 + 前一个数字 > 当前数字，
+			// 前一个子组合最大值大于0，正增益
+			subMax = subMax + nums[i]
+		} else {
+			// 前一个子组合最大值小于0，抛弃前面的结果
+			subMax = nums[i]
 		}
 
-		if nums[i] > result { // 数组滚动后，和当前最大结果比较，取最大值
-			result = nums[i]
+		if subMax > result { // 计算全局最大值
+			result = subMax
 		}
 	}
 
@@ -523,12 +517,38 @@ func generate(numRows int) [][]int {
 	return result
 }
 
+// 递归
+func generate2(numRows int) [][]int {
+	if numRows <= 0 {
+		return [][]int{}
+	}
+
+	// 递归终止条件
+	if numRows == 1 {
+		return [][]int{{1}}
+	}
+
+	// 减一递归
+	curRows := generate2(numRows - 1)
+
+	// 对上一次递归结果进行处理，得到这次的结果
+	lastRows := curRows[len(curRows)-1]
+	nextRows := make([]int, 0)
+	nextRows = append(nextRows, 1)
+	for i := 0; i < len(lastRows)-1; i++ {
+		nextRows = append(nextRows, lastRows[i]+lastRows[i+1])
+	}
+	nextRows = append(nextRows, 1)
+	curRows = append(curRows, nextRows)
+	return curRows
+}
+
 /*
 杨辉三角 II
 https://leetcode-cn.com/problems/pascals-triangle-ii/
 思路：
 1、通过递归的方式获取上一层结果
-2、在上层结果的基础上基础本层结果
+2、在上层结果的基础上 计算本层结果
 3、递归的终止条件：rowIndex == 0
 */
 func getRow(rowIndex int) []int {

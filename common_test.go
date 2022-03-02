@@ -94,11 +94,10 @@ func TestCountAndSay(t *testing.T) {
 func TestMaxSubArray(t *testing.T) {
 	l := []int{
 		1,
-		1,
-		-3,
-		1,
-		1,
-		1,
+		3,
+		-2,
+		4,
+		-5,
 	}
 	fmt.Println(maxSubArray(l))
 }
@@ -153,6 +152,10 @@ func TestMerge2(t *testing.T) {
 
 func TestGenerate(t *testing.T) {
 	t.Log(generate(5))
+}
+
+func TestGenerate2(t *testing.T) {
+	t.Log(generate2(5))
 }
 
 func TestGetRow(t *testing.T) {

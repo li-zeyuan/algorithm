@@ -3,6 +3,7 @@ package algorithm
 import (
 	"math"
 	"sort"
+	"strconv"
 )
 
 type TreeNode struct {
@@ -404,4 +405,95 @@ func mostSumOfBinaryTree(root *TreeNode) int {
 	dfs(root)
 
 	return result
+}
+
+/*
+235. 二叉搜索树的最近公共祖先
+https://leetcode-cn.com/problems/lowest-common-ancestor-of-a-binary-search-tree/
+思路：二叉树的性质：左子树 < 树跟；右子树 > 树根
+1、若当前节点的值 > p 且 若当前树的值 > q，则递归当前节点的左子树
+2、若当前节点的值 < p 且 若当前树的值 < q，则递归当前节点的右子树
+3、p < 若当前节点的值 < q，则是我们要找的节点
+*/
+func lowestCommonAncestor(root, p, q *TreeNode) *TreeNode {
+	if root == nil || p == nil || q == nil {
+		return nil
+	}
+
+	if root.Val >= p.Val && root.Val <= q.Val {
+		return root
+	}
+	if root.Val <= p.Val && root.Val >= q.Val {
+		return root
+	}
+
+	if root.Val > p.Val && root.Val > q.Val {
+		return lowestCommonAncestor(root.Left, p, q)
+	}
+
+	if root.Val < p.Val && root.Val < q.Val {
+		return lowestCommonAncestor(root.Right, p, q)
+	}
+
+	return nil
+}
+
+/*
+257. 二叉树的所有路径
+https://leetcode-cn.com/problems/binary-tree-paths/
+方式一：深度优先（递归）
+*/
+var paths []string
+
+func binaryTreePaths(root *TreeNode) []string {
+	paths = make([]string, 0)
+	deepenSearch(root, "")
+	return paths
+}
+
+func deepenSearch(root *TreeNode, prePath string) {
+	if root != nil {
+		prePath += strconv.Itoa(root.Val)
+		if root.Left == nil && root.Right == nil { // 叶子节点
+			paths = append(paths, prePath)
+		} else { // 非叶子节点则继续递归
+			prePath += "->"
+			deepenSearch(root.Left, prePath)
+			deepenSearch(root.Right, prePath)
+
+		}
+	}
+}
+
+/*
+257. 二叉树的所有路径
+https://leetcode-cn.com/problems/binary-tree-paths/
+方式二：广度优先（队列存储节点）
+*/
+func binaryTreePaths2(root *TreeNode) []string {
+	paths := []string{}
+	if root == nil {
+		return paths
+	}
+	var nodeQueue []*TreeNode
+	var pathQueue []string
+	nodeQueue = append(nodeQueue, root)
+	pathQueue = append(pathQueue, strconv.Itoa(root.Val))
+
+	for i := 0; i < len(nodeQueue); i++ {
+		node, path := nodeQueue[i], pathQueue[i]
+		if node.Left == nil && node.Right == nil {
+			paths = append(paths, path)
+			continue
+		}
+		if node.Left != nil {
+			nodeQueue = append(nodeQueue, node.Left)
+			pathQueue = append(pathQueue, path+"->"+strconv.Itoa(node.Left.Val))
+		}
+		if node.Right != nil {
+			nodeQueue = append(nodeQueue, node.Right)
+			pathQueue = append(pathQueue, path+"->"+strconv.Itoa(node.Right.Val))
+		}
+	}
+	return paths
 }

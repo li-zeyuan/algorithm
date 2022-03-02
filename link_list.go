@@ -83,19 +83,17 @@ func (l *LList) Insert(i int, data interface{}) {
 // 翻转链表：遍历链表，把当前的node.next指向前一个节点
 func (l *LList) Revert() {
 	preNode := new(Node)
-
 	curNode := l.header
-	lastNode := new(Node)
+	result := new(Node)
 	for curNode != nil {
-		lastNode = curNode
-
+		result = curNode
 		next := curNode.Next
 		curNode.Next = preNode
 		preNode = curNode
 		curNode = next
 	}
 
-	l.header = lastNode
+	l.header = result
 }
 
 func (l *LList) Delete(i int) {
@@ -266,7 +264,7 @@ https://leetcode-cn.com/problems/palindrome-linked-list/
 思路：
 1、翻转链表
 2、对比翻转后和当前链表
- */
+*/
 func isPalindrome3(head *ListNode) bool {
 	if head == nil {
 		return false

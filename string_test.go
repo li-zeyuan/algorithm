@@ -79,3 +79,7 @@ func TestReverseStr(t *testing.T) {
 	assert.Equal(t, reverseStr("2-5g-3-J", 2), "2-5G-3J")
 	assert.Equal(t, reverseStr("---", 3), "")
 }
+
+func TestLengthOfLongestSubstring(t *testing.T) {
+	assert.Equal(t, lengthOfLongestSubstring("5F"), 2)
+}
