@@ -457,3 +457,39 @@ func lengthOfLongestSubstring2(s string) int {
 
 	return result
 }
+
+/*
+5. 最长回文子串
+思路
+1、指针1为最长回文子串首
+2、指针2为最长回文子串尾
+ */
+func longestPalindrome2(s string) string {
+	l := len(s)
+	if l <= 1 {
+		return s
+	}
+
+	result := string(s[0])
+	for prt1 := 0; prt1 < l; prt1 ++ {
+		prt2 := prt1 + 1
+		for prt2 < l {
+			isLp := true
+			j := 0
+			for i := prt1; i <= (prt2+ prt1) / 2 ; i ++  {
+				if s[i] != s[prt2 - j ] {
+					isLp = false
+					break
+				}
+			j ++
+			}
+
+			if isLp && (prt2 - prt1 + 1) > len(result) {
+				result = s[prt1:prt2 + 1]
+			}
+			prt2 ++
+		}
+	}
+
+	return result
+}

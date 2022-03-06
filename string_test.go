@@ -96,3 +96,11 @@ func TestLengthOfLongestSubstring2(t *testing.T) {
 	assert.Equal(t, lengthOfLongestSubstring2("bbbbb"), 1)
 	assert.Equal(t, lengthOfLongestSubstring2("pwwkew"), 3)
 }
+
+func TestLongestPalindrome2(t *testing.T) {
+	assert.Equal(t, longestPalindrome2("a"), "a")
+	assert.Equal(t, longestPalindrome2("aa"), "aa")
+	assert.Equal(t, longestPalindrome2("abc"), "a")
+	assert.Equal(t, longestPalindrome2("babad"), "bab")
+	assert.Equal(t, longestPalindrome2("cbbd"), "bb")
+}
