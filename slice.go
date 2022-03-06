@@ -298,3 +298,50 @@ func maxArea2(height []int) int {
 
 	return result
 }
+
+/*
+17. 电话号码的字母组合
+思路：暴力
+1、遍历输入字符串，取出一个字符，把对应的字母输入加入结果
+2、遍历结果，并入当前按键的字母
+ */
+var phoneMap = map[string][]string{
+	"2": {"a","b", "c"},
+	"3": {"d","e","f"},
+	"4": {"g", "h", "i"},
+	"5": {"j", "k", "l"},
+	"6": {"m", "n", "o"},
+	"7": {"p", "q", "r", "s"},
+	"8": {"t", "u", "v"},
+	"9": {"w", "x", "y", "z"},
+}
+
+func letterCombinations(digits string) []string {
+	l := len(digits)
+	if l == 0 {
+		return []string{}
+	}
+
+	result := make([]string, 0)
+	for i := 0 ; i < l; i ++ {
+		tempResult := make([]string, 0)
+		aList, ok := phoneMap[string(digits[i])]
+		if !ok {
+			continue
+		}
+		for _, item := range result {
+			for _, phone := range aList {
+			tempResult = append(tempResult, item + phone)
+			}
+		}
+		if len(result) == 0 {
+			for _, phone := range aList {
+				tempResult = append(tempResult,  phone)
+			}
+		}
+
+		result = tempResult
+	}
+
+	return result
+}

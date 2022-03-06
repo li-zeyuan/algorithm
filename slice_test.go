@@ -78,3 +78,9 @@ func TestMaxArea2(t *testing.T) {
 	assert.Equal(t, maxArea2([]int{1, 2}), 1)
 	assert.Equal(t, maxArea2([]int{1,8,6,2,5,4,8,3,7}),49)
 }
+
+func TestLetterCombinations(t *testing.T) {
+	t.Log(t, letterCombinations("7"))
+	t.Log(t, letterCombinations("23"))
+	t.Log(t, letterCombinations("233"))
+}
