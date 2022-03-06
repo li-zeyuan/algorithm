@@ -295,3 +295,71 @@ func isPalindrome3(head *ListNode) bool {
 
 	return true
 }
+
+/*
+2. 两数相加
+思路：
+直接相加，满十进1
+*/
+func addTwoNumbers(l1 *ListNode, l2 *ListNode) *ListNode {
+	if l1 == nil {
+		return l2
+	}
+	if l2 == nil {
+		return l1
+	}
+
+	sum := &ListNode{}
+	sumPrt := sum
+	hL1 := l1
+	hL2 := l2
+	isUp := 0
+	for hL1 != nil || hL2 != nil {
+		if hL1 != nil && hL2 != nil {
+			s := hL1.Val + hL2.Val + isUp
+			isUp = 0
+			if s >= 10 {
+				isUp = 1
+			}
+			sumPrt.Next = &ListNode{
+				Val: (s) % 10,
+			}
+			sumPrt = sumPrt.Next
+			hL1 = hL1.Next
+			hL2 = hL2.Next
+		} else if hL1 != nil && hL2 == nil {
+			s2 := hL1.Val + isUp
+			isUp = 0
+			if s2 >= 10 {
+				isUp = 1
+			}
+
+			sumPrt.Next = &ListNode{
+				Val: (s2) % 10,
+			}
+			sumPrt = sumPrt.Next
+
+			hL1 = hL1.Next
+		}else if hL1 == nil && hL2 != nil {
+			s3 := hL2.Val + isUp
+			isUp = 0
+			if s3 >= 10 {
+				isUp = 1
+			}
+			sumPrt.Next = &ListNode{
+				Val: (s3) % 10,
+			}
+			sumPrt = sumPrt.Next
+
+			hL2 = hL2.Next
+		}
+	}
+
+	if isUp == 1 {
+		sumPrt.Next = &ListNode{
+			Val: 1,
+		}
+	}
+
+	return sum.Next
+}

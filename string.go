@@ -406,3 +406,54 @@ func lengthOfLongestSubstring(s string) int {
 	}
 	return maxLen
 }
+
+/*
+521. 最长特殊序列 Ⅰ
+思路：
+1、较短string构建map
+2、遍历较长string，若字符不在map中，则结果加1
+*/
+func findLUSlength(a, b string) int {
+	if a != b {
+		return max(len(a), len(b))
+	}
+	return -1
+}
+
+/*
+3. 无重复字符的最长子串
+思路：滑动窗口
+1、构造窗口内map
+2、移动窗口
+*/
+func lengthOfLongestSubstring2(s string) int {
+	l := len(s)
+	if l <= 1 {
+		return l
+	}
+
+	result := 0
+	for start := 0; start < l-1; start++ {
+		end := start + 1
+		temResult := 1
+		winMap := make(map[uint8]struct{})
+		winMap[s[start]] = struct{}{}
+		for end < l {
+			if _, ok := winMap[s[end]]; ok {
+				break
+			}else {
+				winMap[s[end]] = struct{}{}
+				temResult ++
+				end ++
+			}
+		}
+		winMap = make(map[uint8]struct{})
+
+		if temResult > result {
+			result = temResult
+		}
+		temResult = 1
+	}
+
+	return result
+}

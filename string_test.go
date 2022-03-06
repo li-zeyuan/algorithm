@@ -83,3 +83,16 @@ func TestReverseStr(t *testing.T) {
 func TestLengthOfLongestSubstring(t *testing.T) {
 	assert.Equal(t, lengthOfLongestSubstring("5F"), 2)
 }
+
+func TestFindLUSlength(t *testing.T) {
+	assert.Equal(t, findLUSlength("aba",  "cdc"), 3)
+	assert.Equal(t, findLUSlength("aaa",  "bbb"), 3)
+	assert.Equal(t, findLUSlength("aaa", "aaa"), -1)
+}
+
+func TestLengthOfLongestSubstring2(t *testing.T) {
+	assert.Equal(t, lengthOfLongestSubstring2("dvdf"), 3)
+	assert.Equal(t, lengthOfLongestSubstring2("abcabcbb"), 3)
+	assert.Equal(t, lengthOfLongestSubstring2("bbbbb"), 1)
+	assert.Equal(t, lengthOfLongestSubstring2("pwwkew"), 3)
+}
