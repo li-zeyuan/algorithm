@@ -232,3 +232,69 @@ func findContentChildren(g []int, s []int) int {
 
 	return result
 }
+
+/*
+11. 盛最多水的容器
+https://leetcode-cn.com/problems/container-with-most-water/
+思路：暴力（超时）
+1、指针1：以该位置为起点
+2、指针2：以该位置为终点
+ */
+func maxArea(height []int) int {
+	l := len(height)
+	if l <= 1 {
+		return 0
+	}
+
+	result := 0
+	for start := 0; start < l ; start ++ {
+		for end := start + 1; end < l ; end ++ {
+			sum := 0
+			if height[start] > height[end] {
+				sum = height[end] * (end - start)
+			}else {
+				sum = height[start] * (end - start)
+			}
+
+			if sum > result {
+				result = sum
+			}
+		}
+	}
+
+	return result
+}
+/*
+11. 盛最多水的容器
+https://leetcode-cn.com/problems/container-with-most-water/
+思路：双指针（没懂）
+1、指针1：起初指向0
+2、指针2：起初指向len()
+3、哪个指针小，则移动哪个指针
+*/
+func maxArea2(height []int) int {
+	l := len(height)
+	if l <= 1 {
+		return 0
+	}
+
+	p1 := 0
+	p2 := l - 1
+	result := 0
+	for p2 > p1 {
+		ans := 0
+		if height[p1] > height[p2] {
+			ans = (p2 - p1) * height[p2]
+			p2 --
+		}else {
+			ans = (p2 - p1) * height[p1]
+			p1 ++
+		}
+
+		if ans > result {
+			result = ans
+		}
+	}
+
+	return result
+}
