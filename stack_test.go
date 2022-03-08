@@ -1,6 +1,9 @@
 package algorithm
 
-import "testing"
+import (
+	"github.com/bmizerany/assert"
+	"testing"
+)
 
 func TestStack(t *testing.T) {
 	stack := Constructor()
@@ -13,4 +16,9 @@ func TestStack(t *testing.T) {
 	t.Log(stack.Top())
 	stack.Pop()
 	t.Log(stack.GetMin())
+}
+
+func TestIsPopOrder(t *testing.T)  {
+	assert.Equal(t, IsPopOrder([]int{1,2,3,4,5}, []int{4,5,3,2,1}), true)
+	assert.Equal(t, IsPopOrder([]int{1,2,3,4,5}, []int{4,3,5,1,2}), false)
 }
