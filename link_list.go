@@ -340,7 +340,7 @@ func addTwoNumbers(l1 *ListNode, l2 *ListNode) *ListNode {
 			sumPrt = sumPrt.Next
 
 			hL1 = hL1.Next
-		}else if hL1 == nil && hL2 != nil {
+		} else if hL1 == nil && hL2 != nil {
 			s3 := hL2.Val + isUp
 			isUp = 0
 			if s3 >= 10 {
@@ -362,4 +362,103 @@ func addTwoNumbers(l1 *ListNode, l2 *ListNode) *ListNode {
 	}
 
 	return sum.Next
+}
+
+/*
+19、删除链表第n个节点
+思路1：反转链表
+1、反转
+2、删除节点
+3、反转
+*/
+func removeNthFromEnd(head *ListNode, n int) *ListNode {
+	if n < 1 {
+		return nil
+	}
+	head = rev(head)
+	show := head
+	fast := head
+	if n == 1 {
+		head = head.Next
+		return rev(head)
+	}
+
+	for fast != nil {
+		if n == 1 {
+			show.Next = fast.Next
+			break
+		}
+		n--
+		show = fast
+		fast = fast.Next
+	}
+
+	return rev(head)
+}
+
+func rev(head *ListNode) *ListNode {
+	var newList *ListNode
+	cur := head
+	for cur != nil {
+		n := &ListNode{
+			Val: cur.Val,
+		}
+		n.Next = newList
+		newList = n
+		cur = cur.Next
+	}
+
+	return newList
+}
+
+/*
+19、删除链表第n个节点
+思路2：队列
+1、遍历链表，放入队列
+2、删除队列节点
+3、拼接成链表
+*/
+
+/*
+19、删除链表第n个节点
+思路：计数
+1、遍历链表，记录链表长度
+2、删除第l-n个接点
+*/
+
+/*
+19、删除链表第n个节点
+思路3：反转->删除节点->反转
+*/
+
+/*
+22. 括号生成
+思路：暴力法
+1、生成所以的括号
+2、校验是否合法
+	- 前一边存一个栈
+	- 后一边存一个栈
+*/
+func generateParenthesis(n int) []string {
+	//strList := make([]string, 0)
+	//gen(n, strList)
+	//return str
+
+	return []string{}
+}
+
+func gen(n int, strList []string, str string) {
+	if n == 0 {
+		return
+	}
+
+	nStrList := make([]string, 0)
+	for _, s := range strList {
+		nStrList = append(nStrList, s+str)
+	}
+	strList = nStrList
+	n--
+
+	gen(n, strList, "(")
+	gen(n, strList, ")")
 }

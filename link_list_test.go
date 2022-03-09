@@ -157,8 +157,23 @@ func TestAddTwoNumbers(t *testing.T) {
 		},
 	}
 
-
 	//head := &ListNode{1, &ListNode{1, nil}}
 	result := addTwoNumbers(l1, l2)
+	t.Log(result)
+}
+
+func TestRemoveNthFromEnd(t *testing.T) {
+	l1 := &ListNode{
+		1,
+		&ListNode{
+			2,
+			&ListNode{
+				3,
+				nil,
+			},
+		},
+	}
+
+	result := removeNthFromEnd(l1, 3)
 	t.Log(result)
 }
