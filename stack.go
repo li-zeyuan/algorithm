@@ -61,6 +61,8 @@ func (this *MinStack) GetMin() int {
 }
 
 /*
+946. 验证栈序列
+https://leetcode-cn.com/problems/validate-stack-sequences/
 思路：
 1、定义一个辅助栈
 2、pop指向popV队列
@@ -69,13 +71,16 @@ func (this *MinStack) GetMin() int {
 5、若辅助栈 栈顶元素 == pop指向值，出栈
 6、遍历结束，辅助栈是否为空
 */
-func IsPopOrder(pushV []int, popV []int) bool {
+func validateStackSequences(pushed []int, popped []int) bool {
 	stack := make([]int, 0)
 	pop := 0
-	for push := 0; push < len(pushV); push++ {
-		stack = append(stack, pushV[push])
-		for pop < len(popV) {
-			if popV[pop] == stack[len(stack)-1] {
+	for push := 0; push < len(pushed); push++ {
+		stack = append(stack, pushed[push])
+		for pop < len(popped) {
+			if len(stack) == 0 {
+				break
+			}
+			if popped[pop] == stack[len(stack)-1] {
 				stack = stack[:len(stack)-1]
 				pop++
 			} else {

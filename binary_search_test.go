@@ -2,6 +2,7 @@ package algorithm
 
 import (
 	"fmt"
+	"github.com/bmizerany/assert"
 	"testing"
 )
 
@@ -122,4 +123,14 @@ func TestAddDigits(t *testing.T) {
 
 func TestBinaryTreePaths2(t *testing.T) {
 	t.Log(binaryTreePaths2(nil))
+}
+
+func TestSearch(t *testing.T) {
+	assert.Equal(t, revolveArraySearch([]int{4,5,6,7,0,1,2}, 3), -1)
+	assert.Equal(t, revolveArraySearch([]int{7,8,1,2,3,4,5,6}, 2),3)
+	assert.Equal(t, revolveArraySearch([]int{3,1}, 3), 0)
+	assert.Equal(t, revolveArraySearch([]int{4,5,6,7,0,1,2}, 0), 4)
+	assert.Equal(t, revolveArraySearch([]int{1}, 1), 0)
+	assert.Equal(t, revolveArraySearch([]int{1}, -1), -1)
+	assert.Equal(t, revolveArraySearch([]int{4,5,6,7,0,1,2}, 0), 4)
 }

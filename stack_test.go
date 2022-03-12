@@ -20,6 +20,7 @@ func TestStack(t *testing.T) {
 }
 
 func TestIsPopOrder(t *testing.T) {
-	assert.Equal(t, IsPopOrder([]int{1, 2, 3, 4, 5}, []int{4, 5, 3, 2, 1}), true)
-	assert.Equal(t, IsPopOrder([]int{1, 2, 3, 4, 5}, []int{4, 3, 5, 1, 2}), false)
+	assert.Equal(t, validateStackSequences([]int{1,0}, []int{1,0}), true)
+	assert.Equal(t, validateStackSequences([]int{1, 2, 3, 4, 5}, []int{4, 5, 3, 2, 1}), true)
+	assert.Equal(t, validateStackSequences([]int{1, 2, 3, 4, 5}, []int{4, 3, 5, 1, 2}), false)
 }
