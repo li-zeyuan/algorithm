@@ -126,11 +126,17 @@ func TestBinaryTreePaths2(t *testing.T) {
 }
 
 func TestSearch(t *testing.T) {
-	assert.Equal(t, revolveArraySearch([]int{4,5,6,7,0,1,2}, 3), -1)
-	assert.Equal(t, revolveArraySearch([]int{7,8,1,2,3,4,5,6}, 2),3)
-	assert.Equal(t, revolveArraySearch([]int{3,1}, 3), 0)
-	assert.Equal(t, revolveArraySearch([]int{4,5,6,7,0,1,2}, 0), 4)
+	assert.Equal(t, revolveArraySearch([]int{4, 5, 6, 7, 0, 1, 2}, 3), -1)
+	assert.Equal(t, revolveArraySearch([]int{7, 8, 1, 2, 3, 4, 5, 6}, 2), 3)
+	assert.Equal(t, revolveArraySearch([]int{3, 1}, 3), 0)
+	assert.Equal(t, revolveArraySearch([]int{4, 5, 6, 7, 0, 1, 2}, 0), 4)
 	assert.Equal(t, revolveArraySearch([]int{1}, 1), 0)
 	assert.Equal(t, revolveArraySearch([]int{1}, -1), -1)
-	assert.Equal(t, revolveArraySearch([]int{4,5,6,7,0,1,2}, 0), 4)
+	assert.Equal(t, revolveArraySearch([]int{4, 5, 6, 7, 0, 1, 2}, 0), 4)
+}
+
+func TestSearchRange(t *testing.T) {
+	t.Log(searchRange([]int{}, 0))
+	t.Log(searchRange([]int{5, 7, 7, 8, 8, 10}, 8))
+	t.Log(searchRange([]int{5, 7, 7, 8, 8, 10}, 6))
 }

@@ -146,3 +146,58 @@ func revolveArraySearch(nums []int, target int) int {
 	// 循环结束没有找到目标值target，返回-1
 	return -1
 }
+
+/*
+34. 在排序数组中查找元素的第一个和最后一个位置
+https://leetcode-cn.com/problems/find-first-and-last-position-of-element-in-sorted-array/
+思路：二分查找
+1、找出target
+2、双指针找出起初和终点
+*/
+func searchRange(nums []int, target int) []int {
+	l := len(nums)
+	if l == 0 {
+		return []int{-1, -1}
+	}
+
+	left := 0
+	right := l - 1
+	for left <= right {
+		m := (left + right) / 2
+		if nums[m] == target {
+			return sRange(nums, m)
+		} else if target < nums[m] {
+			right = m - 1
+		} else {
+			left = m + 1
+		}
+	}
+
+	return []int{-1, -1}
+}
+
+func sRange(nums []int, index int) []int {
+	start, end := index, index
+	sRange := make([]int, 2)
+	sRange[0] = start
+	sRange[1] = end
+	for {
+		isBreak := true
+		if start >= 0 && nums[start] == nums[index] {
+			sRange[0] = start
+			start--
+			isBreak = false
+		}
+		if end < len(nums) && nums[end] == nums[index] {
+			sRange[1] = end
+			end++
+			isBreak = false
+		}
+
+		if isBreak {
+			break
+		}
+	}
+
+	return sRange
+}
