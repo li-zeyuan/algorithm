@@ -1644,3 +1644,61 @@ func reSortWorld(in string) string {
 	result := strings.Join(wList, " ")
 	return strings.ToUpper(result[:1]) + result[1:]
 }
+
+/*
+36. 有效的数独
+https://leetcode-cn.com/problems/valid-sudoku/
+思路：暴力法
+ */
+func isValidSudoku(board [][]byte) bool {
+	if len(board) != 9 {
+		return false
+	}
+
+	cMMap := make(map[int]map[byte]struct{}) // 列
+	bMMap := make(map[string]map[byte]struct{}) // 块
+	for row := 0 ; row < len(board); row ++ {
+
+		if len(board[row]) != 9 {
+			return false
+		}
+		rMap := make(map[byte]struct{}) // 行
+		for c:= 0; c < len(board[row]); c ++  {
+			if string(board[row][c]) == "." {
+				continue
+			}
+
+			if _, ok := rMap[board[row][c]]; ok {
+				return false
+			}else {
+				rMap[board[row][c]] = struct{}{}
+			}
+
+			cMap, ok := cMMap[c]
+			if !ok {
+				cMap = make(map[byte]struct{})
+			}
+			if _, ok := cMap[board[row][c]]; ok {
+				return false
+			}else {
+				cMap[board[row][c]] = struct{}{}
+			}
+			cMMap[c] = cMap
+
+			bRow := row / 3 + 1
+			bCol := c / 3 + 1
+			bMap, ok := bMMap[strconv.Itoa(bRow) + strconv.Itoa(bCol)]
+			if !ok {
+				bMap = make(map[byte]struct{})
+			}
+			if _, ok := bMap[board[row][c]]; ok {
+				return false
+			}else {
+				bMap[board[row][c]] = struct{}{}
+			}
+			bMMap[strconv.Itoa(bRow) + strconv.Itoa(bCol)]  =bMap
+		}
+	}
+
+	return true
+}
