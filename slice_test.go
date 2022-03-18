@@ -71,16 +71,29 @@ func TestFindContentChildren(t *testing.T) {
 
 func TestMaxArea(t *testing.T) {
 	assert.Equal(t, maxArea([]int{1, 2}), 1)
-	assert.Equal(t, maxArea([]int{1,8,6,2,5,4,8,3,7}),49)
+	assert.Equal(t, maxArea([]int{1, 8, 6, 2, 5, 4, 8, 3, 7}), 49)
 }
 
 func TestMaxArea2(t *testing.T) {
 	assert.Equal(t, maxArea2([]int{1, 2}), 1)
-	assert.Equal(t, maxArea2([]int{1,8,6,2,5,4,8,3,7}),49)
+	assert.Equal(t, maxArea2([]int{1, 8, 6, 2, 5, 4, 8, 3, 7}), 49)
 }
 
 func TestLetterCombinations(t *testing.T) {
 	t.Log(t, letterCombinations("7"))
 	t.Log(t, letterCombinations("23"))
 	t.Log(t, letterCombinations("233"))
+}
+
+func TestGroupAnagrams(t *testing.T) {
+	t.Log(t, groupAnagrams([]string{""}))
+	t.Log(t, groupAnagrams([]string{"eat", "tea", "tan", "ate", "nat", "bat"}))
+}
+
+func TestSpiralOrder(t *testing.T) {
+	t.Log(t, spiralOrder([][]int{
+		{1, 2, 3, 4},
+		{5, 6, 7, 8},
+		{9, 10, 11, 12},
+	}))
 }

@@ -239,7 +239,7 @@ https://leetcode-cn.com/problems/container-with-most-water/
 思路：暴力（超时）
 1、指针1：以该位置为起点
 2、指针2：以该位置为终点
- */
+*/
 func maxArea(height []int) int {
 	l := len(height)
 	if l <= 1 {
@@ -247,12 +247,12 @@ func maxArea(height []int) int {
 	}
 
 	result := 0
-	for start := 0; start < l ; start ++ {
-		for end := start + 1; end < l ; end ++ {
+	for start := 0; start < l; start++ {
+		for end := start + 1; end < l; end++ {
 			sum := 0
 			if height[start] > height[end] {
 				sum = height[end] * (end - start)
-			}else {
+			} else {
 				sum = height[start] * (end - start)
 			}
 
@@ -264,6 +264,7 @@ func maxArea(height []int) int {
 
 	return result
 }
+
 /*
 11. 盛最多水的容器
 https://leetcode-cn.com/problems/container-with-most-water/
@@ -285,10 +286,10 @@ func maxArea2(height []int) int {
 		ans := 0
 		if height[p1] > height[p2] {
 			ans = (p2 - p1) * height[p2]
-			p2 --
-		}else {
+			p2--
+		} else {
 			ans = (p2 - p1) * height[p1]
-			p1 ++
+			p1++
 		}
 
 		if ans > result {
@@ -304,10 +305,10 @@ func maxArea2(height []int) int {
 思路：暴力
 1、遍历输入字符串，取出一个字符，把对应的字母输入加入结果
 2、遍历结果，并入当前按键的字母
- */
+*/
 var phoneMap = map[string][]string{
-	"2": {"a","b", "c"},
-	"3": {"d","e","f"},
+	"2": {"a", "b", "c"},
+	"3": {"d", "e", "f"},
 	"4": {"g", "h", "i"},
 	"5": {"j", "k", "l"},
 	"6": {"m", "n", "o"},
@@ -323,7 +324,7 @@ func letterCombinations(digits string) []string {
 	}
 
 	result := make([]string, 0)
-	for i := 0 ; i < l; i ++ {
+	for i := 0; i < l; i++ {
 		tempResult := make([]string, 0)
 		aList, ok := phoneMap[string(digits[i])]
 		if !ok {
@@ -331,12 +332,12 @@ func letterCombinations(digits string) []string {
 		}
 		for _, item := range result {
 			for _, phone := range aList {
-			tempResult = append(tempResult, item + phone)
+				tempResult = append(tempResult, item+phone)
 			}
 		}
 		if len(result) == 0 {
 			for _, phone := range aList {
-				tempResult = append(tempResult,  phone)
+				tempResult = append(tempResult, phone)
 			}
 		}
 
@@ -344,4 +345,125 @@ func letterCombinations(digits string) []string {
 	}
 
 	return result
+}
+
+/*
+48.旋转图像
+思路：归纳法
+旋转次数：n * n / 4
+旋转元素：[x][y] --> [y][n - 1 - x]
+*/
+func rotate(matrix [][]int) {
+	n := len(matrix)
+
+	if n <= 1 {
+		return
+	}
+
+	//旋转次数
+	count := n * n / 4
+
+	x := 0
+	y := 0
+	z := 0
+
+	var x1, y1, x2, y2 int
+
+	for i := 0; i < count; i++ {
+		if z >= (n-1)-2*x {
+			x += 1
+			z = 0
+		}
+		y = z + x
+		z += 1
+
+		x1 = x
+		y1 = y
+
+		for j := 0; j < 3; j++ {
+			x2 = n - 1 - y1
+			y2 = x1
+
+			matrix[x1][y1] = matrix[x1][y1] ^ matrix[x2][y2]
+			matrix[x2][y2] = matrix[x1][y1] ^ matrix[x2][y2]
+			matrix[x1][y1] = matrix[x1][y1] ^ matrix[x2][y2]
+
+			x1 = x2
+			y1 = y2
+		}
+	}
+}
+
+/*
+49、字母异位词分组
+思路：排序
+1、排序strs元素，构造map
+2、遍历map,加入结果集
+*/
+func groupAnagrams(strs []string) [][]string {
+	if len(strs) == 0 {
+		return nil
+	}
+
+	sortMap := make(map[string][]string)
+	for _, str := range strs {
+		bSlice := []byte(str)
+		sort.Slice(bSlice, func(i, j int) bool {
+			return bSlice[i] < bSlice[j]
+		})
+
+		sortMap[string(bSlice)] = append(sortMap[string(bSlice)], str)
+	}
+
+	result := make([][]string, 0)
+	for _, v := range sortMap {
+		result = append(result, v)
+	}
+
+	return result
+}
+
+/*
+54.螺旋矩阵
+思路：模拟轨迹m*n
+1、遍历次数：m*n
+
+1 2 3
+4 5 6
+7 8 9
+*/
+func spiralOrder(matrix [][]int) []int {
+	if len(matrix) == 0 {
+		return []int{}
+	}
+
+	x, y := 0, 0
+	left, right, up, down := 0, len(matrix[0])-1, 0, len(matrix)-1
+	result := make([]int, 0)
+	for avoid(left, right, up, down) {
+		for y = left; avoid(left, right, up, down); y++ {
+			result = append(result, matrix[x][y])
+		}
+
+		up++
+		for x = up; avoid(left, right, up, down); x++ {
+			result = append(result, matrix[x][y])
+		}
+
+		right--
+		for y = right; avoid(left, right, up, down); y-- {
+			result = append(result, matrix[x][y])
+		}
+
+		down--
+		for x = down; avoid(left, right, up, down); x-- {
+			result = append(result, matrix[x][y])
+		}
+	}
+
+	return result
+}
+
+func avoid(left, right, up, down int) bool {
+	return up <= down && left <= right
 }
