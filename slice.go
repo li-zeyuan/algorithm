@@ -426,11 +426,8 @@ func groupAnagrams(strs []string) [][]string {
 /*
 54.螺旋矩阵
 思路：模拟轨迹m*n
-1、遍历次数：m*n
-
-1 2 3
-4 5 6
-7 8 9
+1、设定左右上下边界
+2、分别左移、下移、右移、上移，碰壁则终止并移动边界
 */
 func spiralOrder(matrix [][]int) []int {
 	if len(matrix) == 0 {
@@ -438,32 +435,38 @@ func spiralOrder(matrix [][]int) []int {
 	}
 
 	x, y := 0, 0
-	left, right, up, down := 0, len(matrix[0])-1, 0, len(matrix)-1
+	left, right, up, down := 0, len(matrix[0])-1, 0, len(matrix)-1 // 设定左右上下边界
 	result := make([]int, 0)
-	for avoid(left, right, up, down) {
-		for y = left; avoid(left, right, up, down); y++ {
+	for avoid(x, y , left, right, up, down) {
+		for y = left; avoid(x, y, left, right, up, down); y ++ { // 左
 			result = append(result, matrix[x][y])
 		}
 
-		up++
-		for x = up; avoid(left, right, up, down); x++ {
+		up ++ // 移动边界
+		y -- // 归位
+		for x = up; avoid(x, y, left, right, up, down); x ++ { // 下
 			result = append(result, matrix[x][y])
 		}
 
-		right--
-		for y = right; avoid(left, right, up, down); y-- {
+		right --
+		x --
+		for y = right; avoid(x, y, left, right, up, down); y -- { // 右
 			result = append(result, matrix[x][y])
 		}
 
-		down--
-		for x = down; avoid(left, right, up, down); x-- {
+		down --
+		y ++
+		for x = down; avoid(x, y, left, right, up, down); x -- { // 上
 			result = append(result, matrix[x][y])
 		}
+		left ++
+		x ++
+		y = left
 	}
-
 	return result
 }
 
-func avoid(left, right, up, down int) bool {
-	return up <= down && left <= right
+func avoid(x, y, left, right, up, down int) bool {
+	return x >= up && x <= down && y >= left && y <= right
 }
+
