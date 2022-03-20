@@ -495,3 +495,41 @@ func max5(x, y int) int {
 	}
 	return y
 }
+
+/*
+56. 合并区间
+https://leetcode-cn.com/problems/merge-intervals/
+思路：
+1、按照区间start排序
+2、遍历intervals，判断当前区间和前一个区间是否有重合，重合则合并
+ */
+func merge3(intervals [][]int) [][]int {
+	if len(intervals) == 0 {
+		return intervals
+	}
+
+	sort.Slice(intervals, func(i, j int) bool {
+		return intervals[i][0]< intervals[j][0]
+	})
+
+	result := make([][]int, 0)
+	for i := 0 ; i < len(intervals); i ++ {
+		if len(intervals[i]) != 2 {
+			continue
+		}
+
+		if len(result) == 0 {
+			result = append(result, intervals[i])
+			continue
+		}
+
+		pre := result[len(result) - 1]
+		if intervals[i][0] <= pre[1] { // 合并
+			pre[1] = max5(intervals[i][1], pre[1])
+		}else {
+			result = append(result, intervals[i])
+		}
+	}
+
+	return result
+}
