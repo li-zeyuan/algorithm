@@ -470,3 +470,28 @@ func avoid(x, y, left, right, up, down int) bool {
 	return x >= up && x <= down && y >= left && y <= right
 }
 
+/*
+55. 跳跃游戏
+https://leetcode-cn.com/problems/jump-game/
+思路：贪心
+1、遍历列表，维护一个最大可到达 下标
+2、判断最大可到达下标是否 >= 数组最后一个元素
+ */
+func canJump(nums []int) bool {
+	maxIndex := 0
+	for i := 0 ; i < len(nums)- 1; i ++ {
+		if nums[i] == 0 && maxIndex <= i {
+			break
+		}
+		maxIndex = max5(maxIndex, i + nums[i])
+	}
+
+	return maxIndex >= len(nums) - 1
+}
+
+func max5(x, y int) int {
+	if x > y {
+		return x
+	}
+	return y
+}

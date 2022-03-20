@@ -97,3 +97,9 @@ func TestSpiralOrder(t *testing.T) {
 		{9, 10, 11, 12},
 	}))
 }
+
+func TestCanJump(t *testing.T)  {
+	assert.Equal(t, canJump([]int{0,2,3}), false)
+	assert.Equal(t, canJump([]int{2,3,1,1,4}), true)
+	assert.Equal(t, canJump([]int{3,2,1,0,4}), false)
+}
