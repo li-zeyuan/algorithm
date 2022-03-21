@@ -13,6 +13,14 @@ func TestLList_Add(t *testing.T) {
 	lList.Scan()
 }
 
+func TestLList_generateParenthesis(t *testing.T) {
+	t.Log(generateParenthesis(0))
+}
+
+func TestLList_gen(t *testing.T) {
+	gen(0, []string{""}, "")
+}
+
 func TestLList_Append(t *testing.T) {
 	lList := NewList()
 
