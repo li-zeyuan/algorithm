@@ -1,6 +1,7 @@
 package algorithm
 
 import (
+	"fmt"
 	"math"
 	"sort"
 )
@@ -336,9 +337,7 @@ func letterCombinations(digits string) []string {
 			}
 		}
 		if len(result) == 0 {
-			for _, phone := range aList {
-				tempResult = append(tempResult, phone)
-			}
+			tempResult = append(tempResult, aList...)
 		}
 
 		result = tempResult
@@ -437,30 +436,30 @@ func spiralOrder(matrix [][]int) []int {
 	x, y := 0, 0
 	left, right, up, down := 0, len(matrix[0])-1, 0, len(matrix)-1 // 设定左右上下边界
 	result := make([]int, 0)
-	for avoid(x, y , left, right, up, down) {
-		for y = left; avoid(x, y, left, right, up, down); y ++ { // 左
+	for avoid(x, y, left, right, up, down) {
+		for y = left; avoid(x, y, left, right, up, down); y++ { // 左
 			result = append(result, matrix[x][y])
 		}
 
-		up ++ // 移动边界
-		y -- // 归位
-		for x = up; avoid(x, y, left, right, up, down); x ++ { // 下
+		up++                                                  // 移动边界
+		y--                                                   // 归位
+		for x = up; avoid(x, y, left, right, up, down); x++ { // 下
 			result = append(result, matrix[x][y])
 		}
 
-		right --
-		x --
-		for y = right; avoid(x, y, left, right, up, down); y -- { // 右
+		right--
+		x--
+		for y = right; avoid(x, y, left, right, up, down); y-- { // 右
 			result = append(result, matrix[x][y])
 		}
 
-		down --
-		y ++
-		for x = down; avoid(x, y, left, right, up, down); x -- { // 上
+		down--
+		y++
+		for x = down; avoid(x, y, left, right, up, down); x-- { // 上
 			result = append(result, matrix[x][y])
 		}
-		left ++
-		x ++
+		left++
+		x++
 		y = left
 	}
 	return result
@@ -476,17 +475,17 @@ https://leetcode-cn.com/problems/jump-game/
 思路：贪心
 1、遍历列表，维护一个最大可到达 下标
 2、判断最大可到达下标是否 >= 数组最后一个元素
- */
+*/
 func canJump(nums []int) bool {
 	maxIndex := 0
-	for i := 0 ; i < len(nums)- 1; i ++ {
+	for i := 0; i < len(nums)-1; i++ {
 		if nums[i] == 0 && maxIndex <= i {
 			break
 		}
-		maxIndex = max5(maxIndex, i + nums[i])
+		maxIndex = max5(maxIndex, i+nums[i])
 	}
 
-	return maxIndex >= len(nums) - 1
+	return maxIndex >= len(nums)-1
 }
 
 func max5(x, y int) int {
@@ -502,18 +501,18 @@ https://leetcode-cn.com/problems/merge-intervals/
 思路：
 1、按照区间start排序
 2、遍历intervals，判断当前区间和前一个区间是否有重合，重合则合并
- */
+*/
 func merge3(intervals [][]int) [][]int {
 	if len(intervals) == 0 {
 		return intervals
 	}
 
 	sort.Slice(intervals, func(i, j int) bool {
-		return intervals[i][0]< intervals[j][0]
+		return intervals[i][0] < intervals[j][0]
 	})
 
 	result := make([][]int, 0)
-	for i := 0 ; i < len(intervals); i ++ {
+	for i := 0; i < len(intervals); i++ {
 		if len(intervals[i]) != 2 {
 			continue
 		}
@@ -523,16 +522,109 @@ func merge3(intervals [][]int) [][]int {
 			continue
 		}
 
-		pre := result[len(result) - 1]
+		pre := result[len(result)-1]
 		if intervals[i][0] <= pre[1] { // 合并
 			pre[1] = max5(intervals[i][1], pre[1])
-		}else {
+		} else {
 			result = append(result, intervals[i])
 		}
 	}
 
 	return result
 }
+
+/*
+73、矩阵置零
+思路：遍历
+1、外层遍历找到为0的元素
+2、内层遍历置0所在的行和列
+*/
+func setZeroes(matrix [][]int) {
+	if len(matrix) == 0 {
+		return
+	}
+	row := len(matrix)
+	col := len(matrix[0])
+	zeroItems := make([][]int, 0)
+	for rowIdx := 0; rowIdx < row; rowIdx++ {
+		for colIdx := 0; colIdx < col; colIdx++ {
+			if matrix[rowIdx][colIdx] != 0 {
+				continue
+			}
+
+			items := []int{rowIdx, colIdx}
+			zeroItems = append(zeroItems, items)
+		}
+	}
+
+	for i := 0; i < len(zeroItems); i++ {
+		for rowI := 0; rowI < row; rowI++ { // 列置0
+			matrix[rowI][zeroItems[i][1]] = 0
+		}
+		for colI := 0; colI < col; colI++ { // 行置0
+			matrix[zeroItems[i][0]][colI] = 0
+		}
+	}
+
+	fmt.Println(matrix)
+}
+
+/*
+75、颜色分类
+思路：
+1、统计各个颜色出现的次数
+2、重写数组
+*/
+func swapColors(colors []int) {
+	count0 := 0
+	count1 := 0
+	for _, c := range colors {
+		if c == 0 {
+			count0++
+		}
+		if c == 1 {
+			count1++
+		}
+	}
+
+	for i := 0; i < len(colors); i++ {
+		if i < count0 {
+			colors[i] = 0
+		} else if i-count0 < count1 {
+			colors[i] = 1
+		} else {
+			colors[i] = 2
+		}
+	}
+
+	fmt.Println(colors)
+}
+
+/*
+75、颜色分类
+思路：三指针
+1、P0-1指向最后一个0的位置，p2+1指向最后一个2的位置，i指向但前位置
+*/
+func sortColors(nums []int) {
+	if len(nums) == 0 {
+		return
+	}
+
+	p0, p2 := 0, len(nums)-1
+	for i := 0; i < p2; i++ {
+		if nums[i] == 0 {
+			nums[i], nums[p0] = nums[p0], nums[i]
+			p0++
+		} else if nums[i] == 2 {
+			nums[i], nums[p2] = nums[p2], nums[i]
+			p2--
+			i--
+		}
+	}
+
+	fmt.Println(nums)
+}
+
 
 func SearchInt(nums []int) int {
 	if len(nums) == 0 {

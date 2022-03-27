@@ -98,16 +98,33 @@ func TestSpiralOrder(t *testing.T) {
 	}))
 }
 
-func TestCanJump(t *testing.T)  {
-	assert.Equal(t, canJump([]int{0,2,3}), false)
-	assert.Equal(t, canJump([]int{2,3,1,1,4}), true)
-	assert.Equal(t, canJump([]int{3,2,1,0,4}), false)
+func TestCanJump(t *testing.T) {
+	assert.Equal(t, canJump([]int{0, 2, 3}), false)
+	assert.Equal(t, canJump([]int{2, 3, 1, 1, 4}), true)
+	assert.Equal(t, canJump([]int{3, 2, 1, 0, 4}), false)
 }
 
-func TestMerge3(t *testing.T)  {
-	t.Log(merge3([][]int{{1,3},{2,6},{8,10},{15,18}}))
-	t.Log(merge3([][]int{{1,4},{4,5}}))
+func TestMerge3(t *testing.T) {
+	t.Log(merge3([][]int{{1, 3}, {2, 6}, {8, 10}, {15, 18}}))
+	t.Log(merge3([][]int{{1, 4}, {4, 5}}))
 }
+
+func TestSetZeroes(t *testing.T) {
+	setZeroes([][]int{{1, 0, 2}, {2, 6, 3}, {8, 10, 3}, {15, 18, 3}})
+}
+
+func TestSwapColors(t *testing.T) {
+	swapColors([]int{2, 0, 2, 1, 1, 0})
+}
+
+func TestSwapColors2(t *testing.T) {
+	sortColors([]int{2, 0, 2, 1, 1, 0})
+}
+
+func TestRotate(t *testing.T) {
+	rotate([][]int{{1, 0, 2}, {2, 6, 3}, {8, 10, 3}, {15, 18, 3}})
+}
+
 
 func TestSearchInt(t *testing.T) {
 	assert.Equal(t, SearchInt([]int{}), 1)
