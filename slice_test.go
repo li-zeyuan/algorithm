@@ -108,3 +108,9 @@ func TestMerge3(t *testing.T)  {
 	t.Log(merge3([][]int{{1,3},{2,6},{8,10},{15,18}}))
 	t.Log(merge3([][]int{{1,4},{4,5}}))
 }
+
+func TestSearchInt(t *testing.T) {
+	assert.Equal(t, SearchInt([]int{}), 1)
+	assert.Equal(t, SearchInt([]int{-4, 0, 4, 1}), 2)
+	assert.Equal(t, SearchInt([]int{-1, 0, 3, 1, 2, 25}), 4)
+}

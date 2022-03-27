@@ -501,3 +501,36 @@ func TestMostSumOfBinaryTree(t *testing.T) {
 
 	assert.Equal(t, mostSumOfBinaryTree(q3), 42)
 }
+
+func TestLowestCommonAncestor2(t *testing.T) {
+	p := &TreeNode{
+		Val: 4,
+	}
+	q:= &TreeNode{
+		Val: 5,
+	}
+
+	root := &TreeNode{
+		1,
+		&TreeNode{
+			2,
+			&TreeNode{
+				4,
+				nil,
+				nil,
+			},
+			&TreeNode{
+				5,
+				nil,
+				nil,
+			},
+		},
+		&TreeNode{
+			3,
+			nil,
+			nil,
+		},
+	}
+
+	assert.Equal(t, lowestCommonAncestor2(root, p, q).Val, 2)
+}

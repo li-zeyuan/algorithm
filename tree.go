@@ -439,6 +439,29 @@ func lowestCommonAncestor(root, p, q *TreeNode) *TreeNode {
 }
 
 /*
+236. 二叉树的最近公共祖先
+ */
+func lowestCommonAncestor2(root, p, q *TreeNode) *TreeNode {
+	if root == nil {
+		return nil
+	}
+	if root.Val == p.Val || root.Val == q.Val {
+		return root
+	}
+	left := lowestCommonAncestor2(root.Left, p, q)
+	right := lowestCommonAncestor2(root.Right, p, q)
+	if left != nil && right != nil {
+		return root
+	}
+	if left == nil {
+		return right
+	}
+	return left
+}
+
+
+
+/*
 257. 二叉树的所有路径
 https://leetcode-cn.com/problems/binary-tree-paths/
 方式一：深度优先（递归）
