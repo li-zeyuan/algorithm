@@ -624,3 +624,16 @@ func sortColors(nums []int) {
 
 	fmt.Println(nums)
 }
+
+/*
+对于数组double a[n],对任意i, a[i] > 0,求max ((a[i] - a[j] )/ a[i]),其中0 <= i <= j <n  时间复杂度要求为O(n)
+思路：
+1、1 -（a[j]/a[i]）
+2、
+
+
+[1,5,3,10,4,11]
+*/
+//func ()  {
+//
+//}
