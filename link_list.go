@@ -462,3 +462,47 @@ func gen(n int, strList []string, str string) {
 	gen(n, strList, "(")
 	gen(n, strList, ")")
 }
+
+/*
+间隔划分链表
+*/
+func splitLink(head *ListNode) (*ListNode, *ListNode) {
+	if head == nil {
+		return nil, nil
+	}
+
+	var firstLink *ListNode
+	var secondLink *ListNode
+	fPrt := firstLink
+	sPrt := secondLink
+
+	prt := head
+	i := 0
+	for prt != nil {
+		tempNode := &ListNode{
+			Val: prt.Val,
+		}
+		if i%2 == 0 {
+			if firstLink == nil {
+				firstLink = tempNode
+				fPrt = firstLink
+			} else {
+				fPrt.Next = tempNode
+				fPrt = fPrt.Next
+			}
+		} else {
+			if secondLink == nil {
+				secondLink = tempNode
+				sPrt = secondLink
+			} else {
+				sPrt.Next = tempNode
+				fPrt = sPrt.Next
+			}
+		}
+
+		i++
+		prt = prt.Next
+	}
+
+	return firstLink, secondLink
+}
