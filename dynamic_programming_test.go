@@ -18,3 +18,8 @@ func TestNumWays(t *testing.T) {
 func TestLengthOfLIS(t *testing.T) {
 	assert.Equal(t, lengthOfLIS([]int{10, 9, 2, 5, 3, 7, 101, 18}), 4)
 }
+
+func TestLongestCommonSubsequence(t *testing.T) {
+	assert.Equal(t, longestCommonSubsequence("abcde", "ace"), 3)
+	assert.Equal(t, longestCommonSubsequence("", "ace"), 0)
+}

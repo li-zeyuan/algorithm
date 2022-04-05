@@ -97,3 +97,38 @@ func lengthOfLIS(nums []int) int {
 
 	return result
 }
+
+/*
+1143. 最长公共子序列
+https://leetcode-cn.com/problems/longest-common-subsequence/
+思路：
+1、构建二维数组dp
+2、自底向上遍历，text1用i指针，text2用j指针
+3、若text1[i] == text2[j],dp[i][j] = dp[i-1][j-1] + 1。既斜对角加1
+4、若text1[i] != text2[j],dp[i][j] = max(dp[i-1][j],dp[i][j-1])。既相邻最大值
+5、返回dp[i][j]
+*/
+func longestCommonSubsequence(text1 string, text2 string) int {
+	if len(text1) == 0 || len(text2) == 0 {
+		return 0
+	}
+
+	dp := make([][]int, len(text1)+1)
+	dp[0] = make([]int, len(text2)+1)
+	for i := 0; i < len(text1); i++ {
+		for j := 0; j < len(text2); j++ {
+			if j == 0 {
+				// todo
+				dp[i+1] = make([]int, len(text2)+1)
+			}
+
+			if text1[i] == text2[j] {
+				dp[i+1][j+1] = dp[i][j] + 1
+			} else {
+				dp[i+1][j+1] = max(dp[i+1][j], dp[i][j+1])
+			}
+		}
+	}
+
+	return dp[len(text1)][len(text2)]
+}
