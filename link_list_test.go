@@ -186,6 +186,23 @@ func TestRemoveNthFromEnd(t *testing.T) {
 	t.Log(result)
 }
 
+func TestSplitLink(t *testing.T) {
+	l1 := &ListNode{
+		1,
+		&ListNode{
+			2,
+			&ListNode{
+				3,
+				nil,
+			},
+		},
+	}
+
+	first, second := splitLink(l1)
+	t.Log(first)
+	t.Log(second)
+}
+
 func TestMvLink(t *testing.T) {
 	l1 := &ListNode{
 		1,

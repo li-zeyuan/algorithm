@@ -13,7 +13,7 @@ QuicklySort 快排:分治的思想
 5、递归，重复1、2，排序基准左边、右边的子了列表
 
 时间复杂度：O(nlogn)，最大O(n^2)
-空间复杂度：O(logn)，最大O(n)
+空间复杂度：递归深度，O(logn)，最大O(n)
 
 参考
 https://learnku.com/articles/45802

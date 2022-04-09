@@ -463,6 +463,50 @@ func gen(n int, strList []string, str string) {
 	gen(n, strList, ")")
 }
 
+/*
+间隔划分链表
+*/
+func splitLink(head *ListNode) (*ListNode, *ListNode) {
+	if head == nil {
+		return nil, nil
+	}
+
+	var firstLink *ListNode
+	var secondLink *ListNode
+	fPrt := firstLink
+	sPrt := secondLink
+
+	prt := head
+	i := 0
+	for prt != nil {
+		tempNode := &ListNode{
+			Val: prt.Val,
+		}
+		if i%2 == 0 {
+			if firstLink == nil {
+				firstLink = tempNode
+				fPrt = firstLink
+			} else {
+				fPrt.Next = tempNode
+				fPrt = fPrt.Next
+			}
+		} else {
+			if secondLink == nil {
+				secondLink = tempNode
+				sPrt = secondLink
+			} else {
+				sPrt.Next = tempNode
+				fPrt = sPrt.Next
+			}
+		}
+
+		i++
+		prt = prt.Next
+	}
+
+	return firstLink, secondLink
+}
+
 // 给定一个单链表，旋转链表，将链表每个节点向后移动 k 个位置，
 //
 //如果是尾节点，则把它移动到最前面；其中 k 是正数。
