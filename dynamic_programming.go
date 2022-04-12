@@ -132,3 +132,22 @@ func longestCommonSubsequence(text1 string, text2 string) int {
 
 	return dp[len(text1)][len(text2)]
 }
+
+/*
+806. 写字符串需要的行数
+https://leetcode-cn.com/problems/number-of-lines-to-write-string/
+思路：直接遍历
+*/
+func numberOfLines(widths []int, s string) []int {
+	const maxWidth = 100
+	lines, width := 1, 0
+	for _, c := range s {
+		need := widths[c-'a']
+		width += need
+		if width > maxWidth {
+			lines++
+			width = need
+		}
+	}
+	return []int{lines, width}
+}
