@@ -506,7 +506,7 @@ func TestLowestCommonAncestor2(t *testing.T) {
 	p := &TreeNode{
 		Val: 4,
 	}
-	q:= &TreeNode{
+	q := &TreeNode{
 		Val: 5,
 	}
 

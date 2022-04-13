@@ -125,7 +125,6 @@ func TestRotate(t *testing.T) {
 	rotate([][]int{{1, 0, 2}, {2, 6, 3}, {8, 10, 3}, {15, 18, 3}})
 }
 
-
 func TestSearchInt(t *testing.T) {
 	assert.Equal(t, SearchInt([]int{}), 1)
 	assert.Equal(t, SearchInt([]int{-4, 0, 4, 1}), 2)

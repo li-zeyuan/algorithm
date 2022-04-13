@@ -502,18 +502,18 @@ func MvLink(h *ListNode, k int) *ListNode {
 	n := h
 	l := 0
 	for n != nil {
-		l ++
+		l++
 		n = n.Next
 	}
 
 	n2 := h
-	for i := 0; i < l - k; i ++ {
+	for i := 0; i < l-k; i++ {
 		n2 = n2.Next
 	}
 
 	lastNote := n2
-	n2.Next =nil
-	lastNote.Next  = h
+	n2.Next = nil
+	lastNote.Next = h
 
 	return lastNote
 }

@@ -440,7 +440,7 @@ func lowestCommonAncestor(root, p, q *TreeNode) *TreeNode {
 
 /*
 236. 二叉树的最近公共祖先
- */
+*/
 func lowestCommonAncestor2(root, p, q *TreeNode) *TreeNode {
 	if root == nil {
 		return nil
@@ -458,8 +458,6 @@ func lowestCommonAncestor2(root, p, q *TreeNode) *TreeNode {
 	}
 	return left
 }
-
-
 
 /*
 257. 二叉树的所有路径

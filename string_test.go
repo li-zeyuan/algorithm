@@ -85,8 +85,8 @@ func TestLengthOfLongestSubstring(t *testing.T) {
 }
 
 func TestFindLUSlength(t *testing.T) {
-	assert.Equal(t, findLUSlength("aba",  "cdc"), 3)
-	assert.Equal(t, findLUSlength("aaa",  "bbb"), 3)
+	assert.Equal(t, findLUSlength("aba", "cdc"), 3)
+	assert.Equal(t, findLUSlength("aaa", "bbb"), 3)
 	assert.Equal(t, findLUSlength("aaa", "aaa"), -1)
 }
 

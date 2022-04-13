@@ -148,7 +148,7 @@ func wordBreak(s string, wordDict []string) bool {
 	for _, w := range wordDict {
 		wordDictSet[w] = true
 	}
-	dp := make([]bool, len(s) + 1)
+	dp := make([]bool, len(s)+1)
 	dp[0] = true
 	for i := 1; i <= len(s); i++ {
 		for j := 0; j < i; j++ {
@@ -160,6 +160,7 @@ func wordBreak(s string, wordDict []string) bool {
 	}
 	return dp[len(s)]
 }
+
 /*
 806. 写字符串需要的行数
 https://leetcode-cn.com/problems/number-of-lines-to-write-string/
