@@ -431,22 +431,6 @@ func rev(head *ListNode) *ListNode {
 思路3：反转->删除节点->反转
 */
 
-/*
-22. 括号生成
-思路：暴力法
-1、生成所以的括号
-2、校验是否合法
-	- 前一边存一个栈
-	- 后一边存一个栈
-*/
-func generateParenthesis(n int) []string {
-	//strList := make([]string, 0)
-	//gen(n, strList)
-	//return str
-
-	return []string{}
-}
-
 func gen(n int, strList []string, str string) {
 	if n == 0 {
 		return
