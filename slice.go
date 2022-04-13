@@ -637,3 +637,27 @@ func sortColors(nums []int) {
 //func ()  {
 //
 //}
+
+
+func SearchInt(nums []int) int {
+	if len(nums) == 0 {
+		return 1
+	}
+
+	sort.Slice(nums, func(i, j int) bool {
+		return nums[i]<nums[j]
+	})
+
+	target := 0
+	for i := 0; i < len(nums); i ++ {
+		if nums[i] <= 0 {
+			continue
+		}
+		target ++
+		if target != nums[i] {
+			return target
+		}
+	}
+
+	return target + 1
+}

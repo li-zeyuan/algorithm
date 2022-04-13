@@ -24,6 +24,13 @@ func TestLongestCommonSubsequence(t *testing.T) {
 	assert.Equal(t, longestCommonSubsequence("", "ace"), 0)
 }
 
+func TestWordBreak(t *testing.T) {
+	assert.Equal(t, wordBreak("aaaaaaa", []string{"aaaa","aaa"}), true)
+	assert.Equal(t, wordBreak("leetcode", []string{"leet", "code"}), true)
+	assert.Equal(t, wordBreak("catsandog", []string{"cats", "dog", "sand", "and", "cat"}), false)
+}
+
+
 func TestNumberOfLines(t *testing.T) {
 	t.Log(numberOfLines([]int{10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10}, "abcdefghijklmnopqrstuvwxyz"))
 	t.Log(numberOfLines([]int{4, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10}, "bbbcccdddaaa"))

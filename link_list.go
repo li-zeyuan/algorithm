@@ -490,3 +490,30 @@ func splitLink(head *ListNode) (*ListNode, *ListNode) {
 
 	return firstLink, secondLink
 }
+
+// 给定一个单链表，旋转链表，将链表每个节点向后移动 k 个位置，
+//
+//如果是尾节点，则把它移动到最前面；其中 k 是正数。
+func MvLink(h *ListNode, k int) *ListNode {
+	if h == nil || k == 0 {
+		return h
+	}
+
+	n := h
+	l := 0
+	for n != nil {
+		l ++
+		n = n.Next
+	}
+
+	n2 := h
+	for i := 0; i < l - k; i ++ {
+		n2 = n2.Next
+	}
+
+	lastNote := n2
+	n2.Next =nil
+	lastNote.Next  = h
+
+	return lastNote
+}

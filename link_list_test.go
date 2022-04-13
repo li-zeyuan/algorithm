@@ -198,3 +198,27 @@ func TestSplitLink(t *testing.T) {
 	t.Log(first)
 	t.Log(second)
 }
+
+func TestMvLink(t *testing.T) {
+	l1 := &ListNode{
+		1,
+		&ListNode{
+			2,
+			&ListNode{
+				3,
+				nil,
+			},
+		},
+	}
+
+	result := MvLink(l1, 1)
+	t.Log(result)
+
+	l2 := &ListNode{
+		1,
+		nil,
+	}
+
+	result2 := MvLink(l2, 1)
+	t.Log(result2)
+}
