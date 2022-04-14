@@ -34,3 +34,10 @@ func TestNumberOfLines(t *testing.T) {
 	t.Log(numberOfLines([]int{10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10}, "abcdefghijklmnopqrstuvwxyz"))
 	t.Log(numberOfLines([]int{4, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10}, "bbbcccdddaaa"))
 }
+
+func TestJump(t *testing.T) {
+	assert.Equal(t, jump([]int{2, 3, 1, 1, 4}), 2)
+}
+func TestJump2(t *testing.T) {
+	assert.Equal(t, jump2([]int{2, 3, 1, 1, 4}), 2)
+}

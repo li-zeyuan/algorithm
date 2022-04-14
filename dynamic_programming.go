@@ -179,3 +179,72 @@ func numberOfLines(widths []int, s string) []int {
 	}
 	return []int{lines, width}
 }
+
+/*
+45. 跳跃游戏 II
+https://leetcode-cn.com/problems/jump-game-ii/
+思路：动态规划
+1、dp数组保存该下标下，最小的步数
+2、遍历nums数组，取出元素，向前修改dp数组
+
+时间复杂度：n^2
+空间复杂度：1
+*/
+func jump(nums []int) int {
+	if len(nums) == 0 {
+		return 0
+	}
+	if len(nums) == 1 {
+		if nums[0] > 1 {
+			return 1
+		} else {
+			return 0
+		}
+	}
+
+	dp := make([]int, len(nums))
+	dp[0] = 1
+	for i := 0; i < len(nums); i++ {
+		step := nums[i]
+		for j := i + 1; step > 0 && j < len(nums); j++ {
+			step--
+			if i == 0 {
+				dp[j] = 1
+				continue
+			}
+			if dp[j] == 0 {
+				dp[j] = dp[i] + 1
+			}
+		}
+	}
+
+	return dp[len(nums)-1]
+}
+
+/*
+思路：正向查找可到达的最大位置
+https://leetcode-cn.com/problems/jump-game-ii/solution/tiao-yue-you-xi-ii-by-leetcode-solution/
+时间复杂度：n
+空间复杂度：1
+*/
+func jump2(nums []int) int {
+	length := len(nums)
+	end := 0
+	maxPosition := 0
+	steps := 0
+	for i := 0; i < length-1; i++ {
+		maxPosition = jumpMax(maxPosition, i+nums[i])
+		if i == end {
+			end = maxPosition
+			steps++
+		}
+	}
+	return steps
+}
+
+func jumpMax(x, y int) int {
+	if x > y {
+		return x
+	}
+	return y
+}
