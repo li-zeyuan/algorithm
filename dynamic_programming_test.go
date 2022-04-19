@@ -50,3 +50,14 @@ func TestShortestToChar(t *testing.T) {
 func TestShortestToChar2(t *testing.T) {
 	t.Log(shortestToChar2("loveleetcode", 'e'))
 }
+
+func TestUniquePathsWithObstacles(t *testing.T) {
+	obstacleGrid := [][]int{{0, 0, 0}, {0, 1, 0}, {0, 0, 0}}
+	assert.Equal(t, uniquePathsWithObstacles(obstacleGrid), 2)
+
+	obstacleGrid2 := [][]int{{0, 1}, {0, 0}}
+	assert.Equal(t, uniquePathsWithObstacles(obstacleGrid2), 1)
+
+	obstacleGrid3 := [][]int{{1}}
+	assert.Equal(t, uniquePathsWithObstacles(obstacleGrid3), 0)
+}

@@ -42,6 +42,38 @@ func uniquePaths(m int, n int) int { // m: 行；7：列
 }
 
 /*
+63. 不同路径 II
+https://leetcode-cn.com/problems/unique-paths-ii/
+思路：动态规划
+
+时间复杂度：m * n
+空间复杂度：m * n
+*/
+func uniquePathsWithObstacles(obstacleGrid [][]int) int {
+	if len(obstacleGrid) == 0 {
+		return 0
+	}
+
+	dp := make([][]int, 0)
+	dp = append(dp, make([]int, len(obstacleGrid[0])+1))
+	for i := 1; i <= len(obstacleGrid); i++ {
+		row := make([]int, len(obstacleGrid[0])+1)
+		for j := 1; j <= len(obstacleGrid[0]); j++ {
+			if i == 1 && j == 1 && obstacleGrid[i-1][j-1] != 1 {
+				row[j] = 1
+			} else if obstacleGrid[i-1][j-1] == 1 {
+				row[j] = 0
+			} else {
+				row[j] = row[j-1] + dp[i-1][j]
+			}
+		}
+		dp = append(dp, row)
+	}
+
+	return dp[len(obstacleGrid)][len(obstacleGrid[0])]
+}
+
+/*
 一只青蛙一次可以跳上1级台阶，也可以跳上2级台阶。求该青蛙跳上一个 10 级的台阶总共有多少种跳法。
 思路：自顶向下
 1、f（n） = f（n-1）+f(n-2)
