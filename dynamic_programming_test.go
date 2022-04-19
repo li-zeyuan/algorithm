@@ -38,6 +38,15 @@ func TestNumberOfLines(t *testing.T) {
 func TestJump(t *testing.T) {
 	assert.Equal(t, jump([]int{2, 3, 1, 1, 4}), 2)
 }
+
 func TestJump2(t *testing.T) {
 	assert.Equal(t, jump2([]int{2, 3, 1, 1, 4}), 2)
+}
+
+func TestShortestToChar(t *testing.T) {
+	t.Log(shortestToChar("loveleetcode", 'e'))
+}
+
+func TestShortestToChar2(t *testing.T) {
+	t.Log(shortestToChar2("loveleetcode", 'e'))
 }

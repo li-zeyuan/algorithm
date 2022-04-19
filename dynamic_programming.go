@@ -248,3 +248,79 @@ func jumpMax(x, y int) int {
 	}
 	return y
 }
+
+/*
+821. 字符的最短距离
+https://leetcode-cn.com/problems/shortest-distance-to-a-character/
+思路：双指针
+
+时间复杂度：n^2
+空间复杂度：n
+*/
+func shortestToChar(s string, c byte) []int {
+	if len(s) == 0 {
+		return nil
+	}
+
+	result := make([]int, len(s))
+	for i := 0; i < len(s); i++ {
+		if s[i] == c {
+			result[i] = 0
+			continue
+		}
+
+		j := i
+		for {
+			if (2*i-j) >= 0 && s[2*i-j] == c { // 前移指针
+				result[i] = j - i
+				break
+			}
+			if j < len(s) && s[j] == c { // // 后移指针
+				result[i] = j - i
+				break
+			}
+
+			j++
+		}
+	}
+
+	return result
+}
+
+/*
+思路2：两次遍历
+1、s[i] 到其左侧最近的字符 cc 的距离
+2、 s[i]s[i] 到其右侧最近的字符 cc 的距离
+
+时间复杂度：n
+空间复杂度：1
+https://leetcode-cn.com/problems/shortest-distance-to-a-character/solution/zi-fu-de-zui-duan-ju-chi-by-leetcode-sol-2t49/
+*/
+func shortestToChar2(s string, c byte) []int {
+	n := len(s)
+	ans := make([]int, n)
+
+	idx := -n
+	for i, ch := range s {
+		if byte(ch) == c {
+			idx = i
+		}
+		ans[i] = i - idx
+	}
+
+	idx = n * 2
+	for i := n - 1; i >= 0; i-- {
+		if s[i] == c {
+			idx = i
+		}
+		ans[i] = shortestToCharMin(ans[i], idx-i)
+	}
+	return ans
+}
+
+func shortestToCharMin(a, b int) int {
+	if a > b {
+		return b
+	}
+	return a
+}
