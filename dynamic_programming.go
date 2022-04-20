@@ -1,5 +1,7 @@
 package algorithm
 
+import "math"
+
 /*
 动态规划算法
 https://juejin.cn/post/6951922898638471181
@@ -71,6 +73,52 @@ func uniquePathsWithObstacles(obstacleGrid [][]int) int {
 	}
 
 	return dp[len(obstacleGrid)][len(obstacleGrid[0])]
+}
+
+/*
+64. 最小路径和
+https://leetcode-cn.com/problems/minimum-path-sum/
+思路：动态规划
+1、构造dp二维数组
+2、f(i,j) = min(f(i-1,j), j(i,j-1)) + f(i,j)
+
+时间复杂度：m * n
+空间复杂度：m * n
+*/
+func minPathSum(grid [][]int) int {
+	if len(grid) == 0 {
+		return 0
+	}
+
+	dp := make([][]int, len(grid)+1)
+	firstRow := make([]int, len(grid[0])+1)
+	for i2 := 0; i2 < len(grid[0])+1; i2++ {
+		if i2 == 1 {
+			firstRow[i2] = 0
+		} else {
+			firstRow[i2] = math.MaxInt32
+		}
+	}
+	dp[0] = firstRow
+
+	for i := 1; i <= len(grid); i++ {
+		dpRow := make([]int, len(grid[0])+1)
+		dpRow[0] = math.MaxInt32
+		for j := 1; j <= len(grid[0]); j++ {
+			dpRow[j] = minPathSumMin(dpRow[j-1], dp[i-1][j]) + grid[i-1][j-1]
+		}
+		dp[i] = dpRow
+	}
+
+	return dp[len(grid)][len(grid[0])]
+}
+
+func minPathSumMin(x, y int) int {
+	if x > y {
+		return y
+	}
+
+	return x
 }
 
 /*

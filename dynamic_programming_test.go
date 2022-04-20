@@ -61,3 +61,14 @@ func TestUniquePathsWithObstacles(t *testing.T) {
 	obstacleGrid3 := [][]int{{1}}
 	assert.Equal(t, uniquePathsWithObstacles(obstacleGrid3), 0)
 }
+
+func TestMinPathSum(t *testing.T) {
+	obstacleGrid := [][]int{{1, 3, 1}, {1, 5, 1}, {4, 2, 1}}
+	assert.Equal(t, minPathSum(obstacleGrid), 7)
+
+	//obstacleGrid2 := [][]int{{0, 1}, {0, 0}}
+	//assert.Equal(t, minPathSum(obstacleGrid2), 1)
+	//
+	//obstacleGrid3 := [][]int{{1}}
+	//assert.Equal(t, minPathSum(obstacleGrid3), 0)
+}
