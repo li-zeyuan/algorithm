@@ -1,6 +1,8 @@
 package algorithm
 
-import "math"
+import (
+	"math"
+)
 
 /*
 动态规划算法
@@ -403,4 +405,27 @@ func shortestToCharMin(a, b int) int {
 		return b
 	}
 	return a
+}
+
+/*
+91. 解码方法
+思路：动态规划
+1、dp数组保存dp[i]表示i处的解码总数
+2、情况一：i处，一个单词作解码；f(i) = f(i-1)
+3、情况二：i处，两个单词作解码; f(i) = f(i-2)
+4、f(i) = f(i-1) + f(i-2)
+*/
+func numDecodings(s string) int {
+	n := len(s)
+	f := make([]int, n+1)
+	f[0] = 1
+	for i := 1; i <= n; i++ {
+		if s[i-1] != '0' {
+			f[i] += f[i-1]
+		}
+		if i > 1 && s[i-2] != '0' && ((s[i-2]-'0')*10+(s[i-1]-'0') <= 26) {
+			f[i] += f[i-2]
+		}
+	}
+	return f[n]
 }
